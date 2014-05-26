@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ch.tutteli.taskscheduler.test.utils;
-using ch.tutteli.taskscheduler.trigger;
+using ch.tutteli.taskscheduler.triggers;
 using NUnit.Framework;
 
-namespace ch.tutteli.taskscheduler.test.trigger
+namespace ch.tutteli.taskscheduler.triggers
 {
 	[TestFixture]
 	public class MontlyTriggerTest

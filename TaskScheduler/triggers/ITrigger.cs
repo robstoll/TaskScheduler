@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ch.tutteli.taskscheduler
+namespace ch.tutteli.taskscheduler.triggers
 {
 	public interface ITrigger
 	{

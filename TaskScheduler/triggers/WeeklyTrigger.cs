@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ch.tutteli.taskscheduler.trigger
+namespace ch.tutteli.taskscheduler.triggers
 {
 	public class WeeklyTrigger : ARecuringTrigger
 	{

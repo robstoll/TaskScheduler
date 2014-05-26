@@ -4,16 +4,14 @@ using System.Linq;
 using System.Web;
 using ServiceStack.ServiceHost;
 
-namespace ch.tutteli.taskscheduler
+namespace ch.tutteli.taskscheduler.requests
 {
-	[Route("/task")]
-	[Route("/task/{Name}")]
-	public class TaskRequest
+
+	public abstract class ATaskRequest
 	{
 		public string Name { get;set; }
 		public string Description { get;set; }
 
-		public ETriggerType triggerType;
 	}
 	
 

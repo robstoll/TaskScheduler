@@ -97,36 +97,33 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="test\trigger\ARecuringTriggerTest.cs" />
-    <Compile Include="test\trigger\DailyTriggerLSPTest.cs" />
-    <Compile Include="test\trigger\MonthlyReccurenceTest.cs" />
-    <Compile Include="test\trigger\MonthlyTriggerLSPTest.cs" />
-    <Compile Include="test\trigger\MontlyTriggerTest.cs" />
-    <Compile Include="test\trigger\WeeklyTriggerLSPTest.cs" />
-    <Compile Include="test\trigger\WeeklyTriggerTest.cs" />
-    <Compile Include="trigger\ARecuringTrigger.cs" />
-    <Compile Include="trigger\DailyTrigger.cs" />
-    <Compile Include="trigger\ETriggerType.cs" />
+    <Compile Include="bl\TaskHandler.cs" />
+    <Compile Include="requests\AReccuringTaskRequest.cs" />
+    <Compile Include="requests\OneTimeTaskRequest.cs" />
+    <Compile Include="requests\MonthlyTaskRequest.cs" />
+    <Compile Include="requests\DailyTaskRequest.cs" />
+    <Compile Include="requests\TasksRequest.cs" />
+    <Compile Include="triggers\ARecuringTrigger.cs" />
+    <Compile Include="triggers\DailyTrigger.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="trigger\ITrigger.cs" />
-    <Compile Include="trigger\NoNextTriggerException.cs" />
-    <Compile Include="trigger\MonthlyTrigger.cs" />
-    <Compile Include="trigger\MonthlyRecurrence.cs" />
-    <Compile Include="trigger\OneTimeTrigger.cs" />
+    <Compile Include="triggers\ITrigger.cs" />
+    <Compile Include="triggers\NoNextTriggerException.cs" />
+    <Compile Include="triggers\MonthlyTrigger.cs" />
+    <Compile Include="triggers\MonthlyRecurrence.cs" />
+    <Compile Include="triggers\OneTimeTrigger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TaskRequest.cs" />
+    <Compile Include="requests\ATaskRequest.cs" />
     <Compile Include="TaskResponse.cs" />
     <Compile Include="TaskService.cs" />
-    <Compile Include="test\trigger\DailyTriggerTest.cs" />
-    <Compile Include="test\utils\IsEqual.cs" />
-    <Compile Include="test\trigger\OneTimeTriggerTest.cs" />
-    <Compile Include="trigger\WeeklyTrigger.cs" />
+    <Compile Include="triggers\WeeklyTrigger.cs" />
+    <Compile Include="requests\WeeklyTaskRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
