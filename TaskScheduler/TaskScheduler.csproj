@@ -28,6 +28,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -38,7 +39,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Mono.Data.Sqlite, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ServiceStack.OrmLite.Sqlite.Mono.3.9.71\lib\net35\Mono.Data.Sqlite.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -51,8 +62,13 @@
     <Reference Include="ServiceStack.Interfaces">
       <HintPath>..\packages\ServiceStack.Common.3.9.71\lib\net35\ServiceStack.Interfaces.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.OrmLite">
-      <HintPath>..\packages\ServiceStack.OrmLite.SqlServer.3.9.71\lib\net35\ServiceStack.OrmLite.dll</HintPath>
+    <Reference Include="ServiceStack.OrmLite, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ServiceStack.OrmLite.Sqlite.Mono.3.9.71\lib\net35\ServiceStack.OrmLite.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite.Sqlite, Version=3.9.71.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ServiceStack.OrmLite.Sqlite.Mono.3.9.71\lib\net35\ServiceStack.OrmLite.Sqlite.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.OrmLite.SqlServer">
       <HintPath>..\packages\ServiceStack.OrmLite.SqlServer.3.9.71\lib\net35\ServiceStack.OrmLite.SqlServer.dll</HintPath>
@@ -94,11 +110,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="sqlite3.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="bl\ITaskHandler.cs" />
     <Compile Include="bl\TaskHandler.cs" />
+    <Compile Include="dl\IRepository.cs" />
+    <Compile Include="dl\RedisRepository.cs" />
+    <Compile Include="dl\SqlLiteRepository.cs" />
+    <Compile Include="dl\Task.cs" />
     <Compile Include="requests\AReccuringTaskRequest.cs" />
+    <Compile Include="requests\ITaskRequest.cs" />
     <Compile Include="requests\OneTimeTaskRequest.cs" />
     <Compile Include="requests\MonthlyTaskRequest.cs" />
     <Compile Include="requests\DailyTaskRequest.cs" />
@@ -117,13 +142,16 @@
     <Compile Include="requests\ATaskRequest.cs" />
     <Compile Include="TaskResponse.cs" />
     <Compile Include="TaskService.cs" />
+    <Compile Include="triggers\TriggerFactory.cs" />
     <Compile Include="triggers\WeeklyTrigger.cs" />
     <Compile Include="requests\WeeklyTaskRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

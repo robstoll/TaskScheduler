@@ -1,62 +1,97 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
+using ch.tutteli.taskscheduler.bl;
+using ch.tutteli.taskscheduler.dl;
+using ch.tutteli.taskscheduler.requests;
+using ServiceStack.Common.Utils;
+using ServiceStack.OrmLite;
+using ServiceStack.Redis;
 using ServiceStack.WebHost.Endpoints;
 
 namespace ch.tutteli.taskscheduler
 {
-	public class Global : System.Web.HttpApplication
-	{
+    public class Global : System.Web.HttpApplication
+    {
+        public static readonly string URL_PREFIX = "/task/";
+        public static readonly string ONE_TIME = "one-time";
+        public static readonly string DAILY = "daily";
+        public static readonly string WEEKLY = "weekly";
+        public static readonly string MONTHLY = "monthly";
 
-		public class TaskSchedulerAppHost : AppHostBase
-		{
-			//Tell Service Stack the name of your application and where to find your web services
-			public TaskSchedulerAppHost() : base("Task Scheduler Web Services", typeof(TaskSchedulerService).Assembly) { }
+        public class TaskSchedulerAppHost : AppHostBase
+        {
+            //Tell Service Stack the name of your application and where to find your web services
+            public TaskSchedulerAppHost() : base("Task Scheduler Web Services", typeof(TaskSchedulerService).Assembly) { }
 
-			public override void Configure(Funq.Container container)
-			{
-				//register any dependencies your services use, e.g:
-				//container.Register<ICacheClient>(new MemoryCacheClient());
-			}
-		}
+            public override void Configure(Funq.Container container)
+            {
+                Routes
+                    .Add<OneTimeTaskRequest>(URL_PREFIX + ONE_TIME)
+                    .Add<DailyTaskRequest>(URL_PREFIX + DAILY)
+                    .Add<WeeklyTaskRequest>(URL_PREFIX + WEEKLY)
+                    .Add<MonthlyTaskRequest>(URL_PREFIX + MONTHLY);
 
-		//Initialize your application singleton
-		protected void Application_Start(object sender, EventArgs e)
-		{
-			new TaskSchedulerAppHost().Init();
-		}
+                //Show StackTrace in Web Service Exceptions
+                Config.DebugMode = true;
 
-		protected void Session_Start(object sender, EventArgs e)
-		{
+                container.Register<IDbConnectionFactory>(
+                    new OrmLiteConnectionFactory(PathUtils.MapHostAbsolutePath("~/TaskScheduler.sqlite"), SqliteDialect.Provider));
+                container.Register<IRepository>(c => new SqlLiteRepository(c.Resolve<IDbConnectionFactory>()));
 
-		}
+                //container.Register<IRedisClientsManager>(c => new PooledRedisClientManager());
+                //container.Register<IRepository>(c => new RedisRepository(c.Resolve<IRedisClientsManager>()));
 
-		protected void Application_BeginRequest(object sender, EventArgs e)
-		{
+                container.Register<ITaskHandler>(c => new TaskHandler(c.Resolve<IRepository>()));
 
-		}
+                using (var db = container.Resolve<IDbConnectionFactory>().Open())
+                {
+                    db.DropAndCreateTable<OneTimeTaskRequest>();
+                    db.DropAndCreateTable<DailyTaskRequest>();
+                    db.DropAndCreateTable<WeeklyTaskRequest>();
+                    db.DropAndCreateTable<MonthlyTaskRequest>();
+                }
+            }
+        }
 
-		protected void Application_AuthenticateRequest(object sender, EventArgs e)
-		{
+        //Initialize your application singleton
+        protected void Application_Start(object sender, EventArgs e)
+        {
+            new TaskSchedulerAppHost().Init();
+        }
 
-		}
+        protected void Session_Start(object sender, EventArgs e)
+        {
 
-		protected void Application_Error(object sender, EventArgs e)
-		{
+        }
 
-		}
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
 
-		protected void Session_End(object sender, EventArgs e)
-		{
+        }
 
-		}
+        protected void Application_AuthenticateRequest(object sender, EventArgs e)
+        {
 
-		protected void Application_End(object sender, EventArgs e)
-		{
+        }
 
-		}
-	}
+        protected void Application_Error(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Session_End(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Application_End(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

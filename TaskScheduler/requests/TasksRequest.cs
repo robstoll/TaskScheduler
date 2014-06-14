@@ -7,5 +7,6 @@ namespace ch.tutteli.taskscheduler.requests
 {
 	public class TasksRequest
 	{
+		public long id;
 	}
 }

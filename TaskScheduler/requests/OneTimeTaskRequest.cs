@@ -6,10 +6,10 @@ using ServiceStack.ServiceHost;
 
 namespace ch.tutteli.taskscheduler.requests
 {
-	[Route("/task/one-time")]
 	public class OneTimeTaskRequest : ATaskRequest
 	{
 		public DateTime Trigger { get; set; }
+		public OneTimeTaskRequest() { }
 		public OneTimeTaskRequest(DateTime trigger)
 		{
 			Trigger = trigger;

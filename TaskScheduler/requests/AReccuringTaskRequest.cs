@@ -10,6 +10,8 @@ namespace ch.tutteli.taskscheduler.requests
 		public DateTime StartDate { get; set; }
 		public DateTime EndDate { get; set; }
 
+		public AReccuringTaskRequest() { }
+
 		public AReccuringTaskRequest(DateTime startDate, DateTime endDate) { 
 			StartDate = startDate;
 			EndDate = endDate;

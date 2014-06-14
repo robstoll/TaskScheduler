@@ -7,7 +7,6 @@ using ServiceStack.ServiceHost;
 
 namespace ch.tutteli.taskscheduler.requests
 {
-	[Route("/task/monthly")]
 	public class MonthlyTaskRequest : AReccuringTaskRequest
 	{
 		public ISet<EMonth> RecursOnMonth { get; set; }
@@ -15,6 +14,8 @@ namespace ch.tutteli.taskscheduler.requests
 		public ISet<EDayOfMonth> RecursOnDayOfMonth { get; set; }
 
 		public IDictionary<EMonthlyOn, IList<DayOfWeek>> RecursOnSpecialDayOfMonth { get; set; }
+
+		public MonthlyTaskRequest() { }
 
 		public MonthlyTaskRequest(DateTime startDate, DateTime endDate, ISet<EMonth> recursOnMonth, ISet<EDayOfMonth> recursOnDayOfMonth) :
 			this(startDate, endDate, recursOnMonth, recursOnDayOfMonth, null)

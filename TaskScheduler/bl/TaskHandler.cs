@@ -2,50 +2,101 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ch.tutteli.taskscheduler.dl;
 using ch.tutteli.taskscheduler.requests;
 using ch.tutteli.taskscheduler.triggers;
+using ServiceStack.Common.Web;
+using ServiceStack.Redis;
+using ServiceStack.Redis.Generic;
 
 namespace ch.tutteli.taskscheduler.bl
 {
-	public class TaskHandler
-	{
-		public TaskResponse Create(OneTimeTaskRequest request)
-		{
-			return SaveTrigger(request, new OneTimeTrigger(request.Trigger));
-		}
+    public class TaskHandler : ITaskHandler
+    {
 
-		public TaskResponse Create(DailyTaskRequest request)
-		{
+        private IRepository repository;
 
-			return SaveTrigger(request, new DailyTrigger(
-				request.StartDate,
-				request.EndDate,
-				request.RecursEveryXDays));
-		}
+        public TaskHandler(IRepository theRepository)
+        {
+            repository = theRepository;
+        }
 
-		public TaskResponse Create(WeeklyTaskRequest request)
-		{
+        public static TTrigger Create<TRequest, TTrigger>(TRequest request)
+            where TTrigger : ITrigger
+            where TRequest : class, ITaskRequest, new()
+        {
+            return default(TTrigger);
+        }
 
-			return SaveTrigger(request, new WeeklyTrigger(
-				request.StartDate,
-				request.EndDate,
-				request.RecursEveryXWeeks,
-				request.TriggerWhenDayOfWeek));
-		}
+        public TaskResponse Create<TRequest>(TRequest request)
+                where TRequest : class, ITaskRequest, new()
+        {
+            Validate(request);
+            return CreateTask(request);
+        }
 
-		public TaskResponse Create(MonthlyTaskRequest request)
-		{
-			var monthlyRecurrence = new MonthlyRecurrence(request.RecursOnMonth, request.RecursOnDayOfMonth, request.RecursOnSpecialDayOfMonth);
-			return SaveTrigger(request, new MonthlyTrigger(
-				request.StartDate,
-				request.EndDate,
-				monthlyRecurrence));
-		}
+        private void Validate<TRequest>(TRequest request)
+         where TRequest : class, ITaskRequest, new()
+        {
+            //implicit validation - happens in the specific trigger (invariant check).
+            TriggerFactory.Create(request);
+        }
 
-		private TaskResponse SaveTrigger(ATaskRequest request, ITrigger trigger)
-		{
-			//TODO save
-			return new TaskResponse { Result = "Request: " + request.Name + " created." };
-		}
-	}
+        private TaskResponse CreateTask<TRequest>(TRequest request) where TRequest : class, ITaskRequest, new()
+        {
+            ValidateCreateRequest(request);
+
+            return new TaskResponse
+            {
+                Result = "Request: " + request.Name + " created.",
+                Id = repository.SaveTask(request)
+            };
+        }
+
+        private void ValidateCreateRequest(ITaskRequest request)
+        {
+            if (request.Id != default(long))
+            {
+                throw new ArgumentException("Possible attempt to update a resource but create operation used.");
+            }
+
+            ValidateCreateOrUpdateRequest(request);
+        }
+
+        private void ValidateCreateOrUpdateRequest(ITaskRequest request)
+        {
+            if (string.IsNullOrEmpty(request.Name))
+            {
+                throw new ArgumentException("Name was null or empty");
+            }
+        }
+
+        public TaskResponse Update<TRequest>(TRequest request)
+              where TRequest : class, ITaskRequest, new()
+        {
+            Validate(request);
+            return UpdateTask(request);
+        }
+
+        private TaskResponse UpdateTask<TRequest>(TRequest request) where TRequest : class, ITaskRequest, new()
+        {
+            ValidateUpdateRequest(request);
+
+            return new TaskResponse
+            {
+                Result = "Request: " + request.Name + " updated.",
+                Id = repository.SaveTask(request)
+            };
+        }
+
+        private void ValidateUpdateRequest(ITaskRequest request)
+        {
+            if (request.Id == default(long))
+            {
+                throw new ArgumentException("Tried to update a resource without providing its id");
+            }
+
+            ValidateCreateOrUpdateRequest(request);
+        }
+    }
 }
