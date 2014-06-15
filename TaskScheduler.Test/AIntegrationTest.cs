@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using ch.tutteli.taskscheduler;
 using ch.tutteli.taskscheduler.bl;
 using ch.tutteli.taskscheduler.dl;
@@ -14,37 +15,21 @@ using ServiceStack.WebHost.Endpoints;
 /// based on https://github.com/ServiceStack/ServiceStack.Examples
 namespace ServiceStack.Examples.Tests.Integration
 {
-	public class IntegrationTestAppHost : AppHostHttpListenerBase
-	{
-
-		public IntegrationTestAppHost() : base("Task Scheduler Web Services", typeof(TaskSchedulerService).Assembly) { }
-
-		public override void Configure(Container container)
-		{
-            container.Register<IDbConnectionFactory>(
-                       new OrmLiteConnectionFactory(PathUtils.MapHostAbsolutePath("~/TaskScheduler-test.sqlite"), SqliteDialect.Provider));
-            container.Register<IRepository>(c => new SqlLiteRepository(c.Resolve<IDbConnectionFactory>()));
-
-            //container.Register<IRedisClientsManager>(c => new PooledRedisClientManager());
-            //container.Register<IRepository>(c => new RedisRepository(c.Resolve<IRedisClientsManager>()));
-            
-            container.Register<ITaskHandler>(c => new TaskHandler(c.Resolve<IRepository>()));
-		}
-	}
-
 	public abstract class AIntegrationTest
 	{
-		private const string BaseUrl = "http://127.0.0.1:8085/";
+		public const string BaseUrl = "http://127.0.0.1:8085/";
 
-		protected IntegrationTestAppHost appHost;
+        protected AppHostHttpListenerBase appHost;
 
 		[TestFixtureSetUp]
 		public void TestFixtureSetup()
 		{
-			appHost = new IntegrationTestAppHost();
+			appHost = CreateAppHost();
 			appHost.Init();
 			appHost.Start(BaseUrl);
 		}
+
+        protected abstract AppHostHttpListenerBase CreateAppHost();
 
 		[TestFixtureTearDown]
 		public void TestFixtureTearDown()
@@ -54,7 +39,7 @@ namespace ServiceStack.Examples.Tests.Integration
 
 		public void SendToEachEndpoint<TRes>(object request, Action<TRes> validate)
 		{
-			SendToEachEndpoint(request, null, validate);
+			SendToEachEndpoint(request, null, validate, null);
 		}
 
 		/// <summary>
@@ -64,13 +49,14 @@ namespace ServiceStack.Examples.Tests.Integration
 		/// <param name="request"></param>
 		/// <param name="validate"></param>
 		/// <param name="httpMethod"></param>
-		public void SendToEachEndpoint<TRes>(object request, string httpMethod, Action<TRes> validate)
+        public void SendToEachEndpoint<TRes>(object request, string httpMethod, Action<TRes> validate, Action<HttpWebResponse> responseFilter)
 		{
 			using (var xmlClient = new XmlServiceClient(BaseUrl))
 			using (var jsonClient = new JsonServiceClient(BaseUrl))
 			using (var jsvClient = new JsvServiceClient(BaseUrl))
 			{
 				xmlClient.HttpMethod = httpMethod;
+                xmlClient.LocalHttpWebResponseFilter = responseFilter;
 				jsonClient.HttpMethod = httpMethod;
 				jsvClient.HttpMethod = httpMethod;
 

@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ch.tutteli.taskscheduler.bl;
 using ch.tutteli.taskscheduler.dl;
 using ch.tutteli.taskscheduler.requests;
+using ch.tutteli.taskscheduler.test.utils;
 using ch.tutteli.taskscheduler.triggers;
+using Funq;
 using NUnit.Framework;
+using ServiceStack.Common.Utils;
 using ServiceStack.Examples.Tests.Integration;
 using ServiceStack.OrmLite;
+using ServiceStack.WebHost.Endpoints;
 
 namespace ch.tutteli.taskscheduler.test.dl
 {
@@ -27,7 +32,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             }
         }
 
-        #region SaveTask Nothing Defined
+        #region SaveTask new task and nothing defined
 
         [Test]
         public void SaveOneTimeTaskRequest_NothingDefined_ReturnId1()
@@ -54,7 +59,7 @@ namespace ch.tutteli.taskscheduler.test.dl
         [Test]
         public void SaveWeeklyTaskRequest_NothingDefined_ReturnId1()
         {
-            var task = new OneTimeTaskRequest();
+            var task = new WeeklyTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
             var result = repository.SaveTask(task);
@@ -75,7 +80,7 @@ namespace ch.tutteli.taskscheduler.test.dl
 
         #endregion
 
-        #region SaveTask TwoTasks
+        #region SaveTask new task one task already created before
         [Test]
         public void SaveOneTimeTaskRequest_TwoTasks_ReturnId2()
         {
@@ -130,7 +135,7 @@ namespace ch.tutteli.taskscheduler.test.dl
 
         #endregion
 
-        #region SaveTask different types independent
+        #region SaveTask  new tasks - different types independent
         [Test]
         public void SaveTask_AllTypesAndNothignDefinedAndOneTimeFirst_ReturnId1AllTheTime()
         {
@@ -269,7 +274,7 @@ namespace ch.tutteli.taskscheduler.test.dl
         [Test]
         public void GetAllOneTimeTaskRequests_OneDefined_ReturnIt()
         {
-            var task = CreateOneTimeTaskRequest();
+            var task = TaskRequestHelper.CreateOneTimeTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
             repository.SaveTask(task);
@@ -279,23 +284,18 @@ namespace ch.tutteli.taskscheduler.test.dl
             AssertSameOneTimeTaskRequest(result[0], task);
         }
 
-        private static OneTimeTaskRequest CreateOneTimeTaskRequest()
-        {
-            var task = new OneTimeTaskRequest { Name = "test", Description = "descr", Trigger = DateTime.Now };
-            return task;
-        }
+       
 
         private static void AssertSameOneTimeTaskRequest(OneTimeTaskRequest result, OneTimeTaskRequest task)
         {
-            Assert.That(result.Name, Is.EqualTo(task.Name));
-            Assert.That(result.Description, Is.EqualTo(task.Description));
+            AssertSameBasicTaskProperties(result, task);
             Assert.That(result.Trigger, Is.EqualTo(task.Trigger));
         }
 
         [Test]
         public void GetAllDailyTaskRequests_OneDefined_ReturnIt()
         {
-            var task = CreateDailyTaskRequest();
+            var task = TaskRequestHelper.CreateDailyTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
             var id = repository.SaveTask(task);
@@ -305,34 +305,33 @@ namespace ch.tutteli.taskscheduler.test.dl
             AssertSameDailyTaskRequest(result[0], task);
         }
 
-        private static DailyTaskRequest CreateDailyTaskRequest()
-        {
-            var task = new DailyTaskRequest
-            {
-                Name = "test",
-                Description = "descr",
-                StartDate = DateTime.Now,
-                EndDate = DateTime.Now.AddDays(2),
-                RecursEveryXDays = 10,
-                TriggerWhenDayOfWeek = new HashSet<DayOfWeek> { DayOfWeek.Monday, DayOfWeek.Friday }
-            };
-            return task;
-        }
-
+    
         private static void AssertSameDailyTaskRequest(DailyTaskRequest result, DailyTaskRequest task)
         {
-            Assert.That(result.Name, Is.EqualTo(task.Name));
-            Assert.That(result.Description, Is.EqualTo(task.Description));
-            Assert.That(result.StartDate, Is.EqualTo(task.StartDate));
-            Assert.That(result.EndDate, Is.EqualTo(task.EndDate));
+            AssertSameBasicTaskProperties(result, task);
+            AssertSameRecurringTaskProperties(result, task);
             Assert.That(result.RecursEveryXDays, Is.EqualTo(task.RecursEveryXDays));
             Assert.That(result.TriggerWhenDayOfWeek, Is.EqualTo(task.TriggerWhenDayOfWeek));
         }
 
+        private static void AssertSameBasicTaskProperties(ITaskRequest result, ITaskRequest task)
+        {
+            Assert.That(result.Name, Is.EqualTo(task.Name));
+            Assert.That(result.Description, Is.EqualTo(task.Description));
+            Assert.That(result.CallbackUrl, Is.EqualTo(task.CallbackUrl));
+        }
+
+        private static void AssertSameRecurringTaskProperties(IRecurringTaskRequest result, IRecurringTaskRequest task)
+        {
+            Assert.That(result.StartDate, Is.EqualTo(task.StartDate));
+            Assert.That(result.EndDate, Is.EqualTo(task.EndDate));
+        }
+
+
         [Test]
         public void GetAllWeeklyTaskRequests_OneDefined_ReturnIt()
         {
-            var task = CreateWeaklyTaskRequest();
+            var task = TaskRequestHelper.CreateWeaklyTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
             repository.SaveTask(task);
@@ -342,26 +341,11 @@ namespace ch.tutteli.taskscheduler.test.dl
             AssertSameWeeklyTaskRequest(result[0], task);
         }
 
-        private static WeeklyTaskRequest CreateWeaklyTaskRequest()
-        {
-            var task = new WeeklyTaskRequest
-            {
-                Name = "test",
-                Description = "descr",
-                StartDate = DateTime.Now,
-                EndDate = DateTime.Now.AddDays(3),
-                TriggerWhenDayOfWeek = new HashSet<DayOfWeek> { DayOfWeek.Monday, DayOfWeek.Friday },
-                RecursEveryXWeeks = 2
-            };
-            return task;
-        }
-
+      
         private static void AssertSameWeeklyTaskRequest(WeeklyTaskRequest result, WeeklyTaskRequest task)
         {
-            Assert.That(result.Name, Is.EqualTo(task.Name));
-            Assert.That(result.Description, Is.EqualTo(task.Description));
-            Assert.That(result.StartDate, Is.EqualTo(task.StartDate));
-            Assert.That(result.EndDate, Is.EqualTo(task.EndDate));
+            AssertSameBasicTaskProperties(result, task);
+            AssertSameRecurringTaskProperties(result, task);
             Assert.That(result.TriggerWhenDayOfWeek, Is.EqualTo(task.TriggerWhenDayOfWeek));
             Assert.That(result.RecursEveryXWeeks, Is.EqualTo(task.RecursEveryXWeeks));
         }
@@ -369,7 +353,7 @@ namespace ch.tutteli.taskscheduler.test.dl
         [Test]
         public void GetAllMonthlyTaskRequests_OneDefined_ReturnIt()
         {
-            var task = CreateMonthlyTaskRequest();
+            var task = TaskRequestHelper.CreateMonthlyTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
             repository.SaveTask(task);
@@ -379,27 +363,12 @@ namespace ch.tutteli.taskscheduler.test.dl
             AssertSameMonthlyTaskRequest(result[0], task);
         }
 
-        private static MonthlyTaskRequest CreateMonthlyTaskRequest()
-        {
-            var task = new MonthlyTaskRequest
-            {
-                Name = "test",
-                Description = "descr",
-                StartDate = DateTime.Now,
-                EndDate = DateTime.Now.AddDays(3),
-                RecursOnDayOfMonth = new HashSet<EDayOfMonth> { EDayOfMonth.D1, EDayOfMonth.D15 },
-                RecursOnMonth = new HashSet<EMonth> { EMonth.March, EMonth.July },
-                RecursOnSpecialDayOfMonth = new Dictionary<EMonthlyOn, IList<DayOfWeek>> { { EMonthlyOn.First, new List<DayOfWeek> { DayOfWeek.Tuesday } } }
-            };
-            return task;
-        }
+      
 
         private static void AssertSameMonthlyTaskRequest(MonthlyTaskRequest result, MonthlyTaskRequest task)
         {
-            Assert.That(result.Name, Is.EqualTo(task.Name));
-            Assert.That(result.Description, Is.EqualTo(task.Description));
-            Assert.That(result.StartDate, Is.EqualTo(task.StartDate));
-            Assert.That(result.EndDate, Is.EqualTo(task.EndDate));
+            AssertSameBasicTaskProperties(result, task);
+            AssertSameRecurringTaskProperties(result, task);
             Assert.That(result.RecursOnDayOfMonth, Is.EqualTo(task.RecursOnDayOfMonth));
             Assert.That(result.RecursOnMonth, Is.EqualTo(task.RecursOnMonth));
             Assert.That(result.RecursOnSpecialDayOfMonth, Is.EqualTo(task.RecursOnSpecialDayOfMonth));
@@ -411,9 +380,63 @@ namespace ch.tutteli.taskscheduler.test.dl
 
 
         [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void LoadOneTimeTask_NothingDefined_ThrowArgumentNullException()
+        {
+            //no arrange needed
+
+            var repository = appHost.TryResolve<IRepository>();
+            var result = repository.LoadTask<OneTimeTaskRequest>(0);
+
+            //assert in attribute
+        }
+
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void LoadDailyTask_NothingDefined_ThrowArgumentNullException()
+        {
+            //no arrange needed
+
+            var repository = appHost.TryResolve<IRepository>();
+            var result = repository.LoadTask<DailyTaskRequest>(0);
+
+            //assert in attribute
+        }
+
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void LoadWeeklyTask_NothingDefined_ThrowArgumentNullException()
+        {
+            //no arrange needed
+
+            var repository = appHost.TryResolve<IRepository>();
+            var result = repository.LoadTask<WeeklyTaskRequest>(0);
+
+            //assert in attribute
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void LoadMonthlyTask_NothingDefined_ThrowArgumentNullException()
+        {
+            //no arrange needed
+
+            var repository = appHost.TryResolve<IRepository>();
+            var result = repository.LoadTask<MonthlyTaskRequest>(0);
+
+            //assert in attribute
+        }
+
+        #endregion
+
+        #region LoadTask one defined
+
+        [Test]
         public void LoadOneTimeTask_OneDefined_ReturnIt()
         {
-            var task = CreateOneTimeTaskRequest();
+            var task = TaskRequestHelper.CreateOneTimeTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
             var id = repository.SaveTask(task);
@@ -425,7 +448,7 @@ namespace ch.tutteli.taskscheduler.test.dl
         [Test]
         public void LoadDailyTask_OneDefined_ReturnIt()
         {
-            var task = CreateDailyTaskRequest();
+            var task = TaskRequestHelper.CreateDailyTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
             var id = repository.SaveTask(task);
@@ -438,7 +461,7 @@ namespace ch.tutteli.taskscheduler.test.dl
         [Test]
         public void LoadWeeklyTask_OneDefined_ReturnIt()
         {
-            var task = CreateWeaklyTaskRequest();
+            var task = TaskRequestHelper.CreateWeaklyTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
             var id = repository.SaveTask(task);
@@ -450,7 +473,7 @@ namespace ch.tutteli.taskscheduler.test.dl
         [Test]
         public void LoadMonthlyTask_OneDefined_ReturnIt()
         {
-            var task = CreateMonthlyTaskRequest();
+            var task = TaskRequestHelper.CreateMonthlyTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
             var id = repository.SaveTask(task);
@@ -461,6 +484,114 @@ namespace ch.tutteli.taskscheduler.test.dl
 
         #endregion
 
+        #region Update an existing Task - aka SaveTask, LoadTask, change it, SaveTask (again), LoadTask
+
+        [Test]
+        public void CreateAndUpdateOneTimeTask_Standard_ReturnTwiceTheSameIdAndObject()
+        {
+            var task = new OneTimeTaskRequest();
+
+            var repository = appHost.TryResolve<IRepository>();
+            var resultId = repository.SaveTask(task);
+            var result = repository.LoadTask<OneTimeTaskRequest>(resultId);
+            
+            Assert.That(resultId, Is.EqualTo(1));
+            AssertSameOneTimeTaskRequest(result, task);
+
+            task = TaskRequestHelper.CreateOneTimeTaskRequest();
+            task.Id = resultId;
+            resultId = repository.SaveTask(task);
+            result = repository.LoadTask<OneTimeTaskRequest>(resultId);
+            
+            Assert.That(resultId, Is.EqualTo(1));
+            AssertSameOneTimeTaskRequest(result, task);
+        }
+
+
+        [Test]
+        public void CreateAndUpdateDailyTask_Standard_ReturnTwiceTheSameIdAndObject()
+        {
+            var task = new DailyTaskRequest();
+
+            var repository = appHost.TryResolve<IRepository>();
+            var resultId = repository.SaveTask(task);
+            var result = repository.LoadTask<DailyTaskRequest>(resultId);
+            
+            Assert.That(resultId, Is.EqualTo(1));
+            AssertSameDailyTaskRequest(result, task);
+
+            task = TaskRequestHelper.CreateDailyTaskRequest();
+            task.Id = resultId;
+            resultId = repository.SaveTask(task);
+            result = repository.LoadTask<DailyTaskRequest>(resultId);
+
+            Assert.That(resultId, Is.EqualTo(1));
+            AssertSameDailyTaskRequest(result, task);
+        }
+
+        [Test]
+        public void CreateAndUpdateWeeklyTask_Standard_ReturnTwiceTheSameIdAndObject()
+        {
+            var task = new WeeklyTaskRequest();
+
+            var repository = appHost.TryResolve<IRepository>();
+            var resultId = repository.SaveTask(task);
+            var result = repository.LoadTask<WeeklyTaskRequest>(resultId);
+
+            Assert.That(resultId, Is.EqualTo(1));
+            AssertSameWeeklyTaskRequest(result, task);
+
+            task = TaskRequestHelper.CreateWeaklyTaskRequest();
+            task.Id = resultId;
+            resultId = repository.SaveTask(task);
+            result = repository.LoadTask<WeeklyTaskRequest>(resultId);
+
+            Assert.That(resultId, Is.EqualTo(1));
+            AssertSameWeeklyTaskRequest(result, task);
+        }
+
+        [Test]
+        public void CreateAndUpdateMonthlyTask_Standard_ReturnTwiceTheSameIdAndObject()
+        {
+            var task = new MonthlyTaskRequest();
+
+            var repository = appHost.TryResolve<IRepository>();
+            var resultId = repository.SaveTask(task);
+            var result = repository.LoadTask<MonthlyTaskRequest>(resultId);
+
+            Assert.That(resultId, Is.EqualTo(1));
+            AssertSameMonthlyTaskRequest(result, task);
+
+            task = TaskRequestHelper.CreateMonthlyTaskRequest();
+            task.Id = resultId;
+            resultId = repository.SaveTask(task);
+            result = repository.LoadTask<MonthlyTaskRequest>(resultId);
+
+            Assert.That(resultId, Is.EqualTo(1));
+            AssertSameMonthlyTaskRequest(result, task);
+        }
+
+        #endregion
+
+
+        protected override AppHostHttpListenerBase CreateAppHost()
+        {
+            return new SqlLiteAppHost();
+        }
+    }
+
+    public class SqlLiteAppHost : AppHostHttpListenerBase
+    {
+
+        public SqlLiteAppHost() : base("Task Scheduler Web Services", typeof(TaskSchedulerService).Assembly) { }
+
+        public override void Configure(Container container)
+        {
+            container.Register<IDbConnectionFactory>(
+                       new OrmLiteConnectionFactory(PathUtils.MapHostAbsolutePath("~/TaskScheduler-test.sqlite"), SqliteDialect.Provider));
+            container.Register<IRepository>(c => new SqlLiteRepository(c.Resolve<IDbConnectionFactory>()));
+            container.Register<ITaskHandler>(c => new TaskHandler(c.Resolve<IRepository>()));
+        }
     }
 }
 

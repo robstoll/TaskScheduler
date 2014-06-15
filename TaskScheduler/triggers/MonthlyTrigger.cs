@@ -7,6 +7,9 @@ namespace ch.tutteli.taskscheduler.triggers
 {
 	public class MonthlyTrigger : ARecuringTrigger
 	{
+        /// <summary>
+        /// Helper variable which denotes a date after the specified EndDate
+        /// </summary>
 		private DateTime _afterEndDate;
 
 		public MonthlyRecurrence MonthlyRecurrence { get; set; }

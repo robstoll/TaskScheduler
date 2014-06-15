@@ -2,22 +2,42 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ServiceStack.DataAnnotations;
 using ServiceStack.ServiceHost;
 
 namespace ch.tutteli.taskscheduler.requests
 {
-	public class WeeklyTaskRequest : AReccuringTaskRequest, IReturn<TaskResponse>
+    public class WeeklyTaskRequest : IRecurringTaskRequest
 	{
+        #region general properties - code duplication in all request objects
+
+        [PrimaryKey]
+        [AutoIncrement]
+        public long Id { get; set; }
+
+        public DateTime DateCreated { get; set; }
+
+        public DateTime DateUpdated { get; set; }
+
+        public string Name { get; set; }
+        
+        public string Description { get; set; }
+
+        public string CallbackUrl { get; set; }
+
+        #endregion
+
+        #region recurring task properties - code duplication in daily- , weakly- and monthly-task-request
+
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+
+        #endregion
+
 		public int RecursEveryXWeeks { get; set; }
 
-		public ISet<DayOfWeek> TriggerWhenDayOfWeek { get; set; }
+		public HashSet<DayOfWeek> TriggerWhenDayOfWeek { get; set; }
 
 		public WeeklyTaskRequest() { }
-
-		public WeeklyTaskRequest(DateTime startDate, DateTime endDate, int recursEveryXWeeks) :
-			base(startDate, endDate)
-		{
-			RecursEveryXWeeks = recursEveryXWeeks;
-		}
 	}
 }

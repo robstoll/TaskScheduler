@@ -122,7 +122,7 @@
     <Compile Include="dl\RedisRepository.cs" />
     <Compile Include="dl\SqlLiteRepository.cs" />
     <Compile Include="dl\Task.cs" />
-    <Compile Include="requests\AReccuringTaskRequest.cs" />
+    <Compile Include="requests\IRecurringTaskRequest.cs" />
     <Compile Include="requests\ITaskRequest.cs" />
     <Compile Include="requests\OneTimeTaskRequest.cs" />
     <Compile Include="requests\MonthlyTaskRequest.cs" />
@@ -139,7 +139,6 @@
     <Compile Include="triggers\MonthlyRecurrence.cs" />
     <Compile Include="triggers\OneTimeTrigger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="requests\ATaskRequest.cs" />
     <Compile Include="TaskResponse.cs" />
     <Compile Include="TaskService.cs" />
     <Compile Include="triggers\TriggerFactory.cs" />

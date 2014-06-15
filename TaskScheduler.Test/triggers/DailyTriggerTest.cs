@@ -20,6 +20,16 @@ namespace ch.tutteli.taskscheduler.triggers
 			CreateDailyTrigger(startDate, startDate.AddDays(1), recursEveryXDays);
 		}
 
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void SetRecursEveryXDays_IllegalRecurrence_ThrowArgumentException([Values(0, -1, -2, -4)] int recursEveryXDays)
+        {
+            var startDate = DateTime.Now;
+            var trigger = CreateDailyTrigger(startDate, startDate.AddDays(1), 10);
+
+            trigger.RecursEveryXDays = recursEveryXDays;
+        }
+
 		[Test]
 		public void GetNextTrigger_OneMillisecondAfterStartDate_ReturnStartDatePlusOneDay()
 		{

@@ -57,7 +57,7 @@ namespace ch.tutteli.taskscheduler.bl
         {
             if (request.Id != default(long))
             {
-                throw new ArgumentException("Possible attempt to update a resource but create operation used.");
+                throw new ArgumentException("Id provided, possible attempt to update a resource but create operation used.");
             }
 
             ValidateCreateOrUpdateRequest(request);
@@ -68,6 +68,10 @@ namespace ch.tutteli.taskscheduler.bl
             if (string.IsNullOrEmpty(request.Name))
             {
                 throw new ArgumentException("Name was null or empty");
+            }
+
+            if (string.IsNullOrEmpty(request.CallbackUrl)) {
+                throw new ArgumentException("CallbackUrl was null or empty");
             }
         }
 
@@ -93,7 +97,7 @@ namespace ch.tutteli.taskscheduler.bl
         {
             if (request.Id == default(long))
             {
-                throw new ArgumentException("Tried to update a resource without providing its id");
+                throw new ArgumentException("Id not provided, tried to update a resource without providing its id");
             }
 
             ValidateCreateOrUpdateRequest(request);

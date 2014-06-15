@@ -51,7 +51,7 @@ namespace ch.tutteli.taskscheduler
 
         private TaskResponse ReturnCreated(TaskResponse taskResponse, string taskType)
         {
-            string pathToNewResource = GetAppHost().Config.WebHostUrl + Global.URL_PREFIX + taskType + "-" + taskResponse.Id;
+            string pathToNewResource = GetAppHost().Config.WebHostUrl + Global.URL_PREFIX + taskType + "/" + taskResponse.Id;
             base.Response.StatusCode = (int)HttpStatusCode.Created;
             base.Response.AddHeader("Location", pathToNewResource);
             return taskResponse;

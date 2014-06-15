@@ -3,41 +3,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ch.tutteli.taskscheduler.triggers;
+using ServiceStack.DataAnnotations;
 using ServiceStack.ServiceHost;
 
 namespace ch.tutteli.taskscheduler.requests
 {
-	public class MonthlyTaskRequest : AReccuringTaskRequest
+    public class MonthlyTaskRequest : IRecurringTaskRequest
 	{
-		public ISet<EMonth> RecursOnMonth { get; set; }
+        #region general properties - code duplication in all request objects
 
-		public ISet<EDayOfMonth> RecursOnDayOfMonth { get; set; }
+        [PrimaryKey]
+        [AutoIncrement]
+        public long Id { get; set; }
 
-		public IDictionary<EMonthlyOn, IList<DayOfWeek>> RecursOnSpecialDayOfMonth { get; set; }
+        public DateTime DateCreated { get; set; }
+
+        public DateTime DateUpdated { get; set; }
+
+        public string Name { get; set; }
+
+        public string Description { get; set; }
+
+        public string CallbackUrl { get; set; }
+
+        #endregion
+
+        #region recurring task properties - code duplication in daily- , weakly- and monthly-task-request
+
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+
+        #endregion
+
+		public HashSet<EMonth> RecursOnMonth { get; set; }
+
+        public HashSet<EDayOfMonth> RecursOnDayOfMonth { get; set; }
+
+		public Dictionary<EMonthlyOn, IList<DayOfWeek>> RecursOnSpecialDayOfMonth { get; set; }
 
 		public MonthlyTaskRequest() { }
-
-		public MonthlyTaskRequest(DateTime startDate, DateTime endDate, ISet<EMonth> recursOnMonth, ISet<EDayOfMonth> recursOnDayOfMonth) :
-			this(startDate, endDate, recursOnMonth, recursOnDayOfMonth, null)
-		{
-		}
-
-		public MonthlyTaskRequest(DateTime startDate, DateTime endDate, ISet<EMonth> recursOnMonth, IDictionary<EMonthlyOn, IList<DayOfWeek>> recursOnSpecialDayOfMonth) :
-			this(startDate, endDate, recursOnMonth, null, recursOnSpecialDayOfMonth)
-		{
-		}
-
-		public MonthlyTaskRequest(DateTime startDate, DateTime endDate,
-		ISet<EMonth> recursOnMonth,
-		ISet<EDayOfMonth> recursOnDayOfMonth,
-		IDictionary<EMonthlyOn, IList<DayOfWeek>> recursOnSpecialDayOfMonth) :
-			base(startDate, endDate)
-		{
-			RecursOnMonth = recursOnMonth;
-			RecursOnDayOfMonth = recursOnDayOfMonth;
-			RecursOnSpecialDayOfMonth = recursOnSpecialDayOfMonth;
-		}
-
-
 	}
 }

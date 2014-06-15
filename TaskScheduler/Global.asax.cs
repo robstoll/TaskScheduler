@@ -32,9 +32,14 @@ namespace ch.tutteli.taskscheduler
             {
                 Routes
                     .Add<OneTimeTaskRequest>(URL_PREFIX + ONE_TIME)
+                    .Add<OneTimeTaskRequest>(URL_PREFIX + ONE_TIME + "/{id}")
                     .Add<DailyTaskRequest>(URL_PREFIX + DAILY)
+                    .Add<DailyTaskRequest>(URL_PREFIX + DAILY + "/{id}")
                     .Add<WeeklyTaskRequest>(URL_PREFIX + WEEKLY)
-                    .Add<MonthlyTaskRequest>(URL_PREFIX + MONTHLY);
+                    .Add<WeeklyTaskRequest>(URL_PREFIX + WEEKLY + "/{id}")
+                    .Add<MonthlyTaskRequest>(URL_PREFIX + MONTHLY)
+                    .Add<MonthlyTaskRequest>(URL_PREFIX + MONTHLY + "/{id}");
+
 
                 //Show StackTrace in Web Service Exceptions
                 Config.DebugMode = true;
@@ -66,32 +71,26 @@ namespace ch.tutteli.taskscheduler
 
         protected void Session_Start(object sender, EventArgs e)
         {
-
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
         {
-
         }
 
         protected void Application_Error(object sender, EventArgs e)
         {
-
         }
 
         protected void Session_End(object sender, EventArgs e)
         {
-
         }
 
         protected void Application_End(object sender, EventArgs e)
         {
-
         }
     }
 }

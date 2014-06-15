@@ -22,14 +22,23 @@ namespace ch.tutteli.taskscheduler.triggers
 			DayOfWeek.Sunday
 		};
 
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Construct_IllegalRecurrence_ThrowArgumentException([Values(0, -1, -2, -4)] int recursEveryXWeeks)
+        {
+            var startDate = DateTime.Now;
+            CreateWeeklyTrigger(startDate, startDate.AddDays(1), recursEveryXWeeks, allDay);
+        }
 
-		[Test]
-		[ExpectedException(typeof(ArgumentException))]
-		public void Construct_IllegalRecurrence_ThrowArgumentException([Values(0, -1, -2, -4)] int recursEveryXWeeks)
-		{
-			var startDate = DateTime.Now;
-			CreateWeeklyTrigger(startDate, startDate.AddDays(1), recursEveryXWeeks, allDay);
-		}
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void SetRecursEveryXWeeks_IllegalRecurrence_ThrowArgumentException([Values(0, -1, -2, -4)] int recursEveryXWeeks)
+        {
+            var startDate = DateTime.Now;
+            var trigger = CreateWeeklyTrigger(startDate, startDate.AddDays(1), 2, allDay);
+
+            trigger.RecursEveryXWeeks = recursEveryXWeeks;
+        }
 
 		[Test]
 		[ExpectedException(typeof(ArgumentException))]
@@ -39,12 +48,32 @@ namespace ch.tutteli.taskscheduler.triggers
 			CreateWeeklyTrigger(startDate, startDate.AddDays(1), 1, null);
 		}
 
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void SetTriggerWhenDayOfWeek_DayOfWeekSetIsNull_ThrowArgumentException()
+        {
+            var startDate = DateTime.Now;
+            var trigger = CreateWeeklyTrigger(startDate, startDate.AddDays(1), 1, new HashSet<DayOfWeek>{DayOfWeek.Monday});
+
+            trigger.TriggerWhenDayOfWeek = null;
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Construct_DayOfWeekSetIsEmpty_ThrowArgumentException()
+        {
+            var startDate = DateTime.Now;
+            CreateWeeklyTrigger(startDate, startDate.AddDays(1), 1, new HashSet<DayOfWeek>());
+        }
+
 		[Test]
 		[ExpectedException(typeof(ArgumentException))]
-		public void Construct_DayOfWeekSetIsEmpty_ThrowArgumentException()
+        public void SetTriggerWhenDayOfWeek_DayOfWeekSetIsEmpty_ThrowArgumentException()
 		{
 			var startDate = DateTime.Now;
-			CreateWeeklyTrigger(startDate, startDate.AddDays(1), 1, new HashSet<DayOfWeek>());
+            var trigger = CreateWeeklyTrigger(startDate, startDate.AddDays(1), 1, new HashSet<DayOfWeek> { DayOfWeek.Monday });
+
+            trigger.TriggerWhenDayOfWeek = new HashSet<DayOfWeek>();
 		}
 
 		[Test]

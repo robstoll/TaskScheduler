@@ -16,7 +16,7 @@ namespace ch.tutteli.taskscheduler.triggers
 			{
 				if (value == null || value.Count == 0)
 				{
-					throw new ArgumentException("at least one month has to be specified otherwise it would never trigger");
+                    throw new ArgumentException("RecursOnMonth was null or empty, at least one month has to be specified otherwise it would never trigger");
 				}
 				_recursOnMonth = value;
 			}
@@ -118,7 +118,6 @@ namespace ch.tutteli.taskscheduler.triggers
 		Fourth,
 		Last
 	}
-
 
 	public enum EDayOfMonth
 	{

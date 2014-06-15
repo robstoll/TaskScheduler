@@ -11,6 +11,22 @@ namespace ch.tutteli.taskscheduler.triggers
 	[TestFixture]
 	public class OneTimeTriggerTest
 	{
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Construct_TriggerDateNotSet_ThrowArgumentException()
+        {
+            var result = CreateOneTimeTrigger(DateTime.MinValue);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void SetTriggerDate_DateTimeMinValue_ThrowArgumentException()
+        {
+            var trigger = CreateOneTimeTrigger(DateTime.Now);
+
+            trigger.TriggerDate = DateTime.MinValue;
+        }
+
 		[Test]
 		public void GetNextTrigger_DateLongAgoBeforeTriggerDate_ReturnTriggerDate()
 		{

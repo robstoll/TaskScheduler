@@ -15,6 +15,9 @@ namespace ch.tutteli.taskscheduler.requests
 		DateTime DateUpdated { get; set; }
 
 		string Name { get; set; }
+
 		string Description { get; set; }
+
+        string CallbackUrl { get; set; }
 	}
 }
