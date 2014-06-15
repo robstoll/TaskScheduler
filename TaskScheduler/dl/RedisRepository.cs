@@ -46,5 +46,14 @@ namespace ch.tutteli.taskscheduler.dl
 				return request.Id;
 			}
 		}
-	}
+
+        public void DeleteTask<TRequest>(long id) where TRequest : class, ITaskRequest, new()
+        {
+            using (var redisClient = redisClientManager.GetClient())
+			{
+                var redis = redisClient.As<TRequest>();
+                redis.DeleteById(id);
+            }
+        }
+    }
 }

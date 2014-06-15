@@ -284,7 +284,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             AssertSameOneTimeTaskRequest(result[0], task);
         }
 
-       
+
 
         private static void AssertSameOneTimeTaskRequest(OneTimeTaskRequest result, OneTimeTaskRequest task)
         {
@@ -305,7 +305,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             AssertSameDailyTaskRequest(result[0], task);
         }
 
-    
+
         private static void AssertSameDailyTaskRequest(DailyTaskRequest result, DailyTaskRequest task)
         {
             AssertSameBasicTaskProperties(result, task);
@@ -341,7 +341,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             AssertSameWeeklyTaskRequest(result[0], task);
         }
 
-      
+
         private static void AssertSameWeeklyTaskRequest(WeeklyTaskRequest result, WeeklyTaskRequest task)
         {
             AssertSameBasicTaskProperties(result, task);
@@ -363,7 +363,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             AssertSameMonthlyTaskRequest(result[0], task);
         }
 
-      
+
 
         private static void AssertSameMonthlyTaskRequest(MonthlyTaskRequest result, MonthlyTaskRequest task)
         {
@@ -489,12 +489,12 @@ namespace ch.tutteli.taskscheduler.test.dl
         [Test]
         public void CreateAndUpdateOneTimeTask_Standard_ReturnTwiceTheSameIdAndObject()
         {
-            var task = new OneTimeTaskRequest();
+            var task = new OneTimeTaskRequest { Name = "bla", CallbackUrl = "callback", Trigger = DateTime.Now.AddDays(1) };
 
             var repository = appHost.TryResolve<IRepository>();
             var resultId = repository.SaveTask(task);
             var result = repository.LoadTask<OneTimeTaskRequest>(resultId);
-            
+
             Assert.That(resultId, Is.EqualTo(1));
             AssertSameOneTimeTaskRequest(result, task);
 
@@ -502,7 +502,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             task.Id = resultId;
             resultId = repository.SaveTask(task);
             result = repository.LoadTask<OneTimeTaskRequest>(resultId);
-            
+
             Assert.That(resultId, Is.EqualTo(1));
             AssertSameOneTimeTaskRequest(result, task);
         }
@@ -511,12 +511,12 @@ namespace ch.tutteli.taskscheduler.test.dl
         [Test]
         public void CreateAndUpdateDailyTask_Standard_ReturnTwiceTheSameIdAndObject()
         {
-            var task = new DailyTaskRequest();
+            var task = new DailyTaskRequest { Name = "bla", CallbackUrl = "callback", RecursEveryXDays = 12 };
 
             var repository = appHost.TryResolve<IRepository>();
             var resultId = repository.SaveTask(task);
             var result = repository.LoadTask<DailyTaskRequest>(resultId);
-            
+
             Assert.That(resultId, Is.EqualTo(1));
             AssertSameDailyTaskRequest(result, task);
 
@@ -532,7 +532,7 @@ namespace ch.tutteli.taskscheduler.test.dl
         [Test]
         public void CreateAndUpdateWeeklyTask_Standard_ReturnTwiceTheSameIdAndObject()
         {
-            var task = new WeeklyTaskRequest();
+            var task = new WeeklyTaskRequest { Name = "bla", CallbackUrl = "callback", RecursEveryXWeeks = 98 };
 
             var repository = appHost.TryResolve<IRepository>();
             var resultId = repository.SaveTask(task);
@@ -553,7 +553,7 @@ namespace ch.tutteli.taskscheduler.test.dl
         [Test]
         public void CreateAndUpdateMonthlyTask_Standard_ReturnTwiceTheSameIdAndObject()
         {
-            var task = new MonthlyTaskRequest();
+            var task = new MonthlyTaskRequest { Name = "bla", CallbackUrl = "callback", RecursOnMonth = new HashSet<EMonth> { EMonth.August } };
 
             var repository = appHost.TryResolve<IRepository>();
             var resultId = repository.SaveTask(task);
@@ -573,6 +573,110 @@ namespace ch.tutteli.taskscheduler.test.dl
 
         #endregion
 
+        #region Delete an existing Task - aka SaveTask, DeleteTask, make sure it does not exist anymore
+
+        [Test]
+        public void CreateAndDeleteOneTimeTask_Standard_CannotLoadTheTaskAnymore()
+        {
+            var task = TaskRequestHelper.CreateOneTimeTaskRequest();
+
+            var repository = appHost.TryResolve<IRepository>();
+            var resultId = repository.SaveTask(task);
+            var result = repository.LoadTask<OneTimeTaskRequest>(resultId);
+
+            Assert.That(resultId, Is.EqualTo(1));
+            AssertSameOneTimeTaskRequest(result, task);
+
+            repository.DeleteTask<OneTimeTaskRequest>(resultId);
+
+            try
+            {
+                repository.LoadTask<OneTimeTaskRequest>(resultId);
+                Assert.Fail("Could load the task after it was deleted");
+            }
+            catch (ArgumentNullException)
+            {
+                //good, should be like that
+            }
+        }
+
+
+        [Test]
+        public void CreateAndDeleteDailyTask_Standard_CannotLoadTheTaskAnymore()
+        {
+            var task = TaskRequestHelper.CreateDailyTaskRequest();
+
+            var repository = appHost.TryResolve<IRepository>();
+            var resultId = repository.SaveTask(task);
+            var result = repository.LoadTask<DailyTaskRequest>(resultId);
+
+            Assert.That(resultId, Is.EqualTo(1));
+            AssertSameDailyTaskRequest(result, task);
+
+            repository.DeleteTask<DailyTaskRequest>(resultId);
+
+            try
+            {
+                repository.LoadTask<DailyTaskRequest>(resultId);
+                Assert.Fail("Could load the task after it was deleted");
+            }
+            catch (ArgumentNullException)
+            {
+                //good, should be like that
+            }
+        }
+
+        [Test]
+        public void CreateAndDeleteWeeklyTask_Standard_CannotLoadTheTaskAnymore()
+        {
+            var task = TaskRequestHelper.CreateWeaklyTaskRequest();
+
+            var repository = appHost.TryResolve<IRepository>();
+            var resultId = repository.SaveTask(task);
+            var result = repository.LoadTask<WeeklyTaskRequest>(resultId);
+
+            Assert.That(resultId, Is.EqualTo(1));
+            AssertSameWeeklyTaskRequest(result, task);
+
+            repository.DeleteTask<WeeklyTaskRequest>(resultId);
+
+            try
+            {
+                repository.LoadTask<WeeklyTaskRequest>(resultId);
+                Assert.Fail("Could load the task after it was deleted");
+            }
+            catch (ArgumentNullException)
+            {
+                //good, should be like that
+            }
+        }
+
+        [Test]
+        public void CreateAndDeleteMonthlyTask_Standard_CannotLoadTheTaskAnymore()
+        {
+            var task = TaskRequestHelper.CreateMonthlyTaskRequest();
+
+            var repository = appHost.TryResolve<IRepository>();
+            var resultId = repository.SaveTask(task);
+            var result = repository.LoadTask<MonthlyTaskRequest >(resultId);
+
+            Assert.That(resultId, Is.EqualTo(1));
+            AssertSameMonthlyTaskRequest(result, task);
+
+            repository.DeleteTask<MonthlyTaskRequest>(resultId);
+
+            try
+            {
+                repository.LoadTask<MonthlyTaskRequest>(resultId);
+                Assert.Fail("Could load the task after it was deleted");
+            }
+            catch (ArgumentNullException)
+            {
+                //good, should be like that
+            }
+        }
+
+        #endregion
 
         protected override AppHostHttpListenerBase CreateAppHost()
         {

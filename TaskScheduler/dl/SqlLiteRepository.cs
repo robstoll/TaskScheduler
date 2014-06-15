@@ -46,5 +46,10 @@ namespace ch.tutteli.taskscheduler.dl
         {
             return Db.GetById<TRequest>(id);
         }
+
+        public void DeleteTask<TRequest>(long id) where TRequest : class, ITaskRequest, new()
+        {
+            Db.DeleteById<TRequest>(id);
+        }
     }
 }

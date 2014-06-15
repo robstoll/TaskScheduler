@@ -16,5 +16,6 @@ namespace ch.tutteli.taskscheduler.dl
 
 		TRequest LoadTask<TRequest>(long id) where TRequest : class, ITaskRequest, new();
 
-	}
+        void DeleteTask<TRequest>(long id) where TRequest : class, ITaskRequest, new();
+    }
 }

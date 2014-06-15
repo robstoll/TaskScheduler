@@ -77,5 +77,24 @@ namespace ch.tutteli.taskscheduler
             return taskHandler.Update(request);
         }
 
+        public TaskResponse Delete(OneTimeTaskRequest request)
+        {
+            return taskHandler.Delete(request);
+        }
+
+        public TaskResponse Delete(DailyTaskRequest request)
+        {
+            return taskHandler.Delete(request);
+        }
+
+        public TaskResponse Delete(WeeklyTaskRequest request)
+        {
+            return taskHandler.Delete(request);
+        }
+
+        public TaskResponse Delete(MonthlyTaskRequest request)
+        {
+            return taskHandler.Delete(request);
+        }
     }
 }

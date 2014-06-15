@@ -48,7 +48,7 @@ namespace ch.tutteli.taskscheduler.bl
 
             return new TaskResponse
             {
-                Result = "Request: " + request.Name + " created.",
+                Result = "Task: " + request.Name + " created.",
                 Id = repository.SaveTask(request)
             };
         }
@@ -88,7 +88,7 @@ namespace ch.tutteli.taskscheduler.bl
 
             return new TaskResponse
             {
-                Result = "Request: " + request.Name + " updated.",
+                Result = "Task: " + request.Name + " updated.",
                 Id = repository.SaveTask(request)
             };
         }
@@ -101,6 +101,25 @@ namespace ch.tutteli.taskscheduler.bl
             }
 
             ValidateCreateOrUpdateRequest(request);
+        }
+
+        public TaskResponse Delete<TRequest>(TRequest request) where TRequest : class, ITaskRequest, new()
+        {
+            ValidateDeleteRequest(request);
+
+            repository.DeleteTask<TRequest>(request.Id);
+            return new TaskResponse
+            {
+                Result = typeof(TRequest).Name+" with id: " + request.Id + " deleted.",
+            };
+        }
+
+        private void ValidateDeleteRequest(ITaskRequest request)
+        {
+            if (request.Id == default(long))
+            {
+                throw new ArgumentException("Id not provided, tried to delete a resource without providing its id");
+            }
         }
     }
 }

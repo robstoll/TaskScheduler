@@ -6,5 +6,6 @@ namespace ch.tutteli.taskscheduler.bl
 	{
         TaskResponse Create<TRequest>(TRequest request) where TRequest : class, ITaskRequest, new();
         TaskResponse Update<TRequest>(TRequest request) where TRequest : class, ITaskRequest, new();
+        TaskResponse Delete<TRequest>(TRequest request) where TRequest : class, ITaskRequest, new();
 	}
 }
