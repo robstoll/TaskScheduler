@@ -18,7 +18,7 @@ using ServiceStack.WebHost.Endpoints;
 namespace ch.tutteli.taskscheduler.test.rest
 {
     [TestFixture]
-    public class TaskServiceTest : AIntegrationTest
+    public class TaskSchedulerServiceTest : AIntegrationTest
     {
 
         #region validation errors
@@ -218,13 +218,13 @@ namespace ch.tutteli.taskscheduler.test.rest
         {
             var id = 10;
             var repository = GetRepositoryMock();
-            repository.Setup(r => r.SaveTask(It.IsAny<OneTimeTaskRequest>())).Returns(id);
+            repository.Setup(r => r.CreateTask(It.IsAny<OneTimeTaskRequest>())).Returns(id);
             var request = TaskRequestHelper.CreateOneTimeTaskRequest();
 
             SendToEachEndpoint<TaskResponse>(request, "POST", response =>
                 {
                     Assert.That(response.Id, Is.EqualTo(id));
-                    repository.Verify(r => r.SaveTask(It.IsAny<OneTimeTaskRequest>()));
+                    repository.Verify(r => r.CreateTask(It.IsAny<OneTimeTaskRequest>()));
                 },
                 filter =>
                 {
@@ -238,13 +238,13 @@ namespace ch.tutteli.taskscheduler.test.rest
         {
             var id = 12;
             var repository = GetRepositoryMock();
-            repository.Setup(r => r.SaveTask(It.IsAny<DailyTaskRequest>())).Returns(id);
+            repository.Setup(r => r.CreateTask(It.IsAny<DailyTaskRequest>())).Returns(id);
             var request = TaskRequestHelper.CreateDailyTaskRequest();
 
             SendToEachEndpoint<TaskResponse>(request, "POST", response =>
                 {
                     Assert.That(response.Id, Is.EqualTo(id));
-                    repository.Verify(r => r.SaveTask(It.IsAny<DailyTaskRequest>()));
+                    repository.Verify(r => r.CreateTask(It.IsAny<DailyTaskRequest>()));
                 },
                 filter =>
                 {
@@ -258,13 +258,13 @@ namespace ch.tutteli.taskscheduler.test.rest
         {
             var id = 13;
             var repository = GetRepositoryMock();
-            repository.Setup(r => r.SaveTask(It.IsAny<WeeklyTaskRequest>())).Returns(id);
+            repository.Setup(r => r.CreateTask(It.IsAny<WeeklyTaskRequest>())).Returns(id);
             var request = TaskRequestHelper.CreateWeaklyTaskRequest();
 
             SendToEachEndpoint<TaskResponse>(request, "POST", response =>
                 {
                     Assert.That(response.Id, Is.EqualTo(id));
-                    repository.Verify(r => r.SaveTask(It.IsAny<WeeklyTaskRequest>()));
+                    repository.Verify(r => r.CreateTask(It.IsAny<WeeklyTaskRequest>()));
                 },
                 filter =>
                 {
@@ -278,14 +278,14 @@ namespace ch.tutteli.taskscheduler.test.rest
         {
             var id = 13;
             var repository = GetRepositoryMock();
-            repository.Setup(r => r.SaveTask(It.IsAny<MonthlyTaskRequest>())).Returns(id);
+            repository.Setup(r => r.CreateTask(It.IsAny<MonthlyTaskRequest>())).Returns(id);
             var request = TaskRequestHelper.CreateMonthlyTaskRequest();
 
             SendToEachEndpoint<TaskResponse>(request, "POST",
                 response =>
                 {
                     Assert.That(response.Id, Is.EqualTo(id));
-                    repository.Verify(r => r.SaveTask(It.IsAny<MonthlyTaskRequest>()));
+                    repository.Verify(r => r.CreateTask(It.IsAny<MonthlyTaskRequest>()));
                 },
                 filter =>
                 {
@@ -303,14 +303,14 @@ namespace ch.tutteli.taskscheduler.test.rest
         {
             var id = 10;
             var repository = GetRepositoryMock();
-            repository.Setup(r => r.SaveTask(It.IsAny<OneTimeTaskRequest>())).Returns(id);
+            repository.Setup(r => r.UpdateTask(It.IsAny<OneTimeTaskRequest>())).Returns(id);
             var request = TaskRequestHelper.CreateOneTimeTaskRequest();
             request.Id = id;
 
             SendToEachEndpoint<TaskResponse>(request, "PUT", response =>
                 {
                     Assert.That(response.Id, Is.EqualTo(id));
-                    repository.Verify(r => r.SaveTask(It.Is<OneTimeTaskRequest>(x=>x.Id == id)));
+                    repository.Verify(r => r.UpdateTask(It.Is<OneTimeTaskRequest>(x => x.Id == id)));
                 },
                 filter =>
                 {
@@ -324,14 +324,14 @@ namespace ch.tutteli.taskscheduler.test.rest
         {
             var id = 12;
             var repository = GetRepositoryMock();
-            repository.Setup(r => r.SaveTask(It.IsAny<DailyTaskRequest>())).Returns(id);
+            repository.Setup(r => r.UpdateTask(It.IsAny<DailyTaskRequest>())).Returns(id);
             var request = TaskRequestHelper.CreateDailyTaskRequest();
             request.Id = id;
 
             SendToEachEndpoint<TaskResponse>(request, "PUT", response =>
                 {
                     Assert.That(response.Id, Is.EqualTo(id));
-                    repository.Verify(r => r.SaveTask(It.Is<DailyTaskRequest>(x => x.Id == id)));
+                    repository.Verify(r => r.UpdateTask(It.Is<DailyTaskRequest>(x => x.Id == id)));
                 },
                 filter =>
                 {
@@ -345,14 +345,14 @@ namespace ch.tutteli.taskscheduler.test.rest
         {
             var id = 13;
             var repository = GetRepositoryMock();
-            repository.Setup(r => r.SaveTask(It.IsAny<WeeklyTaskRequest>())).Returns(id);
+            repository.Setup(r => r.UpdateTask(It.IsAny<WeeklyTaskRequest>())).Returns(id);
             var request = TaskRequestHelper.CreateWeaklyTaskRequest();
             request.Id = id;
 
             SendToEachEndpoint<TaskResponse>(request, "PUT", response =>
                 {
                     Assert.That(response.Id, Is.EqualTo(id));
-                    repository.Verify(r => r.SaveTask(It.Is<WeeklyTaskRequest>(x => x.Id == id)));
+                    repository.Verify(r => r.UpdateTask(It.Is<WeeklyTaskRequest>(x => x.Id == id)));
                 },
                 filter =>
                 {
@@ -366,7 +366,7 @@ namespace ch.tutteli.taskscheduler.test.rest
         {
             var id = 13;
             var repository = GetRepositoryMock();
-            repository.Setup(r => r.SaveTask(It.IsAny<MonthlyTaskRequest>())).Returns(id);
+            repository.Setup(r => r.UpdateTask(It.IsAny<MonthlyTaskRequest>())).Returns(id);
             var request = TaskRequestHelper.CreateMonthlyTaskRequest();
             request.Id = id;
 
@@ -374,7 +374,7 @@ namespace ch.tutteli.taskscheduler.test.rest
                 response =>
                 {
                     Assert.That(response.Id, Is.EqualTo(id));
-                    repository.Verify(r => r.SaveTask(It.Is<MonthlyTaskRequest>(x => x.Id == id)));
+                    repository.Verify(r => r.UpdateTask(It.Is<MonthlyTaskRequest>(x => x.Id == id)));
                 },
                 filter =>
                 {
@@ -425,27 +425,13 @@ namespace ch.tutteli.taskscheduler.test.rest
 
         private Mock<IRepository> GetRepositoryMock()
         {
-            return Mock.Get<IRepository>(((RestAppHost)appHost).repository);
+            return Mock.Get<IRepository>(((MockedRepositoryAppHost)appHost).repository);
         }
 
-        protected override ServiceStack.WebHost.Endpoints.AppHostHttpListenerBase CreateAppHost()
+        protected override AppHostHttpListenerBase CreateAppHost()
         {
-            return new RestAppHost();
+            return new MockedRepositoryAppHost();
         }
 
-        public class RestAppHost : AppHostHttpListenerBase
-        {
-
-            public IRepository repository;
-
-            public RestAppHost() : base("Task Scheduler Web Services", typeof(TaskSchedulerService).Assembly) { }
-
-            public override void Configure(Container container)
-            {
-                repository = Mock.Of<IRepository>();
-                container.Register<IRepository>(c => repository);
-                container.Register<ITaskHandler>(c => new TaskHandler(c.Resolve<IRepository>()));
-            }
-        }
     }
 }

@@ -26,7 +26,7 @@ namespace ch.tutteli.taskscheduler.dl
             return redisClientManager.ExecAs<TRequest>(x => x.GetAll());
         }
 
-		public long SaveTask<TRequest>(TRequest request) where TRequest : class, ITaskRequest, new()
+		public long CreateTask<TRequest>(TRequest request) where TRequest : class, ITaskRequest, new()
 		{
 			using (var redisClient = redisClientManager.GetClient())
 			{
@@ -36,16 +36,39 @@ namespace ch.tutteli.taskscheduler.dl
 				{
 					request.Id = redis.GetNextSequence();
 					request.DateCreated = DateTime.UtcNow;
+                    redis.Store(request);
+                    return request.Id;
 				}
 				else
 				{
-					request.DateUpdated = DateTime.UtcNow;
+					throw new ArgumentException("Id provided, when creating a new task.");
 				}
-
-				redis.Store(request);
-				return request.Id;
 			}
 		}
+
+        public long UpdateTask<TRequest>(TRequest request) where TRequest : class, ITaskRequest, new()
+        {
+            using (var redisClient = redisClientManager.GetClient())
+            {
+                var redis = redisClient.As<TRequest>();
+
+                if (request.Id != default(long))
+                {
+                    var entity = redis.GetById(request.Id) ;
+                    if (entity == null) { 
+                        throw new ArgumentNullException("Task with given id: "+request.Id+" does not exist.");
+                    }
+                    request.DateCreated = entity.DateCreated;
+                    request.DateUpdated = DateTime.UtcNow;
+                    redis.Store(request);
+                    return request.Id;
+                }
+                else
+                {
+                    throw new ArgumentException("Id not provided, when updating a new task.");
+                }
+            }
+        }
 
         public void DeleteTask<TRequest>(long id) where TRequest : class, ITaskRequest, new()
         {
@@ -55,5 +78,8 @@ namespace ch.tutteli.taskscheduler.dl
                 redis.DeleteById(id);
             }
         }
+
+
+     
     }
 }

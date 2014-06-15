@@ -49,7 +49,7 @@ namespace ch.tutteli.taskscheduler.bl
             return new TaskResponse
             {
                 Result = "Task: " + request.Name + " created.",
-                Id = repository.SaveTask(request)
+                Id = repository.CreateTask(request)
             };
         }
 
@@ -89,7 +89,7 @@ namespace ch.tutteli.taskscheduler.bl
             return new TaskResponse
             {
                 Result = "Task: " + request.Name + " updated.",
-                Id = repository.SaveTask(request)
+                Id = repository.UpdateTask(request)
             };
         }
 

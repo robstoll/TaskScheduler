@@ -1,0 +1,1033 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://schemas.tutteli.ch/types" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:svc="http://schemas.tutteli.ch/types" name="Soap11" targetNamespace="http://schemas.tutteli.ch/types" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="anyType" nillable="true" type="xs:anyType" />
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+      <xs:element name="boolean" nillable="true" type="xs:boolean" />
+      <xs:element name="byte" nillable="true" type="xs:byte" />
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+      <xs:element name="decimal" nillable="true" type="xs:decimal" />
+      <xs:element name="double" nillable="true" type="xs:double" />
+      <xs:element name="float" nillable="true" type="xs:float" />
+      <xs:element name="int" nillable="true" type="xs:int" />
+      <xs:element name="long" nillable="true" type="xs:long" />
+      <xs:element name="QName" nillable="true" type="xs:QName" />
+      <xs:element name="short" nillable="true" type="xs:short" />
+      <xs:element name="string" nillable="true" type="xs:string" />
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
+      <xs:element name="char" nillable="true" type="tns:char" />
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int" />
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration" />
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid" />
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName" />
+      <xs:attribute name="Id" type="xs:ID" />
+      <xs:attribute name="Ref" type="xs:IDREF" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.tutteli.ch/types" elementFormDefault="qualified" targetNamespace="http://schemas.tutteli.ch/types" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/ch.tutteli.taskscheduler.triggers" />
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xs:import namespace="http://schemas.servicestack.net/types" />
+      <xs:complexType name="OneTimeTaskRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CallbackUrl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DateCreated" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DateUpdated" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Id" type="xs:long" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Trigger" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="OneTimeTaskRequest" nillable="true" type="svc:OneTimeTaskRequest" />
+      <xs:complexType name="MonthlyTaskRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CallbackUrl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DateCreated" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DateUpdated" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="EndDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Id" type="xs:long" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ch.tutteli.taskscheduler.triggers" minOccurs="0" name="RecursOnDayOfMonth" nillable="true" type="q1:ArrayOfEDayOfMonth" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ch.tutteli.taskscheduler.triggers" minOccurs="0" name="RecursOnMonth" nillable="true" type="q2:ArrayOfEMonth" />
+          <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="RecursOnSpecialDayOfMonth" nillable="true" type="q3:ArrayOfKeyValueOfEMonthlyOnArrayOfDayOfWeekVV29IytT" />
+          <xs:element minOccurs="0" name="StartDate" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="MonthlyTaskRequest" nillable="true" type="svc:MonthlyTaskRequest" />
+      <xs:complexType name="DailyTaskRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CallbackUrl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DateCreated" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DateUpdated" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="EndDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Id" type="xs:long" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RecursEveryXDays" type="xs:int" />
+          <xs:element minOccurs="0" name="StartDate" type="xs:dateTime" />
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="TriggerWhenDayOfWeek" nillable="true" type="q4:ArrayOfDayOfWeek" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DailyTaskRequest" nillable="true" type="svc:DailyTaskRequest" />
+      <xs:complexType name="GetDailyTask">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Id" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetDailyTask" nillable="true" type="svc:GetDailyTask" />
+      <xs:complexType name="TaskResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Id" type="xs:long" />
+          <xs:element minOccurs="0" name="Result" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="TaskResponse" nillable="true" type="svc:TaskResponse" />
+      <xs:complexType name="GetDailyTaskResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="svc:TaskResponse">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="GetDailyTaskResponse" nillable="true" type="svc:GetDailyTaskResponse" />
+      <xs:complexType name="PostDailyTask">
+        <xs:complexContent mixed="false">
+          <xs:extension base="svc:DailyTaskRequest">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="PostDailyTask" nillable="true" type="svc:PostDailyTask" />
+      <xs:complexType name="SoapTaskResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="svc:TaskResponse">
+            <xs:sequence>
+              <xs:element xmlns:q5="http://schemas.servicestack.net/types" minOccurs="0" name="ResponseStatus" nillable="true" type="q5:ResponseStatus" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="SoapTaskResponse" nillable="true" type="svc:SoapTaskResponse" />
+      <xs:complexType name="PostDailyTaskResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="svc:SoapTaskResponse">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="PostDailyTaskResponse" nillable="true" type="svc:PostDailyTaskResponse" />
+      <xs:complexType name="PutDailyTask">
+        <xs:complexContent mixed="false">
+          <xs:extension base="svc:DailyTaskRequest">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="PutDailyTask" nillable="true" type="svc:PutDailyTask" />
+      <xs:complexType name="PutDailyTaskResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="svc:SoapTaskResponse">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="PutDailyTaskResponse" nillable="true" type="svc:PutDailyTaskResponse" />
+      <xs:complexType name="DeleteDailyTask">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Id" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DeleteDailyTask" nillable="true" type="svc:DeleteDailyTask" />
+      <xs:complexType name="DeleteDailyTaskResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="svc:SoapTaskResponse">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="DeleteDailyTaskResponse" nillable="true" type="svc:DeleteDailyTaskResponse" />
+      <xs:complexType name="GetMonthlyTask">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Id" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetMonthlyTask" nillable="true" type="svc:GetMonthlyTask" />
+      <xs:complexType name="GetMonthlyTaskResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="svc:TaskResponse">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="GetMonthlyTaskResponse" nillable="true" type="svc:GetMonthlyTaskResponse" />
+      <xs:complexType name="PostMonthlyTask">
+        <xs:complexContent mixed="false">
+          <xs:extension base="svc:MonthlyTaskRequest">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="PostMonthlyTask" nillable="true" type="svc:PostMonthlyTask" />
+      <xs:complexType name="PostMonthlyTaskResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="svc:SoapTaskResponse">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="PostMonthlyTaskResponse" nillable="true" type="svc:PostMonthlyTaskResponse" />
+      <xs:complexType name="PutMonthlyTask">
+        <xs:complexContent mixed="false">
+          <xs:extension base="svc:MonthlyTaskRequest">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="PutMonthlyTask" nillable="true" type="svc:PutMonthlyTask" />
+      <xs:complexType name="PutMonthlyTaskResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="svc:SoapTaskResponse">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="PutMonthlyTaskResponse" nillable="true" type="svc:PutMonthlyTaskResponse" />
+      <xs:complexType name="DeleteMonthlyTask">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Id" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DeleteMonthlyTask" nillable="true" type="svc:DeleteMonthlyTask" />
+      <xs:complexType name="DeleteMonthlyTaskResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="svc:SoapTaskResponse">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="DeleteMonthlyTaskResponse" nillable="true" type="svc:DeleteMonthlyTaskResponse" />
+      <xs:complexType name="GetOneTimeTask">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Id" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetOneTimeTask" nillable="true" type="svc:GetOneTimeTask" />
+      <xs:complexType name="GetOneTimeTaskResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="svc:OneTimeTaskRequest">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="GetOneTimeTaskResponse" nillable="true" type="svc:GetOneTimeTaskResponse" />
+      <xs:complexType name="PostOneTimeTask">
+        <xs:complexContent mixed="false">
+          <xs:extension base="svc:OneTimeTaskRequest">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="PostOneTimeTask" nillable="true" type="svc:PostOneTimeTask" />
+      <xs:complexType name="PostOneTimeTaskResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="svc:SoapTaskResponse">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="PostOneTimeTaskResponse" nillable="true" type="svc:PostOneTimeTaskResponse" />
+      <xs:complexType name="PutOneTimeTask">
+        <xs:complexContent mixed="false">
+          <xs:extension base="svc:OneTimeTaskRequest">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="PutOneTimeTask" nillable="true" type="svc:PutOneTimeTask" />
+      <xs:complexType name="PutOneTimeTaskResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="svc:SoapTaskResponse">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="PutOneTimeTaskResponse" nillable="true" type="svc:PutOneTimeTaskResponse" />
+      <xs:complexType name="DeleteOneTimeTask">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Id" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DeleteOneTimeTask" nillable="true" type="svc:DeleteOneTimeTask" />
+      <xs:complexType name="DeleteOneTimeTaskResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="svc:SoapTaskResponse">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="DeleteOneTimeTaskResponse" nillable="true" type="svc:DeleteOneTimeTaskResponse" />
+      <xs:complexType name="GetWeeklyTask">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Id" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetWeeklyTask" nillable="true" type="svc:GetWeeklyTask" />
+      <xs:complexType name="GetWeeklyTaskResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="svc:TaskResponse">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="GetWeeklyTaskResponse" nillable="true" type="svc:GetWeeklyTaskResponse" />
+      <xs:complexType name="WeeklyTaskRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CallbackUrl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DateCreated" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DateUpdated" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="EndDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Id" type="xs:long" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RecursEveryXWeeks" type="xs:int" />
+          <xs:element minOccurs="0" name="StartDate" type="xs:dateTime" />
+          <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="TriggerWhenDayOfWeek" nillable="true" type="q6:ArrayOfDayOfWeek" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="WeeklyTaskRequest" nillable="true" type="svc:WeeklyTaskRequest" />
+      <xs:complexType name="PostWeeklyTask">
+        <xs:complexContent mixed="false">
+          <xs:extension base="svc:WeeklyTaskRequest">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="PostWeeklyTask" nillable="true" type="svc:PostWeeklyTask" />
+      <xs:complexType name="PostWeeklyTaskResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="svc:SoapTaskResponse">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="PostWeeklyTaskResponse" nillable="true" type="svc:PostWeeklyTaskResponse" />
+      <xs:complexType name="PutWeeklyTask">
+        <xs:complexContent mixed="false">
+          <xs:extension base="svc:WeeklyTaskRequest">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="PutWeeklyTask" nillable="true" type="svc:PutWeeklyTask" />
+      <xs:complexType name="PutWeeklyTaskResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="svc:SoapTaskResponse">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="PutWeeklyTaskResponse" nillable="true" type="svc:PutWeeklyTaskResponse" />
+      <xs:complexType name="DeleteWeeklyTask">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Id" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DeleteWeeklyTask" nillable="true" type="svc:DeleteWeeklyTask" />
+      <xs:complexType name="DeleteWeeklyTaskResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="svc:SoapTaskResponse">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="DeleteWeeklyTaskResponse" nillable="true" type="svc:DeleteWeeklyTaskResponse" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ch.tutteli.taskscheduler.triggers" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ch.tutteli.taskscheduler.triggers" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xs:complexType name="ArrayOfEDayOfMonth">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="EDayOfMonth" type="tns:EDayOfMonth" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfEDayOfMonth" nillable="true" type="tns:ArrayOfEDayOfMonth" />
+      <xs:simpleType name="EDayOfMonth">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="D1">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D2">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D3">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D4">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D5">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D6">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D7">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">7</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D8">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D9">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">9</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D10">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">10</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D11">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">11</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D12">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">12</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D13">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">13</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D14">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">14</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D15">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">15</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D16">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">16</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D17">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">17</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D18">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">18</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D19">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">19</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D20">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">20</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D21">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">21</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D22">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">22</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D23">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">23</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D24">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">24</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D25">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">25</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D26">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">26</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D27">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">27</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D28">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">28</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D29">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">29</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D30">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">30</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="D31">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">31</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Last">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">32</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="EDayOfMonth" nillable="true" type="tns:EDayOfMonth" />
+      <xs:complexType name="ArrayOfEMonth">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="EMonth" type="tns:EMonth" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfEMonth" nillable="true" type="tns:ArrayOfEMonth" />
+      <xs:simpleType name="EMonth">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="January">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="February">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="March">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="April">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="May">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="June">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="July">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">7</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="August">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="September">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">9</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="October">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">10</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="November">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">11</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="December">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">12</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="EMonth" nillable="true" type="tns:EMonth" />
+      <xs:simpleType name="EMonthlyOn">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="First" />
+          <xs:enumeration value="Second" />
+          <xs:enumeration value="Third" />
+          <xs:enumeration value="Fourth" />
+          <xs:enumeration value="Last" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="EMonthlyOn" nillable="true" type="tns:EMonthlyOn" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/ch.tutteli.taskscheduler.triggers" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xs:complexType name="ArrayOfKeyValueOfEMonthlyOnArrayOfDayOfWeekVV29IytT">
+        <xs:annotation>
+          <xs:appinfo>
+            <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfEMonthlyOnArrayOfDayOfWeekVV29IytT">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ch.tutteli.taskscheduler.triggers" name="Key" type="q1:EMonthlyOn" />
+                <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/System" name="Value" nillable="true" type="q2:ArrayOfDayOfWeek" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfKeyValueOfEMonthlyOnArrayOfDayOfWeekVV29IytT" nillable="true" type="tns:ArrayOfKeyValueOfEMonthlyOnArrayOfDayOfWeekVV29IytT" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/System" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/System" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="ArrayOfDayOfWeek">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="DayOfWeek" type="tns:DayOfWeek" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfDayOfWeek" nillable="true" type="tns:ArrayOfDayOfWeek" />
+      <xs:simpleType name="DayOfWeek">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Sunday" />
+          <xs:enumeration value="Monday" />
+          <xs:enumeration value="Tuesday" />
+          <xs:enumeration value="Wednesday" />
+          <xs:enumeration value="Thursday" />
+          <xs:enumeration value="Friday" />
+          <xs:enumeration value="Saturday" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="DayOfWeek" nillable="true" type="tns:DayOfWeek" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.servicestack.net/types" elementFormDefault="qualified" targetNamespace="http://schemas.servicestack.net/types" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="ResponseStatus">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StackTrace" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Errors" nillable="true" type="tns:ArrayOfResponseError" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ResponseStatus" nillable="true" type="tns:ResponseStatus" />
+      <xs:complexType name="ArrayOfResponseError">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ResponseError" nillable="true" type="tns:ResponseError" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfResponseError" nillable="true" type="tns:ArrayOfResponseError" />
+      <xs:complexType name="ResponseError">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="FieldName" nillable="true" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ResponseError" nillable="true" type="tns:ResponseError" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="PostOneTimeTaskIn">
+    <wsdl:part name="par" element="svc:PostOneTimeTask" />
+  </wsdl:message>
+  <wsdl:message name="PostOneTimeTaskOut">
+    <wsdl:part name="par" element="svc:PostOneTimeTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="PostDailyTaskIn">
+    <wsdl:part name="par" element="svc:PostDailyTask" />
+  </wsdl:message>
+  <wsdl:message name="PostDailyTaskOut">
+    <wsdl:part name="par" element="svc:PostDailyTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="PostWeeklyTaskIn">
+    <wsdl:part name="par" element="svc:PostWeeklyTask" />
+  </wsdl:message>
+  <wsdl:message name="PostWeeklyTaskOut">
+    <wsdl:part name="par" element="svc:PostWeeklyTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="PostMonthlyTaskIn">
+    <wsdl:part name="par" element="svc:PostMonthlyTask" />
+  </wsdl:message>
+  <wsdl:message name="PostMonthlyTaskOut">
+    <wsdl:part name="par" element="svc:PostMonthlyTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="PutOneTimeTaskIn">
+    <wsdl:part name="par" element="svc:PutOneTimeTask" />
+  </wsdl:message>
+  <wsdl:message name="PutOneTimeTaskOut">
+    <wsdl:part name="par" element="svc:PutOneTimeTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="PutDailyTaskIn">
+    <wsdl:part name="par" element="svc:PutDailyTask" />
+  </wsdl:message>
+  <wsdl:message name="PutDailyTaskOut">
+    <wsdl:part name="par" element="svc:PutDailyTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="PutWeeklyTaskIn">
+    <wsdl:part name="par" element="svc:PutWeeklyTask" />
+  </wsdl:message>
+  <wsdl:message name="PutWeeklyTaskOut">
+    <wsdl:part name="par" element="svc:PutWeeklyTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="PutMonthlyTaskIn">
+    <wsdl:part name="par" element="svc:PutMonthlyTask" />
+  </wsdl:message>
+  <wsdl:message name="PutMonthlyTaskOut">
+    <wsdl:part name="par" element="svc:PutMonthlyTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteOneTimeTaskIn">
+    <wsdl:part name="par" element="svc:DeleteOneTimeTask" />
+  </wsdl:message>
+  <wsdl:message name="DeleteOneTimeTaskOut">
+    <wsdl:part name="par" element="svc:DeleteOneTimeTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDailyTaskIn">
+    <wsdl:part name="par" element="svc:DeleteDailyTask" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDailyTaskOut">
+    <wsdl:part name="par" element="svc:DeleteDailyTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteWeeklyTaskIn">
+    <wsdl:part name="par" element="svc:DeleteWeeklyTask" />
+  </wsdl:message>
+  <wsdl:message name="DeleteWeeklyTaskOut">
+    <wsdl:part name="par" element="svc:DeleteWeeklyTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMonthlyTaskIn">
+    <wsdl:part name="par" element="svc:DeleteMonthlyTask" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMonthlyTaskOut">
+    <wsdl:part name="par" element="svc:DeleteMonthlyTaskResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ISyncReply">
+    <wsdl:operation name="PostOneTimeTask">
+      <wsdl:input message="svc:PostOneTimeTaskIn" />
+      <wsdl:output message="svc:PostOneTimeTaskOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PostDailyTask">
+      <wsdl:input message="svc:PostDailyTaskIn" />
+      <wsdl:output message="svc:PostDailyTaskOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PostWeeklyTask">
+      <wsdl:input message="svc:PostWeeklyTaskIn" />
+      <wsdl:output message="svc:PostWeeklyTaskOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PostMonthlyTask">
+      <wsdl:input message="svc:PostMonthlyTaskIn" />
+      <wsdl:output message="svc:PostMonthlyTaskOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PutOneTimeTask">
+      <wsdl:input message="svc:PutOneTimeTaskIn" />
+      <wsdl:output message="svc:PutOneTimeTaskOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PutDailyTask">
+      <wsdl:input message="svc:PutDailyTaskIn" />
+      <wsdl:output message="svc:PutDailyTaskOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PutWeeklyTask">
+      <wsdl:input message="svc:PutWeeklyTaskIn" />
+      <wsdl:output message="svc:PutWeeklyTaskOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PutMonthlyTask">
+      <wsdl:input message="svc:PutMonthlyTaskIn" />
+      <wsdl:output message="svc:PutMonthlyTaskOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOneTimeTask">
+      <wsdl:input message="svc:DeleteOneTimeTaskIn" />
+      <wsdl:output message="svc:DeleteOneTimeTaskOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDailyTask">
+      <wsdl:input message="svc:DeleteDailyTaskIn" />
+      <wsdl:output message="svc:DeleteDailyTaskOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteWeeklyTask">
+      <wsdl:input message="svc:DeleteWeeklyTaskIn" />
+      <wsdl:output message="svc:DeleteWeeklyTaskOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMonthlyTask">
+      <wsdl:input message="svc:DeleteMonthlyTaskIn" />
+      <wsdl:output message="svc:DeleteMonthlyTaskOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ISyncReply" type="svc:ISyncReply">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PostOneTimeTask">
+      <soap:operation soapAction="http://schemas.servicestack.net/types/PostOneTimeTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostDailyTask">
+      <soap:operation soapAction="http://schemas.servicestack.net/types/PostDailyTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostWeeklyTask">
+      <soap:operation soapAction="http://schemas.servicestack.net/types/PostWeeklyTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostMonthlyTask">
+      <soap:operation soapAction="http://schemas.servicestack.net/types/PostMonthlyTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PutOneTimeTask">
+      <soap:operation soapAction="http://schemas.servicestack.net/types/PutOneTimeTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PutDailyTask">
+      <soap:operation soapAction="http://schemas.servicestack.net/types/PutDailyTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PutWeeklyTask">
+      <soap:operation soapAction="http://schemas.servicestack.net/types/PutWeeklyTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PutMonthlyTask">
+      <soap:operation soapAction="http://schemas.servicestack.net/types/PutMonthlyTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOneTimeTask">
+      <soap:operation soapAction="http://schemas.servicestack.net/types/DeleteOneTimeTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDailyTask">
+      <soap:operation soapAction="http://schemas.servicestack.net/types/DeleteDailyTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteWeeklyTask">
+      <soap:operation soapAction="http://schemas.servicestack.net/types/DeleteWeeklyTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMonthlyTask">
+      <soap:operation soapAction="http://schemas.servicestack.net/types/DeleteMonthlyTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SyncReply">
+    <wsdl:port name="BasicHttpBinding_ISyncReply" binding="svc:BasicHttpBinding_ISyncReply">
+      <soap:address location="http://localhost:4658/soap11" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

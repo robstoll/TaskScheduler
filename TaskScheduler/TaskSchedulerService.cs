@@ -7,6 +7,7 @@ using ch.tutteli.taskscheduler.bl;
 using ch.tutteli.taskscheduler.dl;
 using ch.tutteli.taskscheduler.requests;
 using ch.tutteli.taskscheduler.triggers;
+using ch.tutteli.taskscheduler.utils;
 using ServiceStack.Common.Utils;
 using ServiceStack.ServiceHost;
 using ServiceStack.ServiceInterface;
@@ -15,7 +16,6 @@ namespace ch.tutteli.taskscheduler
 {
     public class TaskSchedulerService : Service
     {
-        
 
         private ITaskHandler taskHandler;
 
@@ -24,19 +24,16 @@ namespace ch.tutteli.taskscheduler
             taskHandler = theTaskHandler;
         }
 
-        public TaskResponse Get(TasksRequest request)
-        {
-            return new TaskResponse { Result = "test" };
-        }
+        #region POST
 
         public TaskResponse Post(OneTimeTaskRequest request)
         {
-            return ReturnCreated(taskHandler.Create(request),Global.ONE_TIME);
+            return ReturnCreated(taskHandler.Create(request), Global.ONE_TIME);
         }
 
         public TaskResponse Post(DailyTaskRequest request)
         {
-            return ReturnCreated(taskHandler.Create(request),Global.DAILY);
+            return ReturnCreated(taskHandler.Create(request), Global.DAILY);
         }
 
         public TaskResponse Post(WeeklyTaskRequest request)
@@ -46,7 +43,7 @@ namespace ch.tutteli.taskscheduler
 
         public TaskResponse Post(MonthlyTaskRequest request)
         {
-            return ReturnCreated(taskHandler.Create(request), Global.MONTHLY );
+            return ReturnCreated(taskHandler.Create(request), Global.MONTHLY);
         }
 
         private TaskResponse ReturnCreated(TaskResponse taskResponse, string taskType)
@@ -56,6 +53,10 @@ namespace ch.tutteli.taskscheduler
             base.Response.AddHeader("Location", pathToNewResource);
             return taskResponse;
         }
+
+        #endregion
+
+        #region PUT
 
         public TaskResponse Put(OneTimeTaskRequest request)
         {
@@ -77,6 +78,10 @@ namespace ch.tutteli.taskscheduler
             return taskHandler.Update(request);
         }
 
+        #endregion
+
+        #region DELETE
+
         public TaskResponse Delete(OneTimeTaskRequest request)
         {
             return taskHandler.Delete(request);
@@ -96,5 +101,7 @@ namespace ch.tutteli.taskscheduler
         {
             return taskHandler.Delete(request);
         }
+
+        #endregion
     }
 }

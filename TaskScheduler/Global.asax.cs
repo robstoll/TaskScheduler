@@ -32,7 +32,7 @@ namespace ch.tutteli.taskscheduler
             {
                 Routes
                     .Add<OneTimeTaskRequest>(URL_PREFIX + ONE_TIME)
-                    .Add<OneTimeTaskRequest>(URL_PREFIX + ONE_TIME + "/{id}")
+                    .Add<OneTimeTaskRequest>(URL_PREFIX + ONE_TIME+"/{id}")
                     .Add<DailyTaskRequest>(URL_PREFIX + DAILY)
                     .Add<DailyTaskRequest>(URL_PREFIX + DAILY + "/{id}")
                     .Add<WeeklyTaskRequest>(URL_PREFIX + WEEKLY)
@@ -42,7 +42,11 @@ namespace ch.tutteli.taskscheduler
 
 
                 //Show StackTrace in Web Service Exceptions
-                Config.DebugMode = true;
+                SetConfig(new EndpointHostConfig
+                {
+                    DebugMode = true,
+                    WsdlServiceNamespace = "http://schemas.tutteli.ch/types",
+                });
 
                 container.Register<IDbConnectionFactory>(
                     new OrmLiteConnectionFactory(PathUtils.MapHostAbsolutePath("~/TaskScheduler.sqlite"), SqliteDialect.Provider));

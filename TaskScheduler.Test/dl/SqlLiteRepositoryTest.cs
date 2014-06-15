@@ -40,7 +40,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var task = new OneTimeTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
-            var result = repository.SaveTask(task);
+            var result = repository.CreateTask(task);
 
             Assert.That(result, Is.EqualTo(1));
         }
@@ -51,7 +51,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var task = new DailyTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
-            var result = repository.SaveTask(task);
+            var result = repository.CreateTask(task);
 
             Assert.That(result, Is.EqualTo(1));
         }
@@ -62,7 +62,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var task = new WeeklyTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
-            var result = repository.SaveTask(task);
+            var result = repository.CreateTask(task);
 
             Assert.That(result, Is.EqualTo(1));
         }
@@ -73,7 +73,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var task = new MonthlyTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
-            var result = repository.SaveTask(task);
+            var result = repository.CreateTask(task);
 
             Assert.That(result, Is.EqualTo(1));
         }
@@ -88,8 +88,8 @@ namespace ch.tutteli.taskscheduler.test.dl
 
 
             var repository = appHost.TryResolve<IRepository>();
-            repository.SaveTask(new OneTimeTaskRequest());
-            var result = repository.SaveTask(task);
+            repository.CreateTask(new OneTimeTaskRequest());
+            var result = repository.CreateTask(task);
 
             Assert.That(result, Is.EqualTo(2));
         }
@@ -101,8 +101,8 @@ namespace ch.tutteli.taskscheduler.test.dl
 
 
             var repository = appHost.TryResolve<IRepository>();
-            repository.SaveTask(new DailyTaskRequest());
-            var result = repository.SaveTask(task);
+            repository.CreateTask(new DailyTaskRequest());
+            var result = repository.CreateTask(task);
 
             Assert.That(result, Is.EqualTo(2));
         }
@@ -114,8 +114,8 @@ namespace ch.tutteli.taskscheduler.test.dl
 
 
             var repository = appHost.TryResolve<IRepository>();
-            repository.SaveTask(new WeeklyTaskRequest());
-            var result = repository.SaveTask(task);
+            repository.CreateTask(new WeeklyTaskRequest());
+            var result = repository.CreateTask(task);
 
             Assert.That(result, Is.EqualTo(2));
         }
@@ -127,8 +127,8 @@ namespace ch.tutteli.taskscheduler.test.dl
 
 
             var repository = appHost.TryResolve<IRepository>();
-            repository.SaveTask(new MonthlyTaskRequest());
-            var result = repository.SaveTask(task);
+            repository.CreateTask(new MonthlyTaskRequest());
+            var result = repository.CreateTask(task);
 
             Assert.That(result, Is.EqualTo(2));
         }
@@ -145,11 +145,11 @@ namespace ch.tutteli.taskscheduler.test.dl
             var monthly = new MonthlyTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
-            var resultOneTime = repository.SaveTask(oneTime);
+            var resultOneTime = repository.CreateTask(oneTime);
 
-            var resultDaily = repository.SaveTask(daily);
-            var resultWeekly = repository.SaveTask(weekly);
-            var resultMonthly = repository.SaveTask(monthly);
+            var resultDaily = repository.CreateTask(daily);
+            var resultWeekly = repository.CreateTask(weekly);
+            var resultMonthly = repository.CreateTask(monthly);
 
             Assert.That(resultOneTime, Is.EqualTo(1));
             Assert.That(resultDaily, Is.EqualTo(1));
@@ -166,11 +166,11 @@ namespace ch.tutteli.taskscheduler.test.dl
             var monthly = new MonthlyTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
-            var resultDaily = repository.SaveTask(daily);
+            var resultDaily = repository.CreateTask(daily);
 
-            var resultOneTime = repository.SaveTask(oneTime);
-            var resultWeekly = repository.SaveTask(weekly);
-            var resultMonthly = repository.SaveTask(monthly);
+            var resultOneTime = repository.CreateTask(oneTime);
+            var resultWeekly = repository.CreateTask(weekly);
+            var resultMonthly = repository.CreateTask(monthly);
 
             Assert.That(resultOneTime, Is.EqualTo(1));
             Assert.That(resultDaily, Is.EqualTo(1));
@@ -187,11 +187,11 @@ namespace ch.tutteli.taskscheduler.test.dl
             var monthly = new MonthlyTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
-            var resultWeekly = repository.SaveTask(weekly);
+            var resultWeekly = repository.CreateTask(weekly);
 
-            var resultDaily = repository.SaveTask(daily);
-            var resultOneTime = repository.SaveTask(oneTime);
-            var resultMonthly = repository.SaveTask(monthly);
+            var resultDaily = repository.CreateTask(daily);
+            var resultOneTime = repository.CreateTask(oneTime);
+            var resultMonthly = repository.CreateTask(monthly);
 
             Assert.That(resultOneTime, Is.EqualTo(1));
             Assert.That(resultDaily, Is.EqualTo(1));
@@ -208,11 +208,11 @@ namespace ch.tutteli.taskscheduler.test.dl
             var monthly = new MonthlyTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
-            var resultMonthly = repository.SaveTask(monthly);
+            var resultMonthly = repository.CreateTask(monthly);
 
-            var resultWeekly = repository.SaveTask(weekly);
-            var resultDaily = repository.SaveTask(daily);
-            var resultOneTime = repository.SaveTask(oneTime);
+            var resultWeekly = repository.CreateTask(weekly);
+            var resultDaily = repository.CreateTask(daily);
+            var resultOneTime = repository.CreateTask(oneTime);
 
             Assert.That(resultOneTime, Is.EqualTo(1));
             Assert.That(resultDaily, Is.EqualTo(1));
@@ -277,7 +277,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var task = TaskRequestHelper.CreateOneTimeTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
-            repository.SaveTask(task);
+            repository.CreateTask(task);
             var result = repository.GetAllTasks<OneTimeTaskRequest>();
 
             Assert.That(result.Count, Is.EqualTo(1));
@@ -298,7 +298,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var task = TaskRequestHelper.CreateDailyTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
-            var id = repository.SaveTask(task);
+            var id = repository.CreateTask(task);
             var result = repository.GetAllTasks<DailyTaskRequest>();
 
             Assert.That(result.Count, Is.EqualTo(1));
@@ -334,7 +334,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var task = TaskRequestHelper.CreateWeaklyTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
-            repository.SaveTask(task);
+            repository.CreateTask(task);
             var result = repository.GetAllTasks<WeeklyTaskRequest>();
 
             Assert.That(result.Count, Is.EqualTo(1));
@@ -356,7 +356,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var task = TaskRequestHelper.CreateMonthlyTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
-            repository.SaveTask(task);
+            repository.CreateTask(task);
             var result = repository.GetAllTasks<MonthlyTaskRequest>();
 
             Assert.That(result.Count, Is.EqualTo(1));
@@ -439,7 +439,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var task = TaskRequestHelper.CreateOneTimeTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
-            var id = repository.SaveTask(task);
+            var id = repository.CreateTask(task);
             var result = repository.LoadTask<OneTimeTaskRequest>(id);
 
             AssertSameOneTimeTaskRequest(result, task);
@@ -451,7 +451,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var task = TaskRequestHelper.CreateDailyTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
-            var id = repository.SaveTask(task);
+            var id = repository.CreateTask(task);
             var result = repository.LoadTask<DailyTaskRequest>(id);
 
             AssertSameDailyTaskRequest(result, task);
@@ -464,7 +464,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var task = TaskRequestHelper.CreateWeaklyTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
-            var id = repository.SaveTask(task);
+            var id = repository.CreateTask(task);
             var result = repository.LoadTask<WeeklyTaskRequest>(id);
 
             AssertSameWeeklyTaskRequest(result, task);
@@ -476,7 +476,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var task = TaskRequestHelper.CreateMonthlyTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
-            var id = repository.SaveTask(task);
+            var id = repository.CreateTask(task);
             var result = repository.LoadTask<MonthlyTaskRequest>(id);
 
             AssertSameMonthlyTaskRequest(result, task);
@@ -492,7 +492,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var task = new OneTimeTaskRequest { Name = "bla", CallbackUrl = "callback", Trigger = DateTime.Now.AddDays(1) };
 
             var repository = appHost.TryResolve<IRepository>();
-            var resultId = repository.SaveTask(task);
+            var resultId = repository.CreateTask(task);
             var result = repository.LoadTask<OneTimeTaskRequest>(resultId);
 
             Assert.That(resultId, Is.EqualTo(1));
@@ -500,7 +500,7 @@ namespace ch.tutteli.taskscheduler.test.dl
 
             task = TaskRequestHelper.CreateOneTimeTaskRequest();
             task.Id = resultId;
-            resultId = repository.SaveTask(task);
+            resultId = repository.UpdateTask(task);
             result = repository.LoadTask<OneTimeTaskRequest>(resultId);
 
             Assert.That(resultId, Is.EqualTo(1));
@@ -514,7 +514,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var task = new DailyTaskRequest { Name = "bla", CallbackUrl = "callback", RecursEveryXDays = 12 };
 
             var repository = appHost.TryResolve<IRepository>();
-            var resultId = repository.SaveTask(task);
+            var resultId = repository.CreateTask(task);
             var result = repository.LoadTask<DailyTaskRequest>(resultId);
 
             Assert.That(resultId, Is.EqualTo(1));
@@ -522,7 +522,7 @@ namespace ch.tutteli.taskscheduler.test.dl
 
             task = TaskRequestHelper.CreateDailyTaskRequest();
             task.Id = resultId;
-            resultId = repository.SaveTask(task);
+            resultId = repository.UpdateTask(task);
             result = repository.LoadTask<DailyTaskRequest>(resultId);
 
             Assert.That(resultId, Is.EqualTo(1));
@@ -535,7 +535,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var task = new WeeklyTaskRequest { Name = "bla", CallbackUrl = "callback", RecursEveryXWeeks = 98 };
 
             var repository = appHost.TryResolve<IRepository>();
-            var resultId = repository.SaveTask(task);
+            var resultId = repository.CreateTask(task);
             var result = repository.LoadTask<WeeklyTaskRequest>(resultId);
 
             Assert.That(resultId, Is.EqualTo(1));
@@ -543,7 +543,7 @@ namespace ch.tutteli.taskscheduler.test.dl
 
             task = TaskRequestHelper.CreateWeaklyTaskRequest();
             task.Id = resultId;
-            resultId = repository.SaveTask(task);
+            resultId = repository.UpdateTask(task);
             result = repository.LoadTask<WeeklyTaskRequest>(resultId);
 
             Assert.That(resultId, Is.EqualTo(1));
@@ -556,7 +556,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var task = new MonthlyTaskRequest { Name = "bla", CallbackUrl = "callback", RecursOnMonth = new HashSet<EMonth> { EMonth.August } };
 
             var repository = appHost.TryResolve<IRepository>();
-            var resultId = repository.SaveTask(task);
+            var resultId = repository.CreateTask(task);
             var result = repository.LoadTask<MonthlyTaskRequest>(resultId);
 
             Assert.That(resultId, Is.EqualTo(1));
@@ -564,7 +564,7 @@ namespace ch.tutteli.taskscheduler.test.dl
 
             task = TaskRequestHelper.CreateMonthlyTaskRequest();
             task.Id = resultId;
-            resultId = repository.SaveTask(task);
+            resultId = repository.UpdateTask(task);
             result = repository.LoadTask<MonthlyTaskRequest>(resultId);
 
             Assert.That(resultId, Is.EqualTo(1));
@@ -581,7 +581,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var task = TaskRequestHelper.CreateOneTimeTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
-            var resultId = repository.SaveTask(task);
+            var resultId = repository.CreateTask(task);
             var result = repository.LoadTask<OneTimeTaskRequest>(resultId);
 
             Assert.That(resultId, Is.EqualTo(1));
@@ -607,7 +607,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var task = TaskRequestHelper.CreateDailyTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
-            var resultId = repository.SaveTask(task);
+            var resultId = repository.CreateTask(task);
             var result = repository.LoadTask<DailyTaskRequest>(resultId);
 
             Assert.That(resultId, Is.EqualTo(1));
@@ -632,7 +632,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var task = TaskRequestHelper.CreateWeaklyTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
-            var resultId = repository.SaveTask(task);
+            var resultId = repository.CreateTask(task);
             var result = repository.LoadTask<WeeklyTaskRequest>(resultId);
 
             Assert.That(resultId, Is.EqualTo(1));
@@ -657,7 +657,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var task = TaskRequestHelper.CreateMonthlyTaskRequest();
 
             var repository = appHost.TryResolve<IRepository>();
-            var resultId = repository.SaveTask(task);
+            var resultId = repository.CreateTask(task);
             var result = repository.LoadTask<MonthlyTaskRequest >(resultId);
 
             Assert.That(resultId, Is.EqualTo(1));
@@ -687,7 +687,7 @@ namespace ch.tutteli.taskscheduler.test.dl
     public class SqlLiteAppHost : AppHostHttpListenerBase
     {
 
-        public SqlLiteAppHost() : base("Task Scheduler Web Services", typeof(TaskSchedulerService).Assembly) { }
+        public SqlLiteAppHost() : base("Task Scheduler Web Services", typeof(TaskSchedulerSoapService).Assembly) { }
 
         public override void Configure(Container container)
         {

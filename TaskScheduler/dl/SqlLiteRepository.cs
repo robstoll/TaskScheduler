@@ -8,8 +8,8 @@ using ServiceStack.OrmLite;
 
 namespace ch.tutteli.taskscheduler.dl
 {
-	public class SqlLiteRepository : IRepository
-	{
+    public class SqlLiteRepository : IRepository
+    {
         private IDbConnectionFactory dbConnectionFactory;
 
         private IDbConnection db;
@@ -19,23 +19,9 @@ namespace ch.tutteli.taskscheduler.dl
         }
 
         public SqlLiteRepository(IDbConnectionFactory theDbConnectionFactory)
-		{
+        {
             dbConnectionFactory = theDbConnectionFactory;
-		}
-
-		public long SaveTask<TRequest>(TRequest request) where TRequest : class, ITaskRequest, new()
-		{
-			if (request.Id == default(long))
-			{
-				request.DateCreated = DateTime.UtcNow;
-			}
-			else
-			{
-				request.DateUpdated = DateTime.UtcNow;
-			}
-			Db.Save(request);
-            return db.GetLastInsertId();
-		}
+        }
 
         public IList<TRequest> GetAllTasks<TRequest>() where TRequest : class, ITaskRequest, new()
         {
@@ -47,9 +33,44 @@ namespace ch.tutteli.taskscheduler.dl
             return Db.GetById<TRequest>(id);
         }
 
+        public long CreateTask<TRequest>(TRequest request) where TRequest : class, ITaskRequest, new()
+        {
+            if (request.Id == default(long))
+            {
+                request.DateCreated = DateTime.UtcNow;
+                Db.Save(request);
+                return db.GetLastInsertId();
+            }
+            else
+            {
+                throw new ArgumentException("Id provided, tried to create a new task.");
+            }
+        }
+
+        public long UpdateTask<TRequest>(TRequest request) where TRequest : class, ITaskRequest, new()
+        {
+            if (request.Id != default(long))
+            {
+                var entity = Db.QueryById<TRequest>(request.Id);
+                if (entity == null)
+                {
+                    throw new ArgumentNullException("Task with given id: " + request.Id + " does not exist.");
+                }
+                request.DateCreated = entity.DateCreated;
+                request.DateUpdated = DateTime.UtcNow;
+                Db.Update(request);
+                return db.GetLastInsertId();
+            }
+            else
+            {
+                throw new ArgumentException("Id provided, tried to create a new task.");
+            }
+        }
+
         public void DeleteTask<TRequest>(long id) where TRequest : class, ITaskRequest, new()
         {
             Db.DeleteById<TRequest>(id);
         }
+
     }
 }

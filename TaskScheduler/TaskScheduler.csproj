@@ -37,6 +37,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
@@ -82,6 +83,7 @@
     <Reference Include="ServiceStack.Text">
       <HintPath>..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -127,7 +129,12 @@
     <Compile Include="requests\OneTimeTaskRequest.cs" />
     <Compile Include="requests\MonthlyTaskRequest.cs" />
     <Compile Include="requests\DailyTaskRequest.cs" />
-    <Compile Include="requests\TasksRequest.cs" />
+    <Compile Include="requests\SoapDailyTaskRequest.cs" />
+    <Compile Include="requests\SoapMonthlyTaskRequest.cs" />
+    <Compile Include="requests\SoapOneTimeTaskRequest.cs" />
+    <Compile Include="requests\SoapTaskResponse.cs" />
+    <Compile Include="requests\SoapWeeklyTaskRequest.cs" />
+    <Compile Include="TaskSchedulerSoapService.cs" />
     <Compile Include="triggers\ARecuringTrigger.cs" />
     <Compile Include="triggers\DailyTrigger.cs" />
     <Compile Include="Global.asax.cs">
@@ -139,11 +146,12 @@
     <Compile Include="triggers\MonthlyRecurrence.cs" />
     <Compile Include="triggers\OneTimeTrigger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TaskResponse.cs" />
-    <Compile Include="TaskService.cs" />
+    <Compile Include="requests\TaskResponse.cs" />
+    <Compile Include="TaskSchedulerService.cs" />
     <Compile Include="triggers\TriggerFactory.cs" />
     <Compile Include="triggers\WeeklyTrigger.cs" />
     <Compile Include="requests\WeeklyTaskRequest.cs" />
+    <Compile Include="utils\SoapRequestMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

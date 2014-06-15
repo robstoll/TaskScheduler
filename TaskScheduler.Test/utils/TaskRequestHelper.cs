@@ -10,59 +10,74 @@ namespace ch.tutteli.taskscheduler.test.utils
 {
     public static class TaskRequestHelper
     {
-
         public static OneTimeTaskRequest CreateOneTimeTaskRequest()
         {
-            return new OneTimeTaskRequest
-            {
-                Name = "test",
-                Description = "descr",
-                CallbackUrl = "http://returnurl",
-                Trigger = DateTime.Now
-            };
+            return InitOneTimeTaskRequest(new OneTimeTaskRequest());
+        }
+
+        public static TRequest InitOneTimeTaskRequest<TRequest>(TRequest request)
+            where TRequest : OneTimeTaskRequest
+        {
+            request.Name = "test";
+            request.Description = "descr";
+            request.CallbackUrl = "http://returnurl";
+            request.Trigger = DateTime.Now;
+            return request;
         }
 
         public static DailyTaskRequest CreateDailyTaskRequest()
         {
-            return new DailyTaskRequest
-            {
-                Name = "test",
-                Description = "descr",
-                CallbackUrl = "http://returnurl",
-                StartDate = DateTime.Now,
-                EndDate = DateTime.Now.AddDays(2),
-                RecursEveryXDays = 10,
-                TriggerWhenDayOfWeek = new HashSet<DayOfWeek> { DayOfWeek.Monday, DayOfWeek.Friday }
-            };
+            return InitDailyTaskRequest(new DailyTaskRequest());
+
+        }
+        public static TRequest InitDailyTaskRequest<TRequest>(TRequest request)
+           where TRequest : DailyTaskRequest
+        {
+            request.Name = "test";
+            request.Description = "descr";
+            request.CallbackUrl = "http://returnurl";
+            request.StartDate = DateTime.Now;
+            request.EndDate = DateTime.Now.AddDays(2);
+            request.RecursEveryXDays = 10;
+            request.TriggerWhenDayOfWeek = new HashSet<DayOfWeek> { DayOfWeek.Monday, DayOfWeek.Friday };
+            return request;
         }
 
         public static WeeklyTaskRequest CreateWeaklyTaskRequest()
         {
-            return new WeeklyTaskRequest
-            {
-                Name = "test",
-                Description = "descr",
-                CallbackUrl = "http://returnurl",
-                StartDate = DateTime.Now,
-                EndDate = DateTime.Now.AddDays(3),
-                TriggerWhenDayOfWeek = new HashSet<DayOfWeek> { DayOfWeek.Monday, DayOfWeek.Friday },
-                RecursEveryXWeeks = 2
-            };
+            return InitWeeklyTaskRequest(new WeeklyTaskRequest());
+        }
+
+        public static TRequest InitWeeklyTaskRequest<TRequest>(TRequest request)
+            where TRequest : WeeklyTaskRequest
+        {
+            request.Name = "test";
+            request.Description = "descr";
+            request.CallbackUrl = "http://returnurl";
+            request.StartDate = DateTime.Now;
+            request.EndDate = DateTime.Now.AddDays(3);
+            request.TriggerWhenDayOfWeek = new HashSet<DayOfWeek> { DayOfWeek.Monday, DayOfWeek.Friday };
+            request.RecursEveryXWeeks = 2;
+            return request;
         }
 
         public static MonthlyTaskRequest CreateMonthlyTaskRequest()
         {
-            return new MonthlyTaskRequest
-            {
-                Name = "test",
-                Description = "descr",
-                CallbackUrl = "http://returnurl",
-                StartDate = DateTime.Now,
-                EndDate = DateTime.Now.AddDays(3),
-                RecursOnDayOfMonth = new HashSet<EDayOfMonth> { EDayOfMonth.D1, EDayOfMonth.D15 },
-                RecursOnMonth = new HashSet<EMonth> { EMonth.March, EMonth.July },
-                RecursOnSpecialDayOfMonth = new Dictionary<EMonthlyOn, IList<DayOfWeek>> { { EMonthlyOn.First, new List<DayOfWeek> { DayOfWeek.Tuesday } } }
-            };
+            return InitMonthlyTaskRequest(new MonthlyTaskRequest());
+        }
+
+        public static TRequest InitMonthlyTaskRequest<TRequest>(TRequest request)
+            where TRequest : MonthlyTaskRequest
+        {
+            request.Name = "test";
+            request.Description = "descr";
+            request.CallbackUrl = "http://returnurl";
+            request.StartDate = DateTime.Now;
+            request.EndDate = DateTime.Now.AddDays(3);
+            request.RecursOnDayOfMonth = new HashSet<EDayOfMonth> { EDayOfMonth.D1, EDayOfMonth.D15 };
+            request.RecursOnMonth = new HashSet<EMonth> { EMonth.March, EMonth.July };
+            request.RecursOnSpecialDayOfMonth = new Dictionary<EMonthlyOn, IList<DayOfWeek>> { { EMonthlyOn.First, new List<DayOfWeek> { DayOfWeek.Tuesday } } };
+            return request;
         }
     }
 }
