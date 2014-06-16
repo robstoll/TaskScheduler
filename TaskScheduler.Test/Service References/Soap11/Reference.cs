@@ -8,96 +8,268 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ch.tutteli.taskscheduler.test.Soap11 {
+namespace CH.Tutteli.TaskScheduler.Test.Soap11 {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://schemas.tutteli.ch/types", ConfigurationName="Soap11.ISyncReply")]
     public interface ISyncReply {
         
+        // CODEGEN: Generating message contract since the operation GetOneTimeTask is neither RPC nor document wrapped.
+        [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/GetOneTimeTask", ReplyAction="*")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CH.Tutteli.TaskScheduler.Requests.PostOneTimeTask))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CH.Tutteli.TaskScheduler.Requests.PutOneTimeTask))]
+        CH.Tutteli.TaskScheduler.Test.Soap11.GetOneTimeTaskResponse GetOneTimeTask(CH.Tutteli.TaskScheduler.Test.Soap11.GetOneTimeTaskRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/GetOneTimeTask", ReplyAction="*")]
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.GetOneTimeTaskResponse> GetOneTimeTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.GetOneTimeTaskRequest request);
+        
+        // CODEGEN: Generating message contract since the operation GetDailyTask is neither RPC nor document wrapped.
+        [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/GetDailyTask", ReplyAction="*")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CH.Tutteli.TaskScheduler.Requests.PostDailyTask))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CH.Tutteli.TaskScheduler.Requests.PutDailyTask))]
+        CH.Tutteli.TaskScheduler.Test.Soap11.GetDailyTaskResponse GetDailyTask(CH.Tutteli.TaskScheduler.Test.Soap11.GetDailyTaskRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/GetDailyTask", ReplyAction="*")]
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.GetDailyTaskResponse> GetDailyTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.GetDailyTaskRequest request);
+        
+        // CODEGEN: Generating message contract since the operation GetWeeklyTask is neither RPC nor document wrapped.
+        [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/GetWeeklyTask", ReplyAction="*")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CH.Tutteli.TaskScheduler.Requests.PostWeeklyTask))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CH.Tutteli.TaskScheduler.Requests.PutWeeklyTask))]
+        CH.Tutteli.TaskScheduler.Test.Soap11.GetWeeklyTaskResponse GetWeeklyTask(CH.Tutteli.TaskScheduler.Test.Soap11.GetWeeklyTaskRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/GetWeeklyTask", ReplyAction="*")]
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.GetWeeklyTaskResponse> GetWeeklyTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.GetWeeklyTaskRequest request);
+        
+        // CODEGEN: Generating message contract since the operation GetMonthlyTask is neither RPC nor document wrapped.
+        [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/GetMonthlyTask", ReplyAction="*")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CH.Tutteli.TaskScheduler.Requests.PostMonthlyTask))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CH.Tutteli.TaskScheduler.Requests.PutMonthlyTask))]
+        CH.Tutteli.TaskScheduler.Test.Soap11.GetMonthlyTaskResponse GetMonthlyTask(CH.Tutteli.TaskScheduler.Test.Soap11.GetMonthlyTaskRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/GetMonthlyTask", ReplyAction="*")]
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.GetMonthlyTaskResponse> GetMonthlyTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.GetMonthlyTaskRequest request);
+        
         // CODEGEN: Generating message contract since the operation PostOneTimeTask is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/PostOneTimeTask", ReplyAction="*")]
-        ch.tutteli.taskscheduler.test.Soap11.PostOneTimeTaskResponse PostOneTimeTask(ch.tutteli.taskscheduler.test.Soap11.PostOneTimeTaskRequest request);
+        CH.Tutteli.TaskScheduler.Test.Soap11.PostOneTimeTaskResponse PostOneTimeTask(CH.Tutteli.TaskScheduler.Test.Soap11.PostOneTimeTaskRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/PostOneTimeTask", ReplyAction="*")]
-        System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.PostOneTimeTaskResponse> PostOneTimeTaskAsync(ch.tutteli.taskscheduler.test.Soap11.PostOneTimeTaskRequest request);
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.PostOneTimeTaskResponse> PostOneTimeTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.PostOneTimeTaskRequest request);
         
         // CODEGEN: Generating message contract since the operation PostDailyTask is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/PostDailyTask", ReplyAction="*")]
-        ch.tutteli.taskscheduler.test.Soap11.PostDailyTaskResponse PostDailyTask(ch.tutteli.taskscheduler.test.Soap11.PostDailyTaskRequest request);
+        CH.Tutteli.TaskScheduler.Test.Soap11.PostDailyTaskResponse PostDailyTask(CH.Tutteli.TaskScheduler.Test.Soap11.PostDailyTaskRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/PostDailyTask", ReplyAction="*")]
-        System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.PostDailyTaskResponse> PostDailyTaskAsync(ch.tutteli.taskscheduler.test.Soap11.PostDailyTaskRequest request);
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.PostDailyTaskResponse> PostDailyTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.PostDailyTaskRequest request);
         
         // CODEGEN: Generating message contract since the operation PostWeeklyTask is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/PostWeeklyTask", ReplyAction="*")]
-        ch.tutteli.taskscheduler.test.Soap11.PostWeeklyTaskResponse PostWeeklyTask(ch.tutteli.taskscheduler.test.Soap11.PostWeeklyTaskRequest request);
+        CH.Tutteli.TaskScheduler.Test.Soap11.PostWeeklyTaskResponse PostWeeklyTask(CH.Tutteli.TaskScheduler.Test.Soap11.PostWeeklyTaskRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/PostWeeklyTask", ReplyAction="*")]
-        System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.PostWeeklyTaskResponse> PostWeeklyTaskAsync(ch.tutteli.taskscheduler.test.Soap11.PostWeeklyTaskRequest request);
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.PostWeeklyTaskResponse> PostWeeklyTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.PostWeeklyTaskRequest request);
         
         // CODEGEN: Generating message contract since the operation PostMonthlyTask is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/PostMonthlyTask", ReplyAction="*")]
-        ch.tutteli.taskscheduler.test.Soap11.PostMonthlyTaskResponse PostMonthlyTask(ch.tutteli.taskscheduler.test.Soap11.PostMonthlyTaskRequest request);
+        CH.Tutteli.TaskScheduler.Test.Soap11.PostMonthlyTaskResponse PostMonthlyTask(CH.Tutteli.TaskScheduler.Test.Soap11.PostMonthlyTaskRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/PostMonthlyTask", ReplyAction="*")]
-        System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.PostMonthlyTaskResponse> PostMonthlyTaskAsync(ch.tutteli.taskscheduler.test.Soap11.PostMonthlyTaskRequest request);
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.PostMonthlyTaskResponse> PostMonthlyTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.PostMonthlyTaskRequest request);
         
         // CODEGEN: Generating message contract since the operation PutOneTimeTask is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/PutOneTimeTask", ReplyAction="*")]
-        ch.tutteli.taskscheduler.test.Soap11.PutOneTimeTaskResponse PutOneTimeTask(ch.tutteli.taskscheduler.test.Soap11.PutOneTimeTaskRequest request);
+        CH.Tutteli.TaskScheduler.Test.Soap11.PutOneTimeTaskResponse PutOneTimeTask(CH.Tutteli.TaskScheduler.Test.Soap11.PutOneTimeTaskRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/PutOneTimeTask", ReplyAction="*")]
-        System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.PutOneTimeTaskResponse> PutOneTimeTaskAsync(ch.tutteli.taskscheduler.test.Soap11.PutOneTimeTaskRequest request);
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.PutOneTimeTaskResponse> PutOneTimeTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.PutOneTimeTaskRequest request);
         
         // CODEGEN: Generating message contract since the operation PutDailyTask is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/PutDailyTask", ReplyAction="*")]
-        ch.tutteli.taskscheduler.test.Soap11.PutDailyTaskResponse PutDailyTask(ch.tutteli.taskscheduler.test.Soap11.PutDailyTaskRequest request);
+        CH.Tutteli.TaskScheduler.Test.Soap11.PutDailyTaskResponse PutDailyTask(CH.Tutteli.TaskScheduler.Test.Soap11.PutDailyTaskRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/PutDailyTask", ReplyAction="*")]
-        System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.PutDailyTaskResponse> PutDailyTaskAsync(ch.tutteli.taskscheduler.test.Soap11.PutDailyTaskRequest request);
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.PutDailyTaskResponse> PutDailyTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.PutDailyTaskRequest request);
         
         // CODEGEN: Generating message contract since the operation PutWeeklyTask is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/PutWeeklyTask", ReplyAction="*")]
-        ch.tutteli.taskscheduler.test.Soap11.PutWeeklyTaskResponse PutWeeklyTask(ch.tutteli.taskscheduler.test.Soap11.PutWeeklyTaskRequest request);
+        CH.Tutteli.TaskScheduler.Test.Soap11.PutWeeklyTaskResponse PutWeeklyTask(CH.Tutteli.TaskScheduler.Test.Soap11.PutWeeklyTaskRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/PutWeeklyTask", ReplyAction="*")]
-        System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.PutWeeklyTaskResponse> PutWeeklyTaskAsync(ch.tutteli.taskscheduler.test.Soap11.PutWeeklyTaskRequest request);
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.PutWeeklyTaskResponse> PutWeeklyTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.PutWeeklyTaskRequest request);
         
         // CODEGEN: Generating message contract since the operation PutMonthlyTask is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/PutMonthlyTask", ReplyAction="*")]
-        ch.tutteli.taskscheduler.test.Soap11.PutMonthlyTaskResponse PutMonthlyTask(ch.tutteli.taskscheduler.test.Soap11.PutMonthlyTaskRequest request);
+        CH.Tutteli.TaskScheduler.Test.Soap11.PutMonthlyTaskResponse PutMonthlyTask(CH.Tutteli.TaskScheduler.Test.Soap11.PutMonthlyTaskRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/PutMonthlyTask", ReplyAction="*")]
-        System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.PutMonthlyTaskResponse> PutMonthlyTaskAsync(ch.tutteli.taskscheduler.test.Soap11.PutMonthlyTaskRequest request);
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.PutMonthlyTaskResponse> PutMonthlyTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.PutMonthlyTaskRequest request);
         
         // CODEGEN: Generating message contract since the operation DeleteOneTimeTask is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/DeleteOneTimeTask", ReplyAction="*")]
-        ch.tutteli.taskscheduler.test.Soap11.DeleteOneTimeTaskResponse DeleteOneTimeTask(ch.tutteli.taskscheduler.test.Soap11.DeleteOneTimeTaskRequest request);
+        CH.Tutteli.TaskScheduler.Test.Soap11.DeleteOneTimeTaskResponse DeleteOneTimeTask(CH.Tutteli.TaskScheduler.Test.Soap11.DeleteOneTimeTaskRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/DeleteOneTimeTask", ReplyAction="*")]
-        System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.DeleteOneTimeTaskResponse> DeleteOneTimeTaskAsync(ch.tutteli.taskscheduler.test.Soap11.DeleteOneTimeTaskRequest request);
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.DeleteOneTimeTaskResponse> DeleteOneTimeTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.DeleteOneTimeTaskRequest request);
         
         // CODEGEN: Generating message contract since the operation DeleteDailyTask is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/DeleteDailyTask", ReplyAction="*")]
-        ch.tutteli.taskscheduler.test.Soap11.DeleteDailyTaskResponse DeleteDailyTask(ch.tutteli.taskscheduler.test.Soap11.DeleteDailyTaskRequest request);
+        CH.Tutteli.TaskScheduler.Test.Soap11.DeleteDailyTaskResponse DeleteDailyTask(CH.Tutteli.TaskScheduler.Test.Soap11.DeleteDailyTaskRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/DeleteDailyTask", ReplyAction="*")]
-        System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.DeleteDailyTaskResponse> DeleteDailyTaskAsync(ch.tutteli.taskscheduler.test.Soap11.DeleteDailyTaskRequest request);
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.DeleteDailyTaskResponse> DeleteDailyTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.DeleteDailyTaskRequest request);
         
         // CODEGEN: Generating message contract since the operation DeleteWeeklyTask is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/DeleteWeeklyTask", ReplyAction="*")]
-        ch.tutteli.taskscheduler.test.Soap11.DeleteWeeklyTaskResponse DeleteWeeklyTask(ch.tutteli.taskscheduler.test.Soap11.DeleteWeeklyTaskRequest request);
+        CH.Tutteli.TaskScheduler.Test.Soap11.DeleteWeeklyTaskResponse DeleteWeeklyTask(CH.Tutteli.TaskScheduler.Test.Soap11.DeleteWeeklyTaskRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/DeleteWeeklyTask", ReplyAction="*")]
-        System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.DeleteWeeklyTaskResponse> DeleteWeeklyTaskAsync(ch.tutteli.taskscheduler.test.Soap11.DeleteWeeklyTaskRequest request);
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.DeleteWeeklyTaskResponse> DeleteWeeklyTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.DeleteWeeklyTaskRequest request);
         
         // CODEGEN: Generating message contract since the operation DeleteMonthlyTask is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/DeleteMonthlyTask", ReplyAction="*")]
-        ch.tutteli.taskscheduler.test.Soap11.DeleteMonthlyTaskResponse DeleteMonthlyTask(ch.tutteli.taskscheduler.test.Soap11.DeleteMonthlyTaskRequest request);
+        CH.Tutteli.TaskScheduler.Test.Soap11.DeleteMonthlyTaskResponse DeleteMonthlyTask(CH.Tutteli.TaskScheduler.Test.Soap11.DeleteMonthlyTaskRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/DeleteMonthlyTask", ReplyAction="*")]
-        System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.DeleteMonthlyTaskResponse> DeleteMonthlyTaskAsync(ch.tutteli.taskscheduler.test.Soap11.DeleteMonthlyTaskRequest request);
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.DeleteMonthlyTaskResponse> DeleteMonthlyTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.DeleteMonthlyTaskRequest request);
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetOneTimeTaskRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://schemas.tutteli.ch/types", Order=0)]
+        public CH.Tutteli.TaskScheduler.Requests.GetOneTimeTask GetOneTimeTask;
+        
+        public GetOneTimeTaskRequest() {
+        }
+        
+        public GetOneTimeTaskRequest(CH.Tutteli.TaskScheduler.Requests.GetOneTimeTask GetOneTimeTask) {
+            this.GetOneTimeTask = GetOneTimeTask;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetOneTimeTaskResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetOneTimeTaskResponse", Namespace="http://schemas.tutteli.ch/types", Order=0)]
+        public CH.Tutteli.TaskScheduler.Requests.GetOneTimeTaskResponse GetOneTimeTaskResponse1;
+        
+        public GetOneTimeTaskResponse() {
+        }
+        
+        public GetOneTimeTaskResponse(CH.Tutteli.TaskScheduler.Requests.GetOneTimeTaskResponse GetOneTimeTaskResponse1) {
+            this.GetOneTimeTaskResponse1 = GetOneTimeTaskResponse1;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetDailyTaskRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://schemas.tutteli.ch/types", Order=0)]
+        public CH.Tutteli.TaskScheduler.Requests.GetDailyTask GetDailyTask;
+        
+        public GetDailyTaskRequest() {
+        }
+        
+        public GetDailyTaskRequest(CH.Tutteli.TaskScheduler.Requests.GetDailyTask GetDailyTask) {
+            this.GetDailyTask = GetDailyTask;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetDailyTaskResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetDailyTaskResponse", Namespace="http://schemas.tutteli.ch/types", Order=0)]
+        public CH.Tutteli.TaskScheduler.Requests.GetDailyTaskResponse GetDailyTaskResponse1;
+        
+        public GetDailyTaskResponse() {
+        }
+        
+        public GetDailyTaskResponse(CH.Tutteli.TaskScheduler.Requests.GetDailyTaskResponse GetDailyTaskResponse1) {
+            this.GetDailyTaskResponse1 = GetDailyTaskResponse1;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetWeeklyTaskRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://schemas.tutteli.ch/types", Order=0)]
+        public CH.Tutteli.TaskScheduler.Requests.GetWeeklyTask GetWeeklyTask;
+        
+        public GetWeeklyTaskRequest() {
+        }
+        
+        public GetWeeklyTaskRequest(CH.Tutteli.TaskScheduler.Requests.GetWeeklyTask GetWeeklyTask) {
+            this.GetWeeklyTask = GetWeeklyTask;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetWeeklyTaskResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetWeeklyTaskResponse", Namespace="http://schemas.tutteli.ch/types", Order=0)]
+        public CH.Tutteli.TaskScheduler.Requests.GetWeeklyTaskResponse GetWeeklyTaskResponse1;
+        
+        public GetWeeklyTaskResponse() {
+        }
+        
+        public GetWeeklyTaskResponse(CH.Tutteli.TaskScheduler.Requests.GetWeeklyTaskResponse GetWeeklyTaskResponse1) {
+            this.GetWeeklyTaskResponse1 = GetWeeklyTaskResponse1;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetMonthlyTaskRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://schemas.tutteli.ch/types", Order=0)]
+        public CH.Tutteli.TaskScheduler.Requests.GetMonthlyTask GetMonthlyTask;
+        
+        public GetMonthlyTaskRequest() {
+        }
+        
+        public GetMonthlyTaskRequest(CH.Tutteli.TaskScheduler.Requests.GetMonthlyTask GetMonthlyTask) {
+            this.GetMonthlyTask = GetMonthlyTask;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetMonthlyTaskResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetMonthlyTaskResponse", Namespace="http://schemas.tutteli.ch/types", Order=0)]
+        public CH.Tutteli.TaskScheduler.Requests.GetMonthlyTaskResponse GetMonthlyTaskResponse1;
+        
+        public GetMonthlyTaskResponse() {
+        }
+        
+        public GetMonthlyTaskResponse(CH.Tutteli.TaskScheduler.Requests.GetMonthlyTaskResponse GetMonthlyTaskResponse1) {
+            this.GetMonthlyTaskResponse1 = GetMonthlyTaskResponse1;
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -107,12 +279,12 @@ namespace ch.tutteli.taskscheduler.test.Soap11 {
     public partial class PostOneTimeTaskRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://schemas.tutteli.ch/types", Order=0)]
-        public ch.tutteli.taskscheduler.requests.PostOneTimeTask PostOneTimeTask;
+        public CH.Tutteli.TaskScheduler.Requests.PostOneTimeTask PostOneTimeTask;
         
         public PostOneTimeTaskRequest() {
         }
         
-        public PostOneTimeTaskRequest(ch.tutteli.taskscheduler.requests.PostOneTimeTask PostOneTimeTask) {
+        public PostOneTimeTaskRequest(CH.Tutteli.TaskScheduler.Requests.PostOneTimeTask PostOneTimeTask) {
             this.PostOneTimeTask = PostOneTimeTask;
         }
     }
@@ -124,12 +296,12 @@ namespace ch.tutteli.taskscheduler.test.Soap11 {
     public partial class PostOneTimeTaskResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="PostOneTimeTaskResponse", Namespace="http://schemas.tutteli.ch/types", Order=0)]
-        public ch.tutteli.taskscheduler.requests.PostOneTimeTaskResponse PostOneTimeTaskResponse1;
+        public CH.Tutteli.TaskScheduler.Requests.PostOneTimeTaskResponse PostOneTimeTaskResponse1;
         
         public PostOneTimeTaskResponse() {
         }
         
-        public PostOneTimeTaskResponse(ch.tutteli.taskscheduler.requests.PostOneTimeTaskResponse PostOneTimeTaskResponse1) {
+        public PostOneTimeTaskResponse(CH.Tutteli.TaskScheduler.Requests.PostOneTimeTaskResponse PostOneTimeTaskResponse1) {
             this.PostOneTimeTaskResponse1 = PostOneTimeTaskResponse1;
         }
     }
@@ -141,12 +313,12 @@ namespace ch.tutteli.taskscheduler.test.Soap11 {
     public partial class PostDailyTaskRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://schemas.tutteli.ch/types", Order=0)]
-        public ch.tutteli.taskscheduler.requests.PostDailyTask PostDailyTask;
+        public CH.Tutteli.TaskScheduler.Requests.PostDailyTask PostDailyTask;
         
         public PostDailyTaskRequest() {
         }
         
-        public PostDailyTaskRequest(ch.tutteli.taskscheduler.requests.PostDailyTask PostDailyTask) {
+        public PostDailyTaskRequest(CH.Tutteli.TaskScheduler.Requests.PostDailyTask PostDailyTask) {
             this.PostDailyTask = PostDailyTask;
         }
     }
@@ -158,12 +330,12 @@ namespace ch.tutteli.taskscheduler.test.Soap11 {
     public partial class PostDailyTaskResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="PostDailyTaskResponse", Namespace="http://schemas.tutteli.ch/types", Order=0)]
-        public ch.tutteli.taskscheduler.requests.PostDailyTaskResponse PostDailyTaskResponse1;
+        public CH.Tutteli.TaskScheduler.Requests.PostDailyTaskResponse PostDailyTaskResponse1;
         
         public PostDailyTaskResponse() {
         }
         
-        public PostDailyTaskResponse(ch.tutteli.taskscheduler.requests.PostDailyTaskResponse PostDailyTaskResponse1) {
+        public PostDailyTaskResponse(CH.Tutteli.TaskScheduler.Requests.PostDailyTaskResponse PostDailyTaskResponse1) {
             this.PostDailyTaskResponse1 = PostDailyTaskResponse1;
         }
     }
@@ -175,12 +347,12 @@ namespace ch.tutteli.taskscheduler.test.Soap11 {
     public partial class PostWeeklyTaskRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://schemas.tutteli.ch/types", Order=0)]
-        public ch.tutteli.taskscheduler.requests.PostWeeklyTask PostWeeklyTask;
+        public CH.Tutteli.TaskScheduler.Requests.PostWeeklyTask PostWeeklyTask;
         
         public PostWeeklyTaskRequest() {
         }
         
-        public PostWeeklyTaskRequest(ch.tutteli.taskscheduler.requests.PostWeeklyTask PostWeeklyTask) {
+        public PostWeeklyTaskRequest(CH.Tutteli.TaskScheduler.Requests.PostWeeklyTask PostWeeklyTask) {
             this.PostWeeklyTask = PostWeeklyTask;
         }
     }
@@ -192,12 +364,12 @@ namespace ch.tutteli.taskscheduler.test.Soap11 {
     public partial class PostWeeklyTaskResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="PostWeeklyTaskResponse", Namespace="http://schemas.tutteli.ch/types", Order=0)]
-        public ch.tutteli.taskscheduler.requests.PostWeeklyTaskResponse PostWeeklyTaskResponse1;
+        public CH.Tutteli.TaskScheduler.Requests.PostWeeklyTaskResponse PostWeeklyTaskResponse1;
         
         public PostWeeklyTaskResponse() {
         }
         
-        public PostWeeklyTaskResponse(ch.tutteli.taskscheduler.requests.PostWeeklyTaskResponse PostWeeklyTaskResponse1) {
+        public PostWeeklyTaskResponse(CH.Tutteli.TaskScheduler.Requests.PostWeeklyTaskResponse PostWeeklyTaskResponse1) {
             this.PostWeeklyTaskResponse1 = PostWeeklyTaskResponse1;
         }
     }
@@ -209,12 +381,12 @@ namespace ch.tutteli.taskscheduler.test.Soap11 {
     public partial class PostMonthlyTaskRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://schemas.tutteli.ch/types", Order=0)]
-        public ch.tutteli.taskscheduler.requests.PostMonthlyTask PostMonthlyTask;
+        public CH.Tutteli.TaskScheduler.Requests.PostMonthlyTask PostMonthlyTask;
         
         public PostMonthlyTaskRequest() {
         }
         
-        public PostMonthlyTaskRequest(ch.tutteli.taskscheduler.requests.PostMonthlyTask PostMonthlyTask) {
+        public PostMonthlyTaskRequest(CH.Tutteli.TaskScheduler.Requests.PostMonthlyTask PostMonthlyTask) {
             this.PostMonthlyTask = PostMonthlyTask;
         }
     }
@@ -226,12 +398,12 @@ namespace ch.tutteli.taskscheduler.test.Soap11 {
     public partial class PostMonthlyTaskResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="PostMonthlyTaskResponse", Namespace="http://schemas.tutteli.ch/types", Order=0)]
-        public ch.tutteli.taskscheduler.requests.PostMonthlyTaskResponse PostMonthlyTaskResponse1;
+        public CH.Tutteli.TaskScheduler.Requests.PostMonthlyTaskResponse PostMonthlyTaskResponse1;
         
         public PostMonthlyTaskResponse() {
         }
         
-        public PostMonthlyTaskResponse(ch.tutteli.taskscheduler.requests.PostMonthlyTaskResponse PostMonthlyTaskResponse1) {
+        public PostMonthlyTaskResponse(CH.Tutteli.TaskScheduler.Requests.PostMonthlyTaskResponse PostMonthlyTaskResponse1) {
             this.PostMonthlyTaskResponse1 = PostMonthlyTaskResponse1;
         }
     }
@@ -243,12 +415,12 @@ namespace ch.tutteli.taskscheduler.test.Soap11 {
     public partial class PutOneTimeTaskRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://schemas.tutteli.ch/types", Order=0)]
-        public ch.tutteli.taskscheduler.requests.PutOneTimeTask PutOneTimeTask;
+        public CH.Tutteli.TaskScheduler.Requests.PutOneTimeTask PutOneTimeTask;
         
         public PutOneTimeTaskRequest() {
         }
         
-        public PutOneTimeTaskRequest(ch.tutteli.taskscheduler.requests.PutOneTimeTask PutOneTimeTask) {
+        public PutOneTimeTaskRequest(CH.Tutteli.TaskScheduler.Requests.PutOneTimeTask PutOneTimeTask) {
             this.PutOneTimeTask = PutOneTimeTask;
         }
     }
@@ -260,12 +432,12 @@ namespace ch.tutteli.taskscheduler.test.Soap11 {
     public partial class PutOneTimeTaskResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="PutOneTimeTaskResponse", Namespace="http://schemas.tutteli.ch/types", Order=0)]
-        public ch.tutteli.taskscheduler.requests.PutOneTimeTaskResponse PutOneTimeTaskResponse1;
+        public CH.Tutteli.TaskScheduler.Requests.PutOneTimeTaskResponse PutOneTimeTaskResponse1;
         
         public PutOneTimeTaskResponse() {
         }
         
-        public PutOneTimeTaskResponse(ch.tutteli.taskscheduler.requests.PutOneTimeTaskResponse PutOneTimeTaskResponse1) {
+        public PutOneTimeTaskResponse(CH.Tutteli.TaskScheduler.Requests.PutOneTimeTaskResponse PutOneTimeTaskResponse1) {
             this.PutOneTimeTaskResponse1 = PutOneTimeTaskResponse1;
         }
     }
@@ -277,12 +449,12 @@ namespace ch.tutteli.taskscheduler.test.Soap11 {
     public partial class PutDailyTaskRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://schemas.tutteli.ch/types", Order=0)]
-        public ch.tutteli.taskscheduler.requests.PutDailyTask PutDailyTask;
+        public CH.Tutteli.TaskScheduler.Requests.PutDailyTask PutDailyTask;
         
         public PutDailyTaskRequest() {
         }
         
-        public PutDailyTaskRequest(ch.tutteli.taskscheduler.requests.PutDailyTask PutDailyTask) {
+        public PutDailyTaskRequest(CH.Tutteli.TaskScheduler.Requests.PutDailyTask PutDailyTask) {
             this.PutDailyTask = PutDailyTask;
         }
     }
@@ -294,12 +466,12 @@ namespace ch.tutteli.taskscheduler.test.Soap11 {
     public partial class PutDailyTaskResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="PutDailyTaskResponse", Namespace="http://schemas.tutteli.ch/types", Order=0)]
-        public ch.tutteli.taskscheduler.requests.PutDailyTaskResponse PutDailyTaskResponse1;
+        public CH.Tutteli.TaskScheduler.Requests.PutDailyTaskResponse PutDailyTaskResponse1;
         
         public PutDailyTaskResponse() {
         }
         
-        public PutDailyTaskResponse(ch.tutteli.taskscheduler.requests.PutDailyTaskResponse PutDailyTaskResponse1) {
+        public PutDailyTaskResponse(CH.Tutteli.TaskScheduler.Requests.PutDailyTaskResponse PutDailyTaskResponse1) {
             this.PutDailyTaskResponse1 = PutDailyTaskResponse1;
         }
     }
@@ -311,12 +483,12 @@ namespace ch.tutteli.taskscheduler.test.Soap11 {
     public partial class PutWeeklyTaskRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://schemas.tutteli.ch/types", Order=0)]
-        public ch.tutteli.taskscheduler.requests.PutWeeklyTask PutWeeklyTask;
+        public CH.Tutteli.TaskScheduler.Requests.PutWeeklyTask PutWeeklyTask;
         
         public PutWeeklyTaskRequest() {
         }
         
-        public PutWeeklyTaskRequest(ch.tutteli.taskscheduler.requests.PutWeeklyTask PutWeeklyTask) {
+        public PutWeeklyTaskRequest(CH.Tutteli.TaskScheduler.Requests.PutWeeklyTask PutWeeklyTask) {
             this.PutWeeklyTask = PutWeeklyTask;
         }
     }
@@ -328,12 +500,12 @@ namespace ch.tutteli.taskscheduler.test.Soap11 {
     public partial class PutWeeklyTaskResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="PutWeeklyTaskResponse", Namespace="http://schemas.tutteli.ch/types", Order=0)]
-        public ch.tutteli.taskscheduler.requests.PutWeeklyTaskResponse PutWeeklyTaskResponse1;
+        public CH.Tutteli.TaskScheduler.Requests.PutWeeklyTaskResponse PutWeeklyTaskResponse1;
         
         public PutWeeklyTaskResponse() {
         }
         
-        public PutWeeklyTaskResponse(ch.tutteli.taskscheduler.requests.PutWeeklyTaskResponse PutWeeklyTaskResponse1) {
+        public PutWeeklyTaskResponse(CH.Tutteli.TaskScheduler.Requests.PutWeeklyTaskResponse PutWeeklyTaskResponse1) {
             this.PutWeeklyTaskResponse1 = PutWeeklyTaskResponse1;
         }
     }
@@ -345,12 +517,12 @@ namespace ch.tutteli.taskscheduler.test.Soap11 {
     public partial class PutMonthlyTaskRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://schemas.tutteli.ch/types", Order=0)]
-        public ch.tutteli.taskscheduler.requests.PutMonthlyTask PutMonthlyTask;
+        public CH.Tutteli.TaskScheduler.Requests.PutMonthlyTask PutMonthlyTask;
         
         public PutMonthlyTaskRequest() {
         }
         
-        public PutMonthlyTaskRequest(ch.tutteli.taskscheduler.requests.PutMonthlyTask PutMonthlyTask) {
+        public PutMonthlyTaskRequest(CH.Tutteli.TaskScheduler.Requests.PutMonthlyTask PutMonthlyTask) {
             this.PutMonthlyTask = PutMonthlyTask;
         }
     }
@@ -362,12 +534,12 @@ namespace ch.tutteli.taskscheduler.test.Soap11 {
     public partial class PutMonthlyTaskResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="PutMonthlyTaskResponse", Namespace="http://schemas.tutteli.ch/types", Order=0)]
-        public ch.tutteli.taskscheduler.requests.PutMonthlyTaskResponse PutMonthlyTaskResponse1;
+        public CH.Tutteli.TaskScheduler.Requests.PutMonthlyTaskResponse PutMonthlyTaskResponse1;
         
         public PutMonthlyTaskResponse() {
         }
         
-        public PutMonthlyTaskResponse(ch.tutteli.taskscheduler.requests.PutMonthlyTaskResponse PutMonthlyTaskResponse1) {
+        public PutMonthlyTaskResponse(CH.Tutteli.TaskScheduler.Requests.PutMonthlyTaskResponse PutMonthlyTaskResponse1) {
             this.PutMonthlyTaskResponse1 = PutMonthlyTaskResponse1;
         }
     }
@@ -379,12 +551,12 @@ namespace ch.tutteli.taskscheduler.test.Soap11 {
     public partial class DeleteOneTimeTaskRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://schemas.tutteli.ch/types", Order=0)]
-        public ch.tutteli.taskscheduler.requests.DeleteOneTimeTask DeleteOneTimeTask;
+        public CH.Tutteli.TaskScheduler.Requests.DeleteOneTimeTask DeleteOneTimeTask;
         
         public DeleteOneTimeTaskRequest() {
         }
         
-        public DeleteOneTimeTaskRequest(ch.tutteli.taskscheduler.requests.DeleteOneTimeTask DeleteOneTimeTask) {
+        public DeleteOneTimeTaskRequest(CH.Tutteli.TaskScheduler.Requests.DeleteOneTimeTask DeleteOneTimeTask) {
             this.DeleteOneTimeTask = DeleteOneTimeTask;
         }
     }
@@ -396,12 +568,12 @@ namespace ch.tutteli.taskscheduler.test.Soap11 {
     public partial class DeleteOneTimeTaskResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="DeleteOneTimeTaskResponse", Namespace="http://schemas.tutteli.ch/types", Order=0)]
-        public ch.tutteli.taskscheduler.requests.DeleteOneTimeTaskResponse DeleteOneTimeTaskResponse1;
+        public CH.Tutteli.TaskScheduler.Requests.DeleteOneTimeTaskResponse DeleteOneTimeTaskResponse1;
         
         public DeleteOneTimeTaskResponse() {
         }
         
-        public DeleteOneTimeTaskResponse(ch.tutteli.taskscheduler.requests.DeleteOneTimeTaskResponse DeleteOneTimeTaskResponse1) {
+        public DeleteOneTimeTaskResponse(CH.Tutteli.TaskScheduler.Requests.DeleteOneTimeTaskResponse DeleteOneTimeTaskResponse1) {
             this.DeleteOneTimeTaskResponse1 = DeleteOneTimeTaskResponse1;
         }
     }
@@ -413,12 +585,12 @@ namespace ch.tutteli.taskscheduler.test.Soap11 {
     public partial class DeleteDailyTaskRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://schemas.tutteli.ch/types", Order=0)]
-        public ch.tutteli.taskscheduler.requests.DeleteDailyTask DeleteDailyTask;
+        public CH.Tutteli.TaskScheduler.Requests.DeleteDailyTask DeleteDailyTask;
         
         public DeleteDailyTaskRequest() {
         }
         
-        public DeleteDailyTaskRequest(ch.tutteli.taskscheduler.requests.DeleteDailyTask DeleteDailyTask) {
+        public DeleteDailyTaskRequest(CH.Tutteli.TaskScheduler.Requests.DeleteDailyTask DeleteDailyTask) {
             this.DeleteDailyTask = DeleteDailyTask;
         }
     }
@@ -430,12 +602,12 @@ namespace ch.tutteli.taskscheduler.test.Soap11 {
     public partial class DeleteDailyTaskResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="DeleteDailyTaskResponse", Namespace="http://schemas.tutteli.ch/types", Order=0)]
-        public ch.tutteli.taskscheduler.requests.DeleteDailyTaskResponse DeleteDailyTaskResponse1;
+        public CH.Tutteli.TaskScheduler.Requests.DeleteDailyTaskResponse DeleteDailyTaskResponse1;
         
         public DeleteDailyTaskResponse() {
         }
         
-        public DeleteDailyTaskResponse(ch.tutteli.taskscheduler.requests.DeleteDailyTaskResponse DeleteDailyTaskResponse1) {
+        public DeleteDailyTaskResponse(CH.Tutteli.TaskScheduler.Requests.DeleteDailyTaskResponse DeleteDailyTaskResponse1) {
             this.DeleteDailyTaskResponse1 = DeleteDailyTaskResponse1;
         }
     }
@@ -447,12 +619,12 @@ namespace ch.tutteli.taskscheduler.test.Soap11 {
     public partial class DeleteWeeklyTaskRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://schemas.tutteli.ch/types", Order=0)]
-        public ch.tutteli.taskscheduler.requests.DeleteWeeklyTask DeleteWeeklyTask;
+        public CH.Tutteli.TaskScheduler.Requests.DeleteWeeklyTask DeleteWeeklyTask;
         
         public DeleteWeeklyTaskRequest() {
         }
         
-        public DeleteWeeklyTaskRequest(ch.tutteli.taskscheduler.requests.DeleteWeeklyTask DeleteWeeklyTask) {
+        public DeleteWeeklyTaskRequest(CH.Tutteli.TaskScheduler.Requests.DeleteWeeklyTask DeleteWeeklyTask) {
             this.DeleteWeeklyTask = DeleteWeeklyTask;
         }
     }
@@ -464,12 +636,12 @@ namespace ch.tutteli.taskscheduler.test.Soap11 {
     public partial class DeleteWeeklyTaskResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="DeleteWeeklyTaskResponse", Namespace="http://schemas.tutteli.ch/types", Order=0)]
-        public ch.tutteli.taskscheduler.requests.DeleteWeeklyTaskResponse DeleteWeeklyTaskResponse1;
+        public CH.Tutteli.TaskScheduler.Requests.DeleteWeeklyTaskResponse DeleteWeeklyTaskResponse1;
         
         public DeleteWeeklyTaskResponse() {
         }
         
-        public DeleteWeeklyTaskResponse(ch.tutteli.taskscheduler.requests.DeleteWeeklyTaskResponse DeleteWeeklyTaskResponse1) {
+        public DeleteWeeklyTaskResponse(CH.Tutteli.TaskScheduler.Requests.DeleteWeeklyTaskResponse DeleteWeeklyTaskResponse1) {
             this.DeleteWeeklyTaskResponse1 = DeleteWeeklyTaskResponse1;
         }
     }
@@ -481,12 +653,12 @@ namespace ch.tutteli.taskscheduler.test.Soap11 {
     public partial class DeleteMonthlyTaskRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://schemas.tutteli.ch/types", Order=0)]
-        public ch.tutteli.taskscheduler.requests.DeleteMonthlyTask DeleteMonthlyTask;
+        public CH.Tutteli.TaskScheduler.Requests.DeleteMonthlyTask DeleteMonthlyTask;
         
         public DeleteMonthlyTaskRequest() {
         }
         
-        public DeleteMonthlyTaskRequest(ch.tutteli.taskscheduler.requests.DeleteMonthlyTask DeleteMonthlyTask) {
+        public DeleteMonthlyTaskRequest(CH.Tutteli.TaskScheduler.Requests.DeleteMonthlyTask DeleteMonthlyTask) {
             this.DeleteMonthlyTask = DeleteMonthlyTask;
         }
     }
@@ -498,23 +670,23 @@ namespace ch.tutteli.taskscheduler.test.Soap11 {
     public partial class DeleteMonthlyTaskResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="DeleteMonthlyTaskResponse", Namespace="http://schemas.tutteli.ch/types", Order=0)]
-        public ch.tutteli.taskscheduler.requests.DeleteMonthlyTaskResponse DeleteMonthlyTaskResponse1;
+        public CH.Tutteli.TaskScheduler.Requests.DeleteMonthlyTaskResponse DeleteMonthlyTaskResponse1;
         
         public DeleteMonthlyTaskResponse() {
         }
         
-        public DeleteMonthlyTaskResponse(ch.tutteli.taskscheduler.requests.DeleteMonthlyTaskResponse DeleteMonthlyTaskResponse1) {
+        public DeleteMonthlyTaskResponse(CH.Tutteli.TaskScheduler.Requests.DeleteMonthlyTaskResponse DeleteMonthlyTaskResponse1) {
             this.DeleteMonthlyTaskResponse1 = DeleteMonthlyTaskResponse1;
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ISyncReplyChannel : ch.tutteli.taskscheduler.test.Soap11.ISyncReply, System.ServiceModel.IClientChannel {
+    public interface ISyncReplyChannel : CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class SyncReplyClient : System.ServiceModel.ClientBase<ch.tutteli.taskscheduler.test.Soap11.ISyncReply>, ch.tutteli.taskscheduler.test.Soap11.ISyncReply {
+    public partial class SyncReplyClient : System.ServiceModel.ClientBase<CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply>, CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply {
         
         public SyncReplyClient() {
         }
@@ -536,279 +708,371 @@ namespace ch.tutteli.taskscheduler.test.Soap11 {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ch.tutteli.taskscheduler.test.Soap11.PostOneTimeTaskResponse ch.tutteli.taskscheduler.test.Soap11.ISyncReply.PostOneTimeTask(ch.tutteli.taskscheduler.test.Soap11.PostOneTimeTaskRequest request) {
+        CH.Tutteli.TaskScheduler.Test.Soap11.GetOneTimeTaskResponse CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.GetOneTimeTask(CH.Tutteli.TaskScheduler.Test.Soap11.GetOneTimeTaskRequest request) {
+            return base.Channel.GetOneTimeTask(request);
+        }
+        
+        public CH.Tutteli.TaskScheduler.Requests.GetOneTimeTaskResponse GetOneTimeTask(CH.Tutteli.TaskScheduler.Requests.GetOneTimeTask GetOneTimeTask1) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.GetOneTimeTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.GetOneTimeTaskRequest();
+            inValue.GetOneTimeTask = GetOneTimeTask1;
+            CH.Tutteli.TaskScheduler.Test.Soap11.GetOneTimeTaskResponse retVal = ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).GetOneTimeTask(inValue);
+            return retVal.GetOneTimeTaskResponse1;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.GetOneTimeTaskResponse> CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.GetOneTimeTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.GetOneTimeTaskRequest request) {
+            return base.Channel.GetOneTimeTaskAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.GetOneTimeTaskResponse> GetOneTimeTaskAsync(CH.Tutteli.TaskScheduler.Requests.GetOneTimeTask GetOneTimeTask) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.GetOneTimeTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.GetOneTimeTaskRequest();
+            inValue.GetOneTimeTask = GetOneTimeTask;
+            return ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).GetOneTimeTaskAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        CH.Tutteli.TaskScheduler.Test.Soap11.GetDailyTaskResponse CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.GetDailyTask(CH.Tutteli.TaskScheduler.Test.Soap11.GetDailyTaskRequest request) {
+            return base.Channel.GetDailyTask(request);
+        }
+        
+        public CH.Tutteli.TaskScheduler.Requests.GetDailyTaskResponse GetDailyTask(CH.Tutteli.TaskScheduler.Requests.GetDailyTask GetDailyTask1) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.GetDailyTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.GetDailyTaskRequest();
+            inValue.GetDailyTask = GetDailyTask1;
+            CH.Tutteli.TaskScheduler.Test.Soap11.GetDailyTaskResponse retVal = ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).GetDailyTask(inValue);
+            return retVal.GetDailyTaskResponse1;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.GetDailyTaskResponse> CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.GetDailyTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.GetDailyTaskRequest request) {
+            return base.Channel.GetDailyTaskAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.GetDailyTaskResponse> GetDailyTaskAsync(CH.Tutteli.TaskScheduler.Requests.GetDailyTask GetDailyTask) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.GetDailyTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.GetDailyTaskRequest();
+            inValue.GetDailyTask = GetDailyTask;
+            return ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).GetDailyTaskAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        CH.Tutteli.TaskScheduler.Test.Soap11.GetWeeklyTaskResponse CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.GetWeeklyTask(CH.Tutteli.TaskScheduler.Test.Soap11.GetWeeklyTaskRequest request) {
+            return base.Channel.GetWeeklyTask(request);
+        }
+        
+        public CH.Tutteli.TaskScheduler.Requests.GetWeeklyTaskResponse GetWeeklyTask(CH.Tutteli.TaskScheduler.Requests.GetWeeklyTask GetWeeklyTask1) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.GetWeeklyTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.GetWeeklyTaskRequest();
+            inValue.GetWeeklyTask = GetWeeklyTask1;
+            CH.Tutteli.TaskScheduler.Test.Soap11.GetWeeklyTaskResponse retVal = ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).GetWeeklyTask(inValue);
+            return retVal.GetWeeklyTaskResponse1;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.GetWeeklyTaskResponse> CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.GetWeeklyTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.GetWeeklyTaskRequest request) {
+            return base.Channel.GetWeeklyTaskAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.GetWeeklyTaskResponse> GetWeeklyTaskAsync(CH.Tutteli.TaskScheduler.Requests.GetWeeklyTask GetWeeklyTask) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.GetWeeklyTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.GetWeeklyTaskRequest();
+            inValue.GetWeeklyTask = GetWeeklyTask;
+            return ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).GetWeeklyTaskAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        CH.Tutteli.TaskScheduler.Test.Soap11.GetMonthlyTaskResponse CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.GetMonthlyTask(CH.Tutteli.TaskScheduler.Test.Soap11.GetMonthlyTaskRequest request) {
+            return base.Channel.GetMonthlyTask(request);
+        }
+        
+        public CH.Tutteli.TaskScheduler.Requests.GetMonthlyTaskResponse GetMonthlyTask(CH.Tutteli.TaskScheduler.Requests.GetMonthlyTask GetMonthlyTask1) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.GetMonthlyTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.GetMonthlyTaskRequest();
+            inValue.GetMonthlyTask = GetMonthlyTask1;
+            CH.Tutteli.TaskScheduler.Test.Soap11.GetMonthlyTaskResponse retVal = ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).GetMonthlyTask(inValue);
+            return retVal.GetMonthlyTaskResponse1;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.GetMonthlyTaskResponse> CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.GetMonthlyTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.GetMonthlyTaskRequest request) {
+            return base.Channel.GetMonthlyTaskAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.GetMonthlyTaskResponse> GetMonthlyTaskAsync(CH.Tutteli.TaskScheduler.Requests.GetMonthlyTask GetMonthlyTask) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.GetMonthlyTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.GetMonthlyTaskRequest();
+            inValue.GetMonthlyTask = GetMonthlyTask;
+            return ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).GetMonthlyTaskAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        CH.Tutteli.TaskScheduler.Test.Soap11.PostOneTimeTaskResponse CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.PostOneTimeTask(CH.Tutteli.TaskScheduler.Test.Soap11.PostOneTimeTaskRequest request) {
             return base.Channel.PostOneTimeTask(request);
         }
         
-        public ch.tutteli.taskscheduler.requests.PostOneTimeTaskResponse PostOneTimeTask(ch.tutteli.taskscheduler.requests.PostOneTimeTask PostOneTimeTask1) {
-            ch.tutteli.taskscheduler.test.Soap11.PostOneTimeTaskRequest inValue = new ch.tutteli.taskscheduler.test.Soap11.PostOneTimeTaskRequest();
+        public CH.Tutteli.TaskScheduler.Requests.PostOneTimeTaskResponse PostOneTimeTask(CH.Tutteli.TaskScheduler.Requests.PostOneTimeTask PostOneTimeTask1) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.PostOneTimeTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.PostOneTimeTaskRequest();
             inValue.PostOneTimeTask = PostOneTimeTask1;
-            ch.tutteli.taskscheduler.test.Soap11.PostOneTimeTaskResponse retVal = ((ch.tutteli.taskscheduler.test.Soap11.ISyncReply)(this)).PostOneTimeTask(inValue);
+            CH.Tutteli.TaskScheduler.Test.Soap11.PostOneTimeTaskResponse retVal = ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).PostOneTimeTask(inValue);
             return retVal.PostOneTimeTaskResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.PostOneTimeTaskResponse> ch.tutteli.taskscheduler.test.Soap11.ISyncReply.PostOneTimeTaskAsync(ch.tutteli.taskscheduler.test.Soap11.PostOneTimeTaskRequest request) {
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.PostOneTimeTaskResponse> CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.PostOneTimeTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.PostOneTimeTaskRequest request) {
             return base.Channel.PostOneTimeTaskAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.PostOneTimeTaskResponse> PostOneTimeTaskAsync(ch.tutteli.taskscheduler.requests.PostOneTimeTask PostOneTimeTask) {
-            ch.tutteli.taskscheduler.test.Soap11.PostOneTimeTaskRequest inValue = new ch.tutteli.taskscheduler.test.Soap11.PostOneTimeTaskRequest();
+        public System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.PostOneTimeTaskResponse> PostOneTimeTaskAsync(CH.Tutteli.TaskScheduler.Requests.PostOneTimeTask PostOneTimeTask) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.PostOneTimeTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.PostOneTimeTaskRequest();
             inValue.PostOneTimeTask = PostOneTimeTask;
-            return ((ch.tutteli.taskscheduler.test.Soap11.ISyncReply)(this)).PostOneTimeTaskAsync(inValue);
+            return ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).PostOneTimeTaskAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ch.tutteli.taskscheduler.test.Soap11.PostDailyTaskResponse ch.tutteli.taskscheduler.test.Soap11.ISyncReply.PostDailyTask(ch.tutteli.taskscheduler.test.Soap11.PostDailyTaskRequest request) {
+        CH.Tutteli.TaskScheduler.Test.Soap11.PostDailyTaskResponse CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.PostDailyTask(CH.Tutteli.TaskScheduler.Test.Soap11.PostDailyTaskRequest request) {
             return base.Channel.PostDailyTask(request);
         }
         
-        public ch.tutteli.taskscheduler.requests.PostDailyTaskResponse PostDailyTask(ch.tutteli.taskscheduler.requests.PostDailyTask PostDailyTask1) {
-            ch.tutteli.taskscheduler.test.Soap11.PostDailyTaskRequest inValue = new ch.tutteli.taskscheduler.test.Soap11.PostDailyTaskRequest();
+        public CH.Tutteli.TaskScheduler.Requests.PostDailyTaskResponse PostDailyTask(CH.Tutteli.TaskScheduler.Requests.PostDailyTask PostDailyTask1) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.PostDailyTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.PostDailyTaskRequest();
             inValue.PostDailyTask = PostDailyTask1;
-            ch.tutteli.taskscheduler.test.Soap11.PostDailyTaskResponse retVal = ((ch.tutteli.taskscheduler.test.Soap11.ISyncReply)(this)).PostDailyTask(inValue);
+            CH.Tutteli.TaskScheduler.Test.Soap11.PostDailyTaskResponse retVal = ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).PostDailyTask(inValue);
             return retVal.PostDailyTaskResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.PostDailyTaskResponse> ch.tutteli.taskscheduler.test.Soap11.ISyncReply.PostDailyTaskAsync(ch.tutteli.taskscheduler.test.Soap11.PostDailyTaskRequest request) {
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.PostDailyTaskResponse> CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.PostDailyTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.PostDailyTaskRequest request) {
             return base.Channel.PostDailyTaskAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.PostDailyTaskResponse> PostDailyTaskAsync(ch.tutteli.taskscheduler.requests.PostDailyTask PostDailyTask) {
-            ch.tutteli.taskscheduler.test.Soap11.PostDailyTaskRequest inValue = new ch.tutteli.taskscheduler.test.Soap11.PostDailyTaskRequest();
+        public System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.PostDailyTaskResponse> PostDailyTaskAsync(CH.Tutteli.TaskScheduler.Requests.PostDailyTask PostDailyTask) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.PostDailyTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.PostDailyTaskRequest();
             inValue.PostDailyTask = PostDailyTask;
-            return ((ch.tutteli.taskscheduler.test.Soap11.ISyncReply)(this)).PostDailyTaskAsync(inValue);
+            return ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).PostDailyTaskAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ch.tutteli.taskscheduler.test.Soap11.PostWeeklyTaskResponse ch.tutteli.taskscheduler.test.Soap11.ISyncReply.PostWeeklyTask(ch.tutteli.taskscheduler.test.Soap11.PostWeeklyTaskRequest request) {
+        CH.Tutteli.TaskScheduler.Test.Soap11.PostWeeklyTaskResponse CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.PostWeeklyTask(CH.Tutteli.TaskScheduler.Test.Soap11.PostWeeklyTaskRequest request) {
             return base.Channel.PostWeeklyTask(request);
         }
         
-        public ch.tutteli.taskscheduler.requests.PostWeeklyTaskResponse PostWeeklyTask(ch.tutteli.taskscheduler.requests.PostWeeklyTask PostWeeklyTask1) {
-            ch.tutteli.taskscheduler.test.Soap11.PostWeeklyTaskRequest inValue = new ch.tutteli.taskscheduler.test.Soap11.PostWeeklyTaskRequest();
+        public CH.Tutteli.TaskScheduler.Requests.PostWeeklyTaskResponse PostWeeklyTask(CH.Tutteli.TaskScheduler.Requests.PostWeeklyTask PostWeeklyTask1) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.PostWeeklyTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.PostWeeklyTaskRequest();
             inValue.PostWeeklyTask = PostWeeklyTask1;
-            ch.tutteli.taskscheduler.test.Soap11.PostWeeklyTaskResponse retVal = ((ch.tutteli.taskscheduler.test.Soap11.ISyncReply)(this)).PostWeeklyTask(inValue);
+            CH.Tutteli.TaskScheduler.Test.Soap11.PostWeeklyTaskResponse retVal = ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).PostWeeklyTask(inValue);
             return retVal.PostWeeklyTaskResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.PostWeeklyTaskResponse> ch.tutteli.taskscheduler.test.Soap11.ISyncReply.PostWeeklyTaskAsync(ch.tutteli.taskscheduler.test.Soap11.PostWeeklyTaskRequest request) {
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.PostWeeklyTaskResponse> CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.PostWeeklyTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.PostWeeklyTaskRequest request) {
             return base.Channel.PostWeeklyTaskAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.PostWeeklyTaskResponse> PostWeeklyTaskAsync(ch.tutteli.taskscheduler.requests.PostWeeklyTask PostWeeklyTask) {
-            ch.tutteli.taskscheduler.test.Soap11.PostWeeklyTaskRequest inValue = new ch.tutteli.taskscheduler.test.Soap11.PostWeeklyTaskRequest();
+        public System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.PostWeeklyTaskResponse> PostWeeklyTaskAsync(CH.Tutteli.TaskScheduler.Requests.PostWeeklyTask PostWeeklyTask) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.PostWeeklyTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.PostWeeklyTaskRequest();
             inValue.PostWeeklyTask = PostWeeklyTask;
-            return ((ch.tutteli.taskscheduler.test.Soap11.ISyncReply)(this)).PostWeeklyTaskAsync(inValue);
+            return ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).PostWeeklyTaskAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ch.tutteli.taskscheduler.test.Soap11.PostMonthlyTaskResponse ch.tutteli.taskscheduler.test.Soap11.ISyncReply.PostMonthlyTask(ch.tutteli.taskscheduler.test.Soap11.PostMonthlyTaskRequest request) {
+        CH.Tutteli.TaskScheduler.Test.Soap11.PostMonthlyTaskResponse CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.PostMonthlyTask(CH.Tutteli.TaskScheduler.Test.Soap11.PostMonthlyTaskRequest request) {
             return base.Channel.PostMonthlyTask(request);
         }
         
-        public ch.tutteli.taskscheduler.requests.PostMonthlyTaskResponse PostMonthlyTask(ch.tutteli.taskscheduler.requests.PostMonthlyTask PostMonthlyTask1) {
-            ch.tutteli.taskscheduler.test.Soap11.PostMonthlyTaskRequest inValue = new ch.tutteli.taskscheduler.test.Soap11.PostMonthlyTaskRequest();
+        public CH.Tutteli.TaskScheduler.Requests.PostMonthlyTaskResponse PostMonthlyTask(CH.Tutteli.TaskScheduler.Requests.PostMonthlyTask PostMonthlyTask1) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.PostMonthlyTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.PostMonthlyTaskRequest();
             inValue.PostMonthlyTask = PostMonthlyTask1;
-            ch.tutteli.taskscheduler.test.Soap11.PostMonthlyTaskResponse retVal = ((ch.tutteli.taskscheduler.test.Soap11.ISyncReply)(this)).PostMonthlyTask(inValue);
+            CH.Tutteli.TaskScheduler.Test.Soap11.PostMonthlyTaskResponse retVal = ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).PostMonthlyTask(inValue);
             return retVal.PostMonthlyTaskResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.PostMonthlyTaskResponse> ch.tutteli.taskscheduler.test.Soap11.ISyncReply.PostMonthlyTaskAsync(ch.tutteli.taskscheduler.test.Soap11.PostMonthlyTaskRequest request) {
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.PostMonthlyTaskResponse> CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.PostMonthlyTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.PostMonthlyTaskRequest request) {
             return base.Channel.PostMonthlyTaskAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.PostMonthlyTaskResponse> PostMonthlyTaskAsync(ch.tutteli.taskscheduler.requests.PostMonthlyTask PostMonthlyTask) {
-            ch.tutteli.taskscheduler.test.Soap11.PostMonthlyTaskRequest inValue = new ch.tutteli.taskscheduler.test.Soap11.PostMonthlyTaskRequest();
+        public System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.PostMonthlyTaskResponse> PostMonthlyTaskAsync(CH.Tutteli.TaskScheduler.Requests.PostMonthlyTask PostMonthlyTask) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.PostMonthlyTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.PostMonthlyTaskRequest();
             inValue.PostMonthlyTask = PostMonthlyTask;
-            return ((ch.tutteli.taskscheduler.test.Soap11.ISyncReply)(this)).PostMonthlyTaskAsync(inValue);
+            return ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).PostMonthlyTaskAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ch.tutteli.taskscheduler.test.Soap11.PutOneTimeTaskResponse ch.tutteli.taskscheduler.test.Soap11.ISyncReply.PutOneTimeTask(ch.tutteli.taskscheduler.test.Soap11.PutOneTimeTaskRequest request) {
+        CH.Tutteli.TaskScheduler.Test.Soap11.PutOneTimeTaskResponse CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.PutOneTimeTask(CH.Tutteli.TaskScheduler.Test.Soap11.PutOneTimeTaskRequest request) {
             return base.Channel.PutOneTimeTask(request);
         }
         
-        public ch.tutteli.taskscheduler.requests.PutOneTimeTaskResponse PutOneTimeTask(ch.tutteli.taskscheduler.requests.PutOneTimeTask PutOneTimeTask1) {
-            ch.tutteli.taskscheduler.test.Soap11.PutOneTimeTaskRequest inValue = new ch.tutteli.taskscheduler.test.Soap11.PutOneTimeTaskRequest();
+        public CH.Tutteli.TaskScheduler.Requests.PutOneTimeTaskResponse PutOneTimeTask(CH.Tutteli.TaskScheduler.Requests.PutOneTimeTask PutOneTimeTask1) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.PutOneTimeTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.PutOneTimeTaskRequest();
             inValue.PutOneTimeTask = PutOneTimeTask1;
-            ch.tutteli.taskscheduler.test.Soap11.PutOneTimeTaskResponse retVal = ((ch.tutteli.taskscheduler.test.Soap11.ISyncReply)(this)).PutOneTimeTask(inValue);
+            CH.Tutteli.TaskScheduler.Test.Soap11.PutOneTimeTaskResponse retVal = ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).PutOneTimeTask(inValue);
             return retVal.PutOneTimeTaskResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.PutOneTimeTaskResponse> ch.tutteli.taskscheduler.test.Soap11.ISyncReply.PutOneTimeTaskAsync(ch.tutteli.taskscheduler.test.Soap11.PutOneTimeTaskRequest request) {
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.PutOneTimeTaskResponse> CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.PutOneTimeTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.PutOneTimeTaskRequest request) {
             return base.Channel.PutOneTimeTaskAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.PutOneTimeTaskResponse> PutOneTimeTaskAsync(ch.tutteli.taskscheduler.requests.PutOneTimeTask PutOneTimeTask) {
-            ch.tutteli.taskscheduler.test.Soap11.PutOneTimeTaskRequest inValue = new ch.tutteli.taskscheduler.test.Soap11.PutOneTimeTaskRequest();
+        public System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.PutOneTimeTaskResponse> PutOneTimeTaskAsync(CH.Tutteli.TaskScheduler.Requests.PutOneTimeTask PutOneTimeTask) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.PutOneTimeTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.PutOneTimeTaskRequest();
             inValue.PutOneTimeTask = PutOneTimeTask;
-            return ((ch.tutteli.taskscheduler.test.Soap11.ISyncReply)(this)).PutOneTimeTaskAsync(inValue);
+            return ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).PutOneTimeTaskAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ch.tutteli.taskscheduler.test.Soap11.PutDailyTaskResponse ch.tutteli.taskscheduler.test.Soap11.ISyncReply.PutDailyTask(ch.tutteli.taskscheduler.test.Soap11.PutDailyTaskRequest request) {
+        CH.Tutteli.TaskScheduler.Test.Soap11.PutDailyTaskResponse CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.PutDailyTask(CH.Tutteli.TaskScheduler.Test.Soap11.PutDailyTaskRequest request) {
             return base.Channel.PutDailyTask(request);
         }
         
-        public ch.tutteli.taskscheduler.requests.PutDailyTaskResponse PutDailyTask(ch.tutteli.taskscheduler.requests.PutDailyTask PutDailyTask1) {
-            ch.tutteli.taskscheduler.test.Soap11.PutDailyTaskRequest inValue = new ch.tutteli.taskscheduler.test.Soap11.PutDailyTaskRequest();
+        public CH.Tutteli.TaskScheduler.Requests.PutDailyTaskResponse PutDailyTask(CH.Tutteli.TaskScheduler.Requests.PutDailyTask PutDailyTask1) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.PutDailyTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.PutDailyTaskRequest();
             inValue.PutDailyTask = PutDailyTask1;
-            ch.tutteli.taskscheduler.test.Soap11.PutDailyTaskResponse retVal = ((ch.tutteli.taskscheduler.test.Soap11.ISyncReply)(this)).PutDailyTask(inValue);
+            CH.Tutteli.TaskScheduler.Test.Soap11.PutDailyTaskResponse retVal = ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).PutDailyTask(inValue);
             return retVal.PutDailyTaskResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.PutDailyTaskResponse> ch.tutteli.taskscheduler.test.Soap11.ISyncReply.PutDailyTaskAsync(ch.tutteli.taskscheduler.test.Soap11.PutDailyTaskRequest request) {
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.PutDailyTaskResponse> CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.PutDailyTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.PutDailyTaskRequest request) {
             return base.Channel.PutDailyTaskAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.PutDailyTaskResponse> PutDailyTaskAsync(ch.tutteli.taskscheduler.requests.PutDailyTask PutDailyTask) {
-            ch.tutteli.taskscheduler.test.Soap11.PutDailyTaskRequest inValue = new ch.tutteli.taskscheduler.test.Soap11.PutDailyTaskRequest();
+        public System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.PutDailyTaskResponse> PutDailyTaskAsync(CH.Tutteli.TaskScheduler.Requests.PutDailyTask PutDailyTask) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.PutDailyTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.PutDailyTaskRequest();
             inValue.PutDailyTask = PutDailyTask;
-            return ((ch.tutteli.taskscheduler.test.Soap11.ISyncReply)(this)).PutDailyTaskAsync(inValue);
+            return ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).PutDailyTaskAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ch.tutteli.taskscheduler.test.Soap11.PutWeeklyTaskResponse ch.tutteli.taskscheduler.test.Soap11.ISyncReply.PutWeeklyTask(ch.tutteli.taskscheduler.test.Soap11.PutWeeklyTaskRequest request) {
+        CH.Tutteli.TaskScheduler.Test.Soap11.PutWeeklyTaskResponse CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.PutWeeklyTask(CH.Tutteli.TaskScheduler.Test.Soap11.PutWeeklyTaskRequest request) {
             return base.Channel.PutWeeklyTask(request);
         }
         
-        public ch.tutteli.taskscheduler.requests.PutWeeklyTaskResponse PutWeeklyTask(ch.tutteli.taskscheduler.requests.PutWeeklyTask PutWeeklyTask1) {
-            ch.tutteli.taskscheduler.test.Soap11.PutWeeklyTaskRequest inValue = new ch.tutteli.taskscheduler.test.Soap11.PutWeeklyTaskRequest();
+        public CH.Tutteli.TaskScheduler.Requests.PutWeeklyTaskResponse PutWeeklyTask(CH.Tutteli.TaskScheduler.Requests.PutWeeklyTask PutWeeklyTask1) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.PutWeeklyTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.PutWeeklyTaskRequest();
             inValue.PutWeeklyTask = PutWeeklyTask1;
-            ch.tutteli.taskscheduler.test.Soap11.PutWeeklyTaskResponse retVal = ((ch.tutteli.taskscheduler.test.Soap11.ISyncReply)(this)).PutWeeklyTask(inValue);
+            CH.Tutteli.TaskScheduler.Test.Soap11.PutWeeklyTaskResponse retVal = ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).PutWeeklyTask(inValue);
             return retVal.PutWeeklyTaskResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.PutWeeklyTaskResponse> ch.tutteli.taskscheduler.test.Soap11.ISyncReply.PutWeeklyTaskAsync(ch.tutteli.taskscheduler.test.Soap11.PutWeeklyTaskRequest request) {
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.PutWeeklyTaskResponse> CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.PutWeeklyTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.PutWeeklyTaskRequest request) {
             return base.Channel.PutWeeklyTaskAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.PutWeeklyTaskResponse> PutWeeklyTaskAsync(ch.tutteli.taskscheduler.requests.PutWeeklyTask PutWeeklyTask) {
-            ch.tutteli.taskscheduler.test.Soap11.PutWeeklyTaskRequest inValue = new ch.tutteli.taskscheduler.test.Soap11.PutWeeklyTaskRequest();
+        public System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.PutWeeklyTaskResponse> PutWeeklyTaskAsync(CH.Tutteli.TaskScheduler.Requests.PutWeeklyTask PutWeeklyTask) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.PutWeeklyTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.PutWeeklyTaskRequest();
             inValue.PutWeeklyTask = PutWeeklyTask;
-            return ((ch.tutteli.taskscheduler.test.Soap11.ISyncReply)(this)).PutWeeklyTaskAsync(inValue);
+            return ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).PutWeeklyTaskAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ch.tutteli.taskscheduler.test.Soap11.PutMonthlyTaskResponse ch.tutteli.taskscheduler.test.Soap11.ISyncReply.PutMonthlyTask(ch.tutteli.taskscheduler.test.Soap11.PutMonthlyTaskRequest request) {
+        CH.Tutteli.TaskScheduler.Test.Soap11.PutMonthlyTaskResponse CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.PutMonthlyTask(CH.Tutteli.TaskScheduler.Test.Soap11.PutMonthlyTaskRequest request) {
             return base.Channel.PutMonthlyTask(request);
         }
         
-        public ch.tutteli.taskscheduler.requests.PutMonthlyTaskResponse PutMonthlyTask(ch.tutteli.taskscheduler.requests.PutMonthlyTask PutMonthlyTask1) {
-            ch.tutteli.taskscheduler.test.Soap11.PutMonthlyTaskRequest inValue = new ch.tutteli.taskscheduler.test.Soap11.PutMonthlyTaskRequest();
+        public CH.Tutteli.TaskScheduler.Requests.PutMonthlyTaskResponse PutMonthlyTask(CH.Tutteli.TaskScheduler.Requests.PutMonthlyTask PutMonthlyTask1) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.PutMonthlyTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.PutMonthlyTaskRequest();
             inValue.PutMonthlyTask = PutMonthlyTask1;
-            ch.tutteli.taskscheduler.test.Soap11.PutMonthlyTaskResponse retVal = ((ch.tutteli.taskscheduler.test.Soap11.ISyncReply)(this)).PutMonthlyTask(inValue);
+            CH.Tutteli.TaskScheduler.Test.Soap11.PutMonthlyTaskResponse retVal = ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).PutMonthlyTask(inValue);
             return retVal.PutMonthlyTaskResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.PutMonthlyTaskResponse> ch.tutteli.taskscheduler.test.Soap11.ISyncReply.PutMonthlyTaskAsync(ch.tutteli.taskscheduler.test.Soap11.PutMonthlyTaskRequest request) {
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.PutMonthlyTaskResponse> CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.PutMonthlyTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.PutMonthlyTaskRequest request) {
             return base.Channel.PutMonthlyTaskAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.PutMonthlyTaskResponse> PutMonthlyTaskAsync(ch.tutteli.taskscheduler.requests.PutMonthlyTask PutMonthlyTask) {
-            ch.tutteli.taskscheduler.test.Soap11.PutMonthlyTaskRequest inValue = new ch.tutteli.taskscheduler.test.Soap11.PutMonthlyTaskRequest();
+        public System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.PutMonthlyTaskResponse> PutMonthlyTaskAsync(CH.Tutteli.TaskScheduler.Requests.PutMonthlyTask PutMonthlyTask) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.PutMonthlyTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.PutMonthlyTaskRequest();
             inValue.PutMonthlyTask = PutMonthlyTask;
-            return ((ch.tutteli.taskscheduler.test.Soap11.ISyncReply)(this)).PutMonthlyTaskAsync(inValue);
+            return ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).PutMonthlyTaskAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ch.tutteli.taskscheduler.test.Soap11.DeleteOneTimeTaskResponse ch.tutteli.taskscheduler.test.Soap11.ISyncReply.DeleteOneTimeTask(ch.tutteli.taskscheduler.test.Soap11.DeleteOneTimeTaskRequest request) {
+        CH.Tutteli.TaskScheduler.Test.Soap11.DeleteOneTimeTaskResponse CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.DeleteOneTimeTask(CH.Tutteli.TaskScheduler.Test.Soap11.DeleteOneTimeTaskRequest request) {
             return base.Channel.DeleteOneTimeTask(request);
         }
         
-        public ch.tutteli.taskscheduler.requests.DeleteOneTimeTaskResponse DeleteOneTimeTask(ch.tutteli.taskscheduler.requests.DeleteOneTimeTask DeleteOneTimeTask1) {
-            ch.tutteli.taskscheduler.test.Soap11.DeleteOneTimeTaskRequest inValue = new ch.tutteli.taskscheduler.test.Soap11.DeleteOneTimeTaskRequest();
+        public CH.Tutteli.TaskScheduler.Requests.DeleteOneTimeTaskResponse DeleteOneTimeTask(CH.Tutteli.TaskScheduler.Requests.DeleteOneTimeTask DeleteOneTimeTask1) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.DeleteOneTimeTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.DeleteOneTimeTaskRequest();
             inValue.DeleteOneTimeTask = DeleteOneTimeTask1;
-            ch.tutteli.taskscheduler.test.Soap11.DeleteOneTimeTaskResponse retVal = ((ch.tutteli.taskscheduler.test.Soap11.ISyncReply)(this)).DeleteOneTimeTask(inValue);
+            CH.Tutteli.TaskScheduler.Test.Soap11.DeleteOneTimeTaskResponse retVal = ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).DeleteOneTimeTask(inValue);
             return retVal.DeleteOneTimeTaskResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.DeleteOneTimeTaskResponse> ch.tutteli.taskscheduler.test.Soap11.ISyncReply.DeleteOneTimeTaskAsync(ch.tutteli.taskscheduler.test.Soap11.DeleteOneTimeTaskRequest request) {
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.DeleteOneTimeTaskResponse> CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.DeleteOneTimeTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.DeleteOneTimeTaskRequest request) {
             return base.Channel.DeleteOneTimeTaskAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.DeleteOneTimeTaskResponse> DeleteOneTimeTaskAsync(ch.tutteli.taskscheduler.requests.DeleteOneTimeTask DeleteOneTimeTask) {
-            ch.tutteli.taskscheduler.test.Soap11.DeleteOneTimeTaskRequest inValue = new ch.tutteli.taskscheduler.test.Soap11.DeleteOneTimeTaskRequest();
+        public System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.DeleteOneTimeTaskResponse> DeleteOneTimeTaskAsync(CH.Tutteli.TaskScheduler.Requests.DeleteOneTimeTask DeleteOneTimeTask) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.DeleteOneTimeTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.DeleteOneTimeTaskRequest();
             inValue.DeleteOneTimeTask = DeleteOneTimeTask;
-            return ((ch.tutteli.taskscheduler.test.Soap11.ISyncReply)(this)).DeleteOneTimeTaskAsync(inValue);
+            return ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).DeleteOneTimeTaskAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ch.tutteli.taskscheduler.test.Soap11.DeleteDailyTaskResponse ch.tutteli.taskscheduler.test.Soap11.ISyncReply.DeleteDailyTask(ch.tutteli.taskscheduler.test.Soap11.DeleteDailyTaskRequest request) {
+        CH.Tutteli.TaskScheduler.Test.Soap11.DeleteDailyTaskResponse CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.DeleteDailyTask(CH.Tutteli.TaskScheduler.Test.Soap11.DeleteDailyTaskRequest request) {
             return base.Channel.DeleteDailyTask(request);
         }
         
-        public ch.tutteli.taskscheduler.requests.DeleteDailyTaskResponse DeleteDailyTask(ch.tutteli.taskscheduler.requests.DeleteDailyTask DeleteDailyTask1) {
-            ch.tutteli.taskscheduler.test.Soap11.DeleteDailyTaskRequest inValue = new ch.tutteli.taskscheduler.test.Soap11.DeleteDailyTaskRequest();
+        public CH.Tutteli.TaskScheduler.Requests.DeleteDailyTaskResponse DeleteDailyTask(CH.Tutteli.TaskScheduler.Requests.DeleteDailyTask DeleteDailyTask1) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.DeleteDailyTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.DeleteDailyTaskRequest();
             inValue.DeleteDailyTask = DeleteDailyTask1;
-            ch.tutteli.taskscheduler.test.Soap11.DeleteDailyTaskResponse retVal = ((ch.tutteli.taskscheduler.test.Soap11.ISyncReply)(this)).DeleteDailyTask(inValue);
+            CH.Tutteli.TaskScheduler.Test.Soap11.DeleteDailyTaskResponse retVal = ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).DeleteDailyTask(inValue);
             return retVal.DeleteDailyTaskResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.DeleteDailyTaskResponse> ch.tutteli.taskscheduler.test.Soap11.ISyncReply.DeleteDailyTaskAsync(ch.tutteli.taskscheduler.test.Soap11.DeleteDailyTaskRequest request) {
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.DeleteDailyTaskResponse> CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.DeleteDailyTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.DeleteDailyTaskRequest request) {
             return base.Channel.DeleteDailyTaskAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.DeleteDailyTaskResponse> DeleteDailyTaskAsync(ch.tutteli.taskscheduler.requests.DeleteDailyTask DeleteDailyTask) {
-            ch.tutteli.taskscheduler.test.Soap11.DeleteDailyTaskRequest inValue = new ch.tutteli.taskscheduler.test.Soap11.DeleteDailyTaskRequest();
+        public System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.DeleteDailyTaskResponse> DeleteDailyTaskAsync(CH.Tutteli.TaskScheduler.Requests.DeleteDailyTask DeleteDailyTask) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.DeleteDailyTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.DeleteDailyTaskRequest();
             inValue.DeleteDailyTask = DeleteDailyTask;
-            return ((ch.tutteli.taskscheduler.test.Soap11.ISyncReply)(this)).DeleteDailyTaskAsync(inValue);
+            return ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).DeleteDailyTaskAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ch.tutteli.taskscheduler.test.Soap11.DeleteWeeklyTaskResponse ch.tutteli.taskscheduler.test.Soap11.ISyncReply.DeleteWeeklyTask(ch.tutteli.taskscheduler.test.Soap11.DeleteWeeklyTaskRequest request) {
+        CH.Tutteli.TaskScheduler.Test.Soap11.DeleteWeeklyTaskResponse CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.DeleteWeeklyTask(CH.Tutteli.TaskScheduler.Test.Soap11.DeleteWeeklyTaskRequest request) {
             return base.Channel.DeleteWeeklyTask(request);
         }
         
-        public ch.tutteli.taskscheduler.requests.DeleteWeeklyTaskResponse DeleteWeeklyTask(ch.tutteli.taskscheduler.requests.DeleteWeeklyTask DeleteWeeklyTask1) {
-            ch.tutteli.taskscheduler.test.Soap11.DeleteWeeklyTaskRequest inValue = new ch.tutteli.taskscheduler.test.Soap11.DeleteWeeklyTaskRequest();
+        public CH.Tutteli.TaskScheduler.Requests.DeleteWeeklyTaskResponse DeleteWeeklyTask(CH.Tutteli.TaskScheduler.Requests.DeleteWeeklyTask DeleteWeeklyTask1) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.DeleteWeeklyTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.DeleteWeeklyTaskRequest();
             inValue.DeleteWeeklyTask = DeleteWeeklyTask1;
-            ch.tutteli.taskscheduler.test.Soap11.DeleteWeeklyTaskResponse retVal = ((ch.tutteli.taskscheduler.test.Soap11.ISyncReply)(this)).DeleteWeeklyTask(inValue);
+            CH.Tutteli.TaskScheduler.Test.Soap11.DeleteWeeklyTaskResponse retVal = ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).DeleteWeeklyTask(inValue);
             return retVal.DeleteWeeklyTaskResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.DeleteWeeklyTaskResponse> ch.tutteli.taskscheduler.test.Soap11.ISyncReply.DeleteWeeklyTaskAsync(ch.tutteli.taskscheduler.test.Soap11.DeleteWeeklyTaskRequest request) {
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.DeleteWeeklyTaskResponse> CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.DeleteWeeklyTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.DeleteWeeklyTaskRequest request) {
             return base.Channel.DeleteWeeklyTaskAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.DeleteWeeklyTaskResponse> DeleteWeeklyTaskAsync(ch.tutteli.taskscheduler.requests.DeleteWeeklyTask DeleteWeeklyTask) {
-            ch.tutteli.taskscheduler.test.Soap11.DeleteWeeklyTaskRequest inValue = new ch.tutteli.taskscheduler.test.Soap11.DeleteWeeklyTaskRequest();
+        public System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.DeleteWeeklyTaskResponse> DeleteWeeklyTaskAsync(CH.Tutteli.TaskScheduler.Requests.DeleteWeeklyTask DeleteWeeklyTask) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.DeleteWeeklyTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.DeleteWeeklyTaskRequest();
             inValue.DeleteWeeklyTask = DeleteWeeklyTask;
-            return ((ch.tutteli.taskscheduler.test.Soap11.ISyncReply)(this)).DeleteWeeklyTaskAsync(inValue);
+            return ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).DeleteWeeklyTaskAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ch.tutteli.taskscheduler.test.Soap11.DeleteMonthlyTaskResponse ch.tutteli.taskscheduler.test.Soap11.ISyncReply.DeleteMonthlyTask(ch.tutteli.taskscheduler.test.Soap11.DeleteMonthlyTaskRequest request) {
+        CH.Tutteli.TaskScheduler.Test.Soap11.DeleteMonthlyTaskResponse CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.DeleteMonthlyTask(CH.Tutteli.TaskScheduler.Test.Soap11.DeleteMonthlyTaskRequest request) {
             return base.Channel.DeleteMonthlyTask(request);
         }
         
-        public ch.tutteli.taskscheduler.requests.DeleteMonthlyTaskResponse DeleteMonthlyTask(ch.tutteli.taskscheduler.requests.DeleteMonthlyTask DeleteMonthlyTask1) {
-            ch.tutteli.taskscheduler.test.Soap11.DeleteMonthlyTaskRequest inValue = new ch.tutteli.taskscheduler.test.Soap11.DeleteMonthlyTaskRequest();
+        public CH.Tutteli.TaskScheduler.Requests.DeleteMonthlyTaskResponse DeleteMonthlyTask(CH.Tutteli.TaskScheduler.Requests.DeleteMonthlyTask DeleteMonthlyTask1) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.DeleteMonthlyTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.DeleteMonthlyTaskRequest();
             inValue.DeleteMonthlyTask = DeleteMonthlyTask1;
-            ch.tutteli.taskscheduler.test.Soap11.DeleteMonthlyTaskResponse retVal = ((ch.tutteli.taskscheduler.test.Soap11.ISyncReply)(this)).DeleteMonthlyTask(inValue);
+            CH.Tutteli.TaskScheduler.Test.Soap11.DeleteMonthlyTaskResponse retVal = ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).DeleteMonthlyTask(inValue);
             return retVal.DeleteMonthlyTaskResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.DeleteMonthlyTaskResponse> ch.tutteli.taskscheduler.test.Soap11.ISyncReply.DeleteMonthlyTaskAsync(ch.tutteli.taskscheduler.test.Soap11.DeleteMonthlyTaskRequest request) {
+        System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.DeleteMonthlyTaskResponse> CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply.DeleteMonthlyTaskAsync(CH.Tutteli.TaskScheduler.Test.Soap11.DeleteMonthlyTaskRequest request) {
             return base.Channel.DeleteMonthlyTaskAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ch.tutteli.taskscheduler.test.Soap11.DeleteMonthlyTaskResponse> DeleteMonthlyTaskAsync(ch.tutteli.taskscheduler.requests.DeleteMonthlyTask DeleteMonthlyTask) {
-            ch.tutteli.taskscheduler.test.Soap11.DeleteMonthlyTaskRequest inValue = new ch.tutteli.taskscheduler.test.Soap11.DeleteMonthlyTaskRequest();
+        public System.Threading.Tasks.Task<CH.Tutteli.TaskScheduler.Test.Soap11.DeleteMonthlyTaskResponse> DeleteMonthlyTaskAsync(CH.Tutteli.TaskScheduler.Requests.DeleteMonthlyTask DeleteMonthlyTask) {
+            CH.Tutteli.TaskScheduler.Test.Soap11.DeleteMonthlyTaskRequest inValue = new CH.Tutteli.TaskScheduler.Test.Soap11.DeleteMonthlyTaskRequest();
             inValue.DeleteMonthlyTask = DeleteMonthlyTask;
-            return ((ch.tutteli.taskscheduler.test.Soap11.ISyncReply)(this)).DeleteMonthlyTaskAsync(inValue);
+            return ((CH.Tutteli.TaskScheduler.Test.Soap11.ISyncReply)(this)).DeleteMonthlyTaskAsync(inValue);
         }
     }
 }

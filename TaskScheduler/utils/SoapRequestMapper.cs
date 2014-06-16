@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using ch.tutteli.taskscheduler.requests;
+using CH.Tutteli.TaskScheduler.Requests;
 
-namespace ch.tutteli.taskscheduler.utils
+namespace CH.Tutteli.TaskScheduler.Utils
 {
     public static class SoapRequestHelper
     {
@@ -52,8 +52,8 @@ namespace ch.tutteli.taskscheduler.utils
             var result = new DailyTaskRequest();
             MapBasicPropertiesFromTo(request, result);
             MapRecurringPropertiesFromTo(request, result);
-            result.RecursEveryXDays = result.RecursEveryXDays;
-            result.TriggerWhenDayOfWeek = result.TriggerWhenDayOfWeek;
+            result.RecursEveryXDays = request.RecursEveryXDays;
+            result.TriggerWhenDayOfWeek = request.TriggerWhenDayOfWeek;
             return result;
         }
 
@@ -134,5 +134,7 @@ namespace ch.tutteli.taskscheduler.utils
             result.Result = response.Result;
             return result;
         }
+
+      
     }
 }

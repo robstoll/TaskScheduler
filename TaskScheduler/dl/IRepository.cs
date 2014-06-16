@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ch.tutteli.taskscheduler.requests;
-using ch.tutteli.taskscheduler.triggers;
+using CH.Tutteli.TaskScheduler.Requests;
+using CH.Tutteli.TaskScheduler.Triggers;
 
-namespace ch.tutteli.taskscheduler.dl
+namespace CH.Tutteli.TaskScheduler.DL
 {
 	public interface IRepository
 	{

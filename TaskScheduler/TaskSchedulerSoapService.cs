@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using ch.tutteli.taskscheduler.bl;
-using ch.tutteli.taskscheduler.requests;
-using ch.tutteli.taskscheduler.utils;
+using CH.Tutteli.TaskScheduler.BL;
+using CH.Tutteli.TaskScheduler.Requests;
+using CH.Tutteli.TaskScheduler.Utils;
 using ServiceStack.ServiceInterface;
 
-namespace ch.tutteli.taskscheduler
+namespace CH.Tutteli.TaskScheduler
 {
     public class TaskSchedulerSoapService : Service
     {
@@ -18,6 +18,37 @@ namespace ch.tutteli.taskscheduler
         {
             taskHandler = theTaskHandler;
         }
+
+        #region GET
+
+        public GetOneTimeTaskResponse Any(GetOneTimeTask request)
+        {
+            var req = new OneTimeTaskRequest { Id = request.Id };
+            var result = taskHandler.Get(req);
+            return new GetOneTimeTaskResponse { OneTimeTaskRequest = result };
+        }
+
+        public GetDailyTaskResponse Any(GetDailyTask request)
+        {
+            var req = new DailyTaskRequest { Id = request.Id };
+            var result = taskHandler.Get(req);
+            return new GetDailyTaskResponse { DailyTaskRequest = result };
+        }
+
+        public GetWeeklyTaskResponse Any(GetWeeklyTask request)
+        {
+            var req = new WeeklyTaskRequest { Id = request.Id };
+            var result = taskHandler.Get(req);
+            return new GetWeeklyTaskResponse { WeeklyTaskRequest = result };
+        }
+        public GetMonthlyTaskResponse Any(GetMonthlyTask request)
+        {
+            var req = new MonthlyTaskRequest { Id = request.Id };
+            var result = taskHandler.Get(req);
+            return new GetMonthlyTaskResponse { MonthlyTaskRequest = result };
+        }
+
+        #endregion
 
         #region POST
         public PostOneTimeTaskResponse Any(PostOneTimeTask request)

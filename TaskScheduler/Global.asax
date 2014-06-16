@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="ch.tutteli.taskscheduler.Global" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="CH.Tutteli.TaskScheduler.Global" Language="C#" %>

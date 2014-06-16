@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ch.tutteli.taskscheduler.requests
+namespace CH.Tutteli.TaskScheduler.Requests
 {
     public interface IRecurringTaskRequest : ITaskRequest
     {

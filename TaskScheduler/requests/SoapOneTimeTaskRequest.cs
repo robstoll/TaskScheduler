@@ -1,7 +1,7 @@
 ﻿using System.Runtime.Serialization;
 using ServiceStack.ServiceHost;
 using ServiceStack.ServiceInterface.ServiceModel;
-namespace ch.tutteli.taskscheduler.requests
+namespace CH.Tutteli.TaskScheduler.Requests
 {
 
     [Restrict(EndpointAttributes.Soap12 | EndpointAttributes.Soap11)]
@@ -13,8 +13,17 @@ namespace ch.tutteli.taskscheduler.requests
     }
 
     [DataContract]
-    public class GetOneTimeTaskResponse : OneTimeTaskRequest
+    public class GetOneTimeTaskResponse : IHasResponseStatus
     {
+        [DataMember]
+        public ResponseStatus ResponseStatus { get; set; }
+        [DataMember]
+        public OneTimeTaskRequest OneTimeTaskRequest { get; set; }
+
+        public GetOneTimeTaskResponse()
+        {
+            ResponseStatus = new ResponseStatus();
+        }
     }
 
 

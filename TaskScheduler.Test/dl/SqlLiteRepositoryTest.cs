@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ch.tutteli.taskscheduler.bl;
-using ch.tutteli.taskscheduler.dl;
-using ch.tutteli.taskscheduler.requests;
-using ch.tutteli.taskscheduler.test.utils;
-using ch.tutteli.taskscheduler.triggers;
+using CH.Tutteli.TaskScheduler.BL;
+using CH.Tutteli.TaskScheduler.DL;
+using CH.Tutteli.TaskScheduler.Requests;
+using CH.Tutteli.TaskScheduler.Test.Utils;
+using CH.Tutteli.TaskScheduler.Triggers;
 using Funq;
 using NUnit.Framework;
 using ServiceStack.Common.Utils;
-using ServiceStack.Examples.Tests.Integration;
 using ServiceStack.OrmLite;
 using ServiceStack.WebHost.Endpoints;
 
-namespace ch.tutteli.taskscheduler.test.dl
+namespace CH.Tutteli.TaskScheduler.Test.DL
 {
     [TestFixture]
     public class SqlLiteRepositoryTest : AIntegrationTest
@@ -281,15 +280,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var result = repository.GetAllTasks<OneTimeTaskRequest>();
 
             Assert.That(result.Count, Is.EqualTo(1));
-            AssertSameOneTimeTaskRequest(result[0], task);
-        }
-
-
-
-        private static void AssertSameOneTimeTaskRequest(OneTimeTaskRequest result, OneTimeTaskRequest task)
-        {
-            AssertSameBasicTaskProperties(result, task);
-            Assert.That(result.Trigger, Is.EqualTo(task.Trigger));
+            AssertSame.OneTimeTaskRequest(result[0], task);
         }
 
         [Test]
@@ -302,32 +293,9 @@ namespace ch.tutteli.taskscheduler.test.dl
             var result = repository.GetAllTasks<DailyTaskRequest>();
 
             Assert.That(result.Count, Is.EqualTo(1));
-            AssertSameDailyTaskRequest(result[0], task);
+            AssertSame.DailyTaskRequest(result[0], task);
         }
-
-
-        private static void AssertSameDailyTaskRequest(DailyTaskRequest result, DailyTaskRequest task)
-        {
-            AssertSameBasicTaskProperties(result, task);
-            AssertSameRecurringTaskProperties(result, task);
-            Assert.That(result.RecursEveryXDays, Is.EqualTo(task.RecursEveryXDays));
-            Assert.That(result.TriggerWhenDayOfWeek, Is.EqualTo(task.TriggerWhenDayOfWeek));
-        }
-
-        private static void AssertSameBasicTaskProperties(ITaskRequest result, ITaskRequest task)
-        {
-            Assert.That(result.Name, Is.EqualTo(task.Name));
-            Assert.That(result.Description, Is.EqualTo(task.Description));
-            Assert.That(result.CallbackUrl, Is.EqualTo(task.CallbackUrl));
-        }
-
-        private static void AssertSameRecurringTaskProperties(IRecurringTaskRequest result, IRecurringTaskRequest task)
-        {
-            Assert.That(result.StartDate, Is.EqualTo(task.StartDate));
-            Assert.That(result.EndDate, Is.EqualTo(task.EndDate));
-        }
-
-
+       
         [Test]
         public void GetAllWeeklyTaskRequests_OneDefined_ReturnIt()
         {
@@ -338,17 +306,10 @@ namespace ch.tutteli.taskscheduler.test.dl
             var result = repository.GetAllTasks<WeeklyTaskRequest>();
 
             Assert.That(result.Count, Is.EqualTo(1));
-            AssertSameWeeklyTaskRequest(result[0], task);
+            AssertSame.WeeklyTaskRequest(result[0], task);
         }
 
 
-        private static void AssertSameWeeklyTaskRequest(WeeklyTaskRequest result, WeeklyTaskRequest task)
-        {
-            AssertSameBasicTaskProperties(result, task);
-            AssertSameRecurringTaskProperties(result, task);
-            Assert.That(result.TriggerWhenDayOfWeek, Is.EqualTo(task.TriggerWhenDayOfWeek));
-            Assert.That(result.RecursEveryXWeeks, Is.EqualTo(task.RecursEveryXWeeks));
-        }
 
         [Test]
         public void GetAllMonthlyTaskRequests_OneDefined_ReturnIt()
@@ -360,19 +321,10 @@ namespace ch.tutteli.taskscheduler.test.dl
             var result = repository.GetAllTasks<MonthlyTaskRequest>();
 
             Assert.That(result.Count, Is.EqualTo(1));
-            AssertSameMonthlyTaskRequest(result[0], task);
+            AssertSame.MonthlyTaskRequest(result[0], task);
         }
 
 
-
-        private static void AssertSameMonthlyTaskRequest(MonthlyTaskRequest result, MonthlyTaskRequest task)
-        {
-            AssertSameBasicTaskProperties(result, task);
-            AssertSameRecurringTaskProperties(result, task);
-            Assert.That(result.RecursOnDayOfMonth, Is.EqualTo(task.RecursOnDayOfMonth));
-            Assert.That(result.RecursOnMonth, Is.EqualTo(task.RecursOnMonth));
-            Assert.That(result.RecursOnSpecialDayOfMonth, Is.EqualTo(task.RecursOnSpecialDayOfMonth));
-        }
 
         #endregion
 
@@ -442,7 +394,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var id = repository.CreateTask(task);
             var result = repository.LoadTask<OneTimeTaskRequest>(id);
 
-            AssertSameOneTimeTaskRequest(result, task);
+            AssertSame.OneTimeTaskRequest(result, task);
         }
 
         [Test]
@@ -454,7 +406,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var id = repository.CreateTask(task);
             var result = repository.LoadTask<DailyTaskRequest>(id);
 
-            AssertSameDailyTaskRequest(result, task);
+            AssertSame.DailyTaskRequest(result, task);
         }
 
 
@@ -467,7 +419,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var id = repository.CreateTask(task);
             var result = repository.LoadTask<WeeklyTaskRequest>(id);
 
-            AssertSameWeeklyTaskRequest(result, task);
+            AssertSame.WeeklyTaskRequest(result, task);
         }
 
         [Test]
@@ -479,7 +431,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var id = repository.CreateTask(task);
             var result = repository.LoadTask<MonthlyTaskRequest>(id);
 
-            AssertSameMonthlyTaskRequest(result, task);
+            AssertSame.MonthlyTaskRequest(result, task);
         }
 
         #endregion
@@ -496,7 +448,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var result = repository.LoadTask<OneTimeTaskRequest>(resultId);
 
             Assert.That(resultId, Is.EqualTo(1));
-            AssertSameOneTimeTaskRequest(result, task);
+            AssertSame.OneTimeTaskRequest(result, task);
 
             task = TaskRequestHelper.CreateOneTimeTaskRequest();
             task.Id = resultId;
@@ -504,7 +456,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             result = repository.LoadTask<OneTimeTaskRequest>(resultId);
 
             Assert.That(resultId, Is.EqualTo(1));
-            AssertSameOneTimeTaskRequest(result, task);
+            AssertSame.OneTimeTaskRequest(result, task);
         }
 
 
@@ -518,7 +470,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var result = repository.LoadTask<DailyTaskRequest>(resultId);
 
             Assert.That(resultId, Is.EqualTo(1));
-            AssertSameDailyTaskRequest(result, task);
+            AssertSame.DailyTaskRequest(result, task);
 
             task = TaskRequestHelper.CreateDailyTaskRequest();
             task.Id = resultId;
@@ -526,7 +478,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             result = repository.LoadTask<DailyTaskRequest>(resultId);
 
             Assert.That(resultId, Is.EqualTo(1));
-            AssertSameDailyTaskRequest(result, task);
+            AssertSame.DailyTaskRequest(result, task);
         }
 
         [Test]
@@ -539,7 +491,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var result = repository.LoadTask<WeeklyTaskRequest>(resultId);
 
             Assert.That(resultId, Is.EqualTo(1));
-            AssertSameWeeklyTaskRequest(result, task);
+            AssertSame.WeeklyTaskRequest(result, task);
 
             task = TaskRequestHelper.CreateWeaklyTaskRequest();
             task.Id = resultId;
@@ -547,7 +499,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             result = repository.LoadTask<WeeklyTaskRequest>(resultId);
 
             Assert.That(resultId, Is.EqualTo(1));
-            AssertSameWeeklyTaskRequest(result, task);
+            AssertSame.WeeklyTaskRequest(result, task);
         }
 
         [Test]
@@ -560,7 +512,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var result = repository.LoadTask<MonthlyTaskRequest>(resultId);
 
             Assert.That(resultId, Is.EqualTo(1));
-            AssertSameMonthlyTaskRequest(result, task);
+            AssertSame.MonthlyTaskRequest(result, task);
 
             task = TaskRequestHelper.CreateMonthlyTaskRequest();
             task.Id = resultId;
@@ -568,7 +520,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             result = repository.LoadTask<MonthlyTaskRequest>(resultId);
 
             Assert.That(resultId, Is.EqualTo(1));
-            AssertSameMonthlyTaskRequest(result, task);
+            AssertSame.MonthlyTaskRequest(result, task);
         }
 
         #endregion
@@ -585,7 +537,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var result = repository.LoadTask<OneTimeTaskRequest>(resultId);
 
             Assert.That(resultId, Is.EqualTo(1));
-            AssertSameOneTimeTaskRequest(result, task);
+            AssertSame.OneTimeTaskRequest(result, task);
 
             repository.DeleteTask<OneTimeTaskRequest>(resultId);
 
@@ -611,7 +563,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var result = repository.LoadTask<DailyTaskRequest>(resultId);
 
             Assert.That(resultId, Is.EqualTo(1));
-            AssertSameDailyTaskRequest(result, task);
+            AssertSame.DailyTaskRequest(result, task);
 
             repository.DeleteTask<DailyTaskRequest>(resultId);
 
@@ -636,7 +588,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var result = repository.LoadTask<WeeklyTaskRequest>(resultId);
 
             Assert.That(resultId, Is.EqualTo(1));
-            AssertSameWeeklyTaskRequest(result, task);
+            AssertSame.WeeklyTaskRequest(result, task);
 
             repository.DeleteTask<WeeklyTaskRequest>(resultId);
 
@@ -661,7 +613,7 @@ namespace ch.tutteli.taskscheduler.test.dl
             var result = repository.LoadTask<MonthlyTaskRequest >(resultId);
 
             Assert.That(resultId, Is.EqualTo(1));
-            AssertSameMonthlyTaskRequest(result, task);
+            AssertSame.MonthlyTaskRequest(result, task);
 
             repository.DeleteTask<MonthlyTaskRequest>(resultId);
 

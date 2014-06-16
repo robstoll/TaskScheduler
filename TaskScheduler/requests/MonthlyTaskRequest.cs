@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
-using ch.tutteli.taskscheduler.triggers;
+using CH.Tutteli.TaskScheduler.Triggers;
 using ServiceStack.DataAnnotations;
 using ServiceStack.ServiceHost;
 
-namespace ch.tutteli.taskscheduler.requests
+namespace CH.Tutteli.TaskScheduler.Requests
 {
     [Restrict(EndpointAttributes.Any ^ EndpointAttributes.Soap11 ^ EndpointAttributes.Soap12)]
     [DataContract]
-    public class MonthlyTaskRequest : IRecurringTaskRequest
+    public class MonthlyTaskRequest : IRecurringTaskRequest, IReturn<TaskResponse>, IReturn<MonthlyTaskRequest>
 	{
         #region general properties - code duplication in all request objects
 

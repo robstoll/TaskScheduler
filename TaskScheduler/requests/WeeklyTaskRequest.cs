@@ -6,11 +6,11 @@ using System.Web;
 using ServiceStack.DataAnnotations;
 using ServiceStack.ServiceHost;
 
-namespace ch.tutteli.taskscheduler.requests
+namespace CH.Tutteli.TaskScheduler.Requests
 {
     [Restrict(EndpointAttributes.Any ^ EndpointAttributes.Soap11 ^ EndpointAttributes.Soap12)]
     [DataContract]
-    public class WeeklyTaskRequest : IRecurringTaskRequest
+    public class WeeklyTaskRequest : IRecurringTaskRequest, IReturn<TaskResponse>, IReturn<WeeklyTaskRequest>
     {
         #region general properties - code duplication in all request objects
 

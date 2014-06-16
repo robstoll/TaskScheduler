@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Web;
 using ServiceStack.ServiceInterface.ServiceModel;
 
-namespace ch.tutteli.taskscheduler.requests
+namespace CH.Tutteli.TaskScheduler.Requests
 {
     [DataContract]
     public class SoapTaskResponse : TaskResponse, IHasResponseStatus
@@ -16,7 +16,7 @@ namespace ch.tutteli.taskscheduler.requests
 
         public SoapTaskResponse()
         {
-            this.ResponseStatus = new ResponseStatus();
+            ResponseStatus = new ResponseStatus();
         }
     }
 }

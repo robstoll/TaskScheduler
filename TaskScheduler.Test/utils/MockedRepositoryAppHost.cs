@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ch.tutteli.taskscheduler.bl;
-using ch.tutteli.taskscheduler.dl;
+using CH.Tutteli.TaskScheduler.BL;
+using CH.Tutteli.TaskScheduler.DL;
 using Funq;
 using Moq;
 using ServiceStack.WebHost.Endpoints;
 
-namespace ch.tutteli.taskscheduler.test.utils
+namespace CH.Tutteli.TaskScheduler.Test.Utils
 {
     public class MockedRepositoryAppHost : AppHostHttpListenerBase
     {

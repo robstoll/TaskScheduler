@@ -1,16 +1,15 @@
 ﻿
 using System.Collections.Generic;
-using ch.tutteli.taskscheduler.dl;
-using ch.tutteli.taskscheduler.requests;
-using ch.tutteli.taskscheduler.test.utils;
+using CH.Tutteli.TaskScheduler.DL;
+using CH.Tutteli.TaskScheduler.Requests;
+using CH.Tutteli.TaskScheduler.Test.Utils;
 using Moq;
 using NUnit.Framework;
-using ServiceStack.Examples.Tests.Integration;
 using ServiceStack.WebHost.Endpoints;
-namespace ch.tutteli.taskscheduler.test
+namespace CH.Tutteli.TaskScheduler.Test
 {
     [TestFixture]
-    class TaskSchedulerSoapServiceTest : AIntegrationTest
+    class TaskSchedulerSoapServiceMockedRepositoryTest : AIntegrationTest
     {
 
         #region validation errors
@@ -106,21 +105,21 @@ namespace ch.tutteli.taskscheduler.test
         public IEnumerable<ISyncReplyClient> GetDifferentServices()
         {
             return new ISyncReplyClient[]{
-                new ch.tutteli.taskscheduler.test.Soap11.SyncReplyClient("BasicHttpBinding_ISyncReply", BaseUrl+"/soap11"),
-                new ch.tutteli.taskscheduler.test.Soap12.SyncReplyClient("WSHttpBinding_ISyncReply", BaseUrl + "/soap12")
+                new CH.Tutteli.TaskScheduler.Test.Soap11.SyncReplyClient("BasicHttpBinding_ISyncReply", BaseUrl+"/soap11"),
+                new CH.Tutteli.TaskScheduler.Test.Soap12.SyncReplyClient("WSHttpBinding_ISyncReply", BaseUrl + "/soap12")
             };
         }
     }
 }
 
-namespace ch.tutteli.taskscheduler.test.Soap11
+namespace CH.Tutteli.TaskScheduler.Test.Soap11
 {
     public partial class SyncReplyClient : ISyncReplyClient
     {
     }
 }
 
-namespace ch.tutteli.taskscheduler.test.Soap12
+namespace CH.Tutteli.TaskScheduler.Test.Soap12
 {
     public partial class SyncReplyClient : ISyncReplyClient
     {

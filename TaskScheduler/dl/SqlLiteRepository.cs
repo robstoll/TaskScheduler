@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
-using ch.tutteli.taskscheduler.requests;
+using CH.Tutteli.TaskScheduler.Requests;
 using ServiceStack.OrmLite;
 
-namespace ch.tutteli.taskscheduler.dl
+namespace CH.Tutteli.TaskScheduler.DL
 {
     public class SqlLiteRepository : IRepository
     {

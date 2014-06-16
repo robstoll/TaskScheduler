@@ -5,15 +5,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
-using ch.tutteli.taskscheduler.bl;
-using ch.tutteli.taskscheduler.dl;
-using ch.tutteli.taskscheduler.requests;
+using CH.Tutteli.TaskScheduler.BL;
+using CH.Tutteli.TaskScheduler.DL;
+using CH.Tutteli.TaskScheduler.Requests;
 using ServiceStack.Common.Utils;
 using ServiceStack.OrmLite;
 using ServiceStack.Redis;
 using ServiceStack.WebHost.Endpoints;
 
-namespace ch.tutteli.taskscheduler
+namespace CH.Tutteli.TaskScheduler
 {
     public class Global : System.Web.HttpApplication
     {
@@ -32,7 +32,7 @@ namespace ch.tutteli.taskscheduler
             {
                 Routes
                     .Add<OneTimeTaskRequest>(URL_PREFIX + ONE_TIME)
-                    .Add<OneTimeTaskRequest>(URL_PREFIX + ONE_TIME+"/{id}")
+                    .Add<OneTimeTaskRequest>(URL_PREFIX + ONE_TIME + "/{id}")
                     .Add<DailyTaskRequest>(URL_PREFIX + DAILY)
                     .Add<DailyTaskRequest>(URL_PREFIX + DAILY + "/{id}")
                     .Add<WeeklyTaskRequest>(URL_PREFIX + WEEKLY)
@@ -79,6 +79,7 @@ namespace ch.tutteli.taskscheduler
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
+            int i=0;
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)

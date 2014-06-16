@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using ch.tutteli.taskscheduler.triggers;
+using CH.Tutteli.TaskScheduler.Triggers;
 
-namespace ch.tutteli.taskscheduler.triggers
+namespace CH.Tutteli.TaskScheduler.Triggers
 {
 	public class MonthlyTriggerLSPTest : ARecuringTriggerTest
 	{

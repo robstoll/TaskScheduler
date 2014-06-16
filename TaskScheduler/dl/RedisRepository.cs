@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using ch.tutteli.taskscheduler.requests;
-using ch.tutteli.taskscheduler.triggers;
+using CH.Tutteli.TaskScheduler.Requests;
+using CH.Tutteli.TaskScheduler.Triggers;
 using ServiceStack.Redis;
 using ServiceStack.Redis.Generic;
 
-namespace ch.tutteli.taskscheduler.dl
+namespace CH.Tutteli.TaskScheduler.DL
 {
 	public class RedisRepository : IRepository
 	{

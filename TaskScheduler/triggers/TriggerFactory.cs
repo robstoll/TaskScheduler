@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using ch.tutteli.taskscheduler.requests;
+using CH.Tutteli.TaskScheduler.Requests;
 
-namespace ch.tutteli.taskscheduler.triggers
+namespace CH.Tutteli.TaskScheduler.Triggers
 {
     public class TriggerAbstractFactory<T>
     {

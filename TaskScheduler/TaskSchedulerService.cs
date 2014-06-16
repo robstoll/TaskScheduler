@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
-using ch.tutteli.taskscheduler.bl;
-using ch.tutteli.taskscheduler.dl;
-using ch.tutteli.taskscheduler.requests;
-using ch.tutteli.taskscheduler.triggers;
-using ch.tutteli.taskscheduler.utils;
+using CH.Tutteli.TaskScheduler.BL;
+using CH.Tutteli.TaskScheduler.DL;
+using CH.Tutteli.TaskScheduler.Requests;
+using CH.Tutteli.TaskScheduler.Triggers;
+using CH.Tutteli.TaskScheduler.Utils;
 using ServiceStack.Common.Utils;
 using ServiceStack.ServiceHost;
 using ServiceStack.ServiceInterface;
 
-namespace ch.tutteli.taskscheduler
+namespace CH.Tutteli.TaskScheduler
 {
     public class TaskSchedulerService : Service
     {
@@ -23,6 +23,30 @@ namespace ch.tutteli.taskscheduler
         {
             taskHandler = theTaskHandler;
         }
+
+        #region GET
+
+        public OneTimeTaskRequest Get(OneTimeTaskRequest request)
+        { 
+            return taskHandler.Get(request);
+        }
+
+        public DailyTaskRequest Get(DailyTaskRequest request)
+        {
+            return taskHandler.Get(request);
+        }
+
+        public WeeklyTaskRequest Get(WeeklyTaskRequest request)
+        {
+            return taskHandler.Get(request);
+        }
+
+        public MonthlyTaskRequest Get(MonthlyTaskRequest request)
+        {
+            return taskHandler.Get(request);
+        }
+
+        #endregion
 
         #region POST
 

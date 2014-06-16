@@ -4,21 +4,20 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using ch.tutteli.taskscheduler.bl;
-using ch.tutteli.taskscheduler.dl;
-using ch.tutteli.taskscheduler.requests;
-using ch.tutteli.taskscheduler.test.utils;
+using CH.Tutteli.TaskScheduler.BL;
+using CH.Tutteli.TaskScheduler.DL;
+using CH.Tutteli.TaskScheduler.Requests;
+using CH.Tutteli.TaskScheduler.Test.Utils;
 using Funq;
 using Moq;
 using NUnit.Framework;
-using ServiceStack.Examples.Tests.Integration;
 using ServiceStack.ServiceClient.Web;
 using ServiceStack.WebHost.Endpoints;
 
-namespace ch.tutteli.taskscheduler.test.rest
+namespace CH.Tutteli.TaskScheduler.Test.rest
 {
     [TestFixture]
-    public class TaskSchedulerServiceTest : AIntegrationTest
+    public class TaskSchedulerServiceMockedRepositoryTest : AIntegrationTest
     {
 
         #region validation errors
@@ -26,7 +25,7 @@ namespace ch.tutteli.taskscheduler.test.rest
         public void Post_NameNullOrEmpty_Return400(
             [ValueSource("GetDifferentTaskRequests")] ITaskRequest request,
             [Values(null, "")] string name,
-            [ValueSource("GetDifferentServiceClients")] ServiceClientBase service)
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             request.Name = name;
             SendRequest(request, service, "POST", "Name");
@@ -36,7 +35,7 @@ namespace ch.tutteli.taskscheduler.test.rest
         public void Put_NameNullOrEmpty_Return400(
             [ValueSource("GetDifferentTaskRequests")] ITaskRequest request,
             [Values(null, "")] string name,
-            [ValueSource("GetDifferentServiceClients")] ServiceClientBase service)
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             request.Id = 1;
             request.Name = name;
@@ -47,7 +46,7 @@ namespace ch.tutteli.taskscheduler.test.rest
         public void Post_CallbackUrlMissing_Return400(
             [ValueSource("GetDifferentTaskRequests")] ITaskRequest request,
             [Values(null, "")] string callbackUrl,
-            [ValueSource("GetDifferentServiceClients")] ServiceClientBase service)
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             request.CallbackUrl = callbackUrl;
             SendRequest(request, service, "POST", "CallbackUrl");
@@ -57,7 +56,7 @@ namespace ch.tutteli.taskscheduler.test.rest
         public void Put_CallbackUrlMissing_Return400(
             [ValueSource("GetDifferentTaskRequests")] ITaskRequest request,
             [Values(null, "")] string callbackUrl,
-            [ValueSource("GetDifferentServiceClients")] ServiceClientBase service)
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             request.Id = 1;
             request.CallbackUrl = callbackUrl;
@@ -68,7 +67,7 @@ namespace ch.tutteli.taskscheduler.test.rest
         public void Post_IdProvided_Return400(
             [ValueSource("GetDifferentTaskRequests")] ITaskRequest request,
             [Values(null, "")] string callbackUrl,
-            [ValueSource("GetDifferentServiceClients")] ServiceClientBase service)
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             request.Id = 1;
             SendRequest(request, service, "POST", "Id provided");
@@ -78,14 +77,14 @@ namespace ch.tutteli.taskscheduler.test.rest
         public void Put_IdNotProvided_Return400(
             [ValueSource("GetDifferentTaskRequests")] ITaskRequest request,
             [Values(null, "")] string callbackUrl,
-            [ValueSource("GetDifferentServiceClients")] ServiceClientBase service)
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             SendRequest(request, service, "PUT", "Id not provided");
         }
 
         [Test]
         public void Post_OneTimeTaskTriggerNotSet_Return400(
-            [ValueSource("GetDifferentServiceClients")] ServiceClientBase service)
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             var request = TaskRequestHelper.CreateOneTimeTaskRequest();
             request.Trigger = DateTime.MinValue;
@@ -94,7 +93,7 @@ namespace ch.tutteli.taskscheduler.test.rest
 
         [Test]
         public void Put_OneTimeTaskTriggerNotSet_Return400(
-            [ValueSource("GetDifferentServiceClients")] ServiceClientBase service)
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             var request = TaskRequestHelper.CreateOneTimeTaskRequest();
             request.Id = 1;
@@ -104,7 +103,7 @@ namespace ch.tutteli.taskscheduler.test.rest
 
         [Test]
         public void Post_DailyTaskRecursEveryXDaysInvalid_Return400(
-            [ValueSource("GetDifferentServiceClients")] ServiceClientBase service)
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             var request = TaskRequestHelper.CreateDailyTaskRequest();
             request.RecursEveryXDays = -1;
@@ -113,7 +112,7 @@ namespace ch.tutteli.taskscheduler.test.rest
 
         [Test]
         public void Put_DailyTaskRecursEveryXDaysInvalid_Return400(
-            [ValueSource("GetDifferentServiceClients")] ServiceClientBase service)
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             var request = TaskRequestHelper.CreateDailyTaskRequest();
             request.RecursEveryXDays = -1;
@@ -122,7 +121,7 @@ namespace ch.tutteli.taskscheduler.test.rest
 
         [Test]
         public void Post_WeeklyTaskRecursEveryXDaysInvalid_Return400(
-            [ValueSource("GetDifferentServiceClients")] ServiceClientBase service)
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             var request = TaskRequestHelper.CreateWeaklyTaskRequest();
             request.RecursEveryXWeeks = -1;
@@ -131,7 +130,7 @@ namespace ch.tutteli.taskscheduler.test.rest
 
         [Test]
         public void Put_WeeklyTaskRecursEveryXDaysInvalid_Return400(
-            [ValueSource("GetDifferentServiceClients")] ServiceClientBase service)
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             var request = TaskRequestHelper.CreateWeaklyTaskRequest();
             request.RecursEveryXWeeks = -1;
@@ -140,7 +139,7 @@ namespace ch.tutteli.taskscheduler.test.rest
 
         [Test]
         public void Post_WeeklyTaskTriggerWhenDayOfWeekNull_Return400(
-            [ValueSource("GetDifferentServiceClients")] ServiceClientBase service)
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             var request = TaskRequestHelper.CreateWeaklyTaskRequest();
             request.TriggerWhenDayOfWeek = null;
@@ -149,7 +148,7 @@ namespace ch.tutteli.taskscheduler.test.rest
 
         [Test]
         public void Post_WeeklyTaskTriggerWhenDayOfWeekEmpty_Return400(
-            [ValueSource("GetDifferentServiceClients")] ServiceClientBase service)
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             var request = TaskRequestHelper.CreateWeaklyTaskRequest();
             request.TriggerWhenDayOfWeek = new HashSet<DayOfWeek>();
@@ -158,7 +157,7 @@ namespace ch.tutteli.taskscheduler.test.rest
 
         [Test]
         public void Put_WeeklyTaskTriggerWhenDayOfWeekNull_Return400(
-            [ValueSource("GetDifferentServiceClients")] ServiceClientBase service)
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             var request = TaskRequestHelper.CreateWeaklyTaskRequest();
             request.TriggerWhenDayOfWeek = null;
@@ -167,7 +166,7 @@ namespace ch.tutteli.taskscheduler.test.rest
 
         [Test]
         public void Put_WeeklyTaskTriggerWhenDayOfWeekEmpty_Return400(
-            [ValueSource("GetDifferentServiceClients")] ServiceClientBase service)
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             var request = TaskRequestHelper.CreateWeaklyTaskRequest();
             request.TriggerWhenDayOfWeek = new HashSet<DayOfWeek>();
@@ -176,7 +175,7 @@ namespace ch.tutteli.taskscheduler.test.rest
 
         [Test]
         public void Post_MonthlyTaskRecursOnMonthNull_Return400(
-            [ValueSource("GetDifferentServiceClients")] ServiceClientBase service)
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             var request = TaskRequestHelper.CreateMonthlyTaskRequest();
             request.RecursOnMonth = null;
@@ -185,16 +184,16 @@ namespace ch.tutteli.taskscheduler.test.rest
 
         [Test]
         public void Post_MonthlyTaskRecursOnMonthEmpty_Return400(
-            [ValueSource("GetDifferentServiceClients")] ServiceClientBase service)
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             var request = TaskRequestHelper.CreateMonthlyTaskRequest();
-            request.RecursOnMonth = new HashSet<triggers.EMonth>();
+            request.RecursOnMonth = new HashSet<Triggers.EMonth>();
             SendRequest(request, service, "POST", "RecursOnMonth");
         }
 
         [Test]
         public void Put_MonthlyTaskRecursOnMonthNull_Return400(
-            [ValueSource("GetDifferentServiceClients")] ServiceClientBase service)
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             var request = TaskRequestHelper.CreateMonthlyTaskRequest();
             request.RecursOnMonth = null;
@@ -203,10 +202,10 @@ namespace ch.tutteli.taskscheduler.test.rest
 
         [Test]
         public void Put_MonthlyTaskRecursOnMonthEmpty_Return400(
-            [ValueSource("GetDifferentServiceClients")] ServiceClientBase service)
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             var request = TaskRequestHelper.CreateMonthlyTaskRequest();
-            request.RecursOnMonth = new HashSet<triggers.EMonth>();
+            request.RecursOnMonth = new HashSet<Triggers.EMonth>();
             SendRequest(request, service, "PUT", "RecursOnMonth");
         }
 
@@ -402,25 +401,6 @@ namespace ch.tutteli.taskscheduler.test.rest
                 Assert.That(ex.ErrorCode, Is.EqualTo("ArgumentException"));
                 Assert.That(ex.ErrorMessage, Is.StringContaining(wrongArgument));
             }
-        }
-
-        public IEnumerable<ITaskRequest> GetDifferentTaskRequests()
-        {
-            return new ITaskRequest[]{
-                TaskRequestHelper.CreateOneTimeTaskRequest(),
-                TaskRequestHelper.CreateDailyTaskRequest(),
-                TaskRequestHelper.CreateWeaklyTaskRequest(),
-                TaskRequestHelper.CreateMonthlyTaskRequest()
-            };
-        }
-
-        public IEnumerable<ServiceClientBase> GetDifferentServiceClients()
-        {
-            return new ServiceClientBase[]{
-            new XmlServiceClient(BaseUrl),
-            new JsonServiceClient(BaseUrl),
-            new JsvServiceClient(BaseUrl),
-            };
         }
 
         private Mock<IRepository> GetRepositoryMock()

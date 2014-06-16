@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Web;
 using ServiceStack.Common.Web;
 
-namespace ch.tutteli.taskscheduler.requests
+namespace CH.Tutteli.TaskScheduler.Requests
 {
     [DataContract]
     public class TaskResponse

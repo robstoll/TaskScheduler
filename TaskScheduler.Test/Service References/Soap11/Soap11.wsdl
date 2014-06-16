@@ -43,7 +43,7 @@
       <xs:attribute name="Ref" type="xs:IDREF" />
     </xs:schema>
     <xs:schema xmlns:tns="http://schemas.tutteli.ch/types" elementFormDefault="qualified" targetNamespace="http://schemas.tutteli.ch/types" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-      <xs:import namespace="http://schemas.datacontract.org/2004/07/ch.tutteli.taskscheduler.triggers" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/CH.Tutteli.TaskScheduler.Triggers" />
       <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
       <xs:import namespace="http://schemas.datacontract.org/2004/07/System" />
       <xs:import namespace="http://schemas.servicestack.net/types" />
@@ -68,9 +68,9 @@
           <xs:element minOccurs="0" name="EndDate" type="xs:dateTime" />
           <xs:element minOccurs="0" name="Id" type="xs:long" />
           <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ch.tutteli.taskscheduler.triggers" minOccurs="0" name="RecursOnDayOfMonth" nillable="true" type="q1:ArrayOfEDayOfMonth" />
-          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ch.tutteli.taskscheduler.triggers" minOccurs="0" name="RecursOnMonth" nillable="true" type="q2:ArrayOfEMonth" />
-          <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="RecursOnSpecialDayOfMonth" nillable="true" type="q3:ArrayOfKeyValueOfEMonthlyOnArrayOfDayOfWeekVV29IytT" />
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/CH.Tutteli.TaskScheduler.Triggers" minOccurs="0" name="RecursOnDayOfMonth" nillable="true" type="q1:ArrayOfEDayOfMonth" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/CH.Tutteli.TaskScheduler.Triggers" minOccurs="0" name="RecursOnMonth" nillable="true" type="q2:ArrayOfEMonth" />
+          <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="RecursOnSpecialDayOfMonth" nillable="true" type="q3:ArrayOfKeyValueOfEMonthlyOnArrayOfDayOfWeekftcBoCfH" />
           <xs:element minOccurs="0" name="StartDate" type="xs:dateTime" />
         </xs:sequence>
       </xs:complexType>
@@ -96,19 +96,11 @@
         </xs:sequence>
       </xs:complexType>
       <xs:element name="GetDailyTask" nillable="true" type="svc:GetDailyTask" />
-      <xs:complexType name="TaskResponse">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="Id" type="xs:long" />
-          <xs:element minOccurs="0" name="Result" nillable="true" type="xs:string" />
-        </xs:sequence>
-      </xs:complexType>
-      <xs:element name="TaskResponse" nillable="true" type="svc:TaskResponse" />
       <xs:complexType name="GetDailyTaskResponse">
-        <xs:complexContent mixed="false">
-          <xs:extension base="svc:TaskResponse">
-            <xs:sequence />
-          </xs:extension>
-        </xs:complexContent>
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DailyTaskRequest" nillable="true" type="svc:DailyTaskRequest" />
+          <xs:element xmlns:q5="http://schemas.servicestack.net/types" minOccurs="0" name="ResponseStatus" nillable="true" type="q5:ResponseStatus" />
+        </xs:sequence>
       </xs:complexType>
       <xs:element name="GetDailyTaskResponse" nillable="true" type="svc:GetDailyTaskResponse" />
       <xs:complexType name="PostDailyTask">
@@ -119,11 +111,18 @@
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="PostDailyTask" nillable="true" type="svc:PostDailyTask" />
+      <xs:complexType name="TaskResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Id" type="xs:long" />
+          <xs:element minOccurs="0" name="Result" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="TaskResponse" nillable="true" type="svc:TaskResponse" />
       <xs:complexType name="SoapTaskResponse">
         <xs:complexContent mixed="false">
           <xs:extension base="svc:TaskResponse">
             <xs:sequence>
-              <xs:element xmlns:q5="http://schemas.servicestack.net/types" minOccurs="0" name="ResponseStatus" nillable="true" type="q5:ResponseStatus" />
+              <xs:element xmlns:q6="http://schemas.servicestack.net/types" minOccurs="0" name="ResponseStatus" nillable="true" type="q6:ResponseStatus" />
             </xs:sequence>
           </xs:extension>
         </xs:complexContent>
@@ -174,11 +173,10 @@
       </xs:complexType>
       <xs:element name="GetMonthlyTask" nillable="true" type="svc:GetMonthlyTask" />
       <xs:complexType name="GetMonthlyTaskResponse">
-        <xs:complexContent mixed="false">
-          <xs:extension base="svc:TaskResponse">
-            <xs:sequence />
-          </xs:extension>
-        </xs:complexContent>
+        <xs:sequence>
+          <xs:element minOccurs="0" name="MonthlyTaskRequest" nillable="true" type="svc:MonthlyTaskRequest" />
+          <xs:element xmlns:q7="http://schemas.servicestack.net/types" minOccurs="0" name="ResponseStatus" nillable="true" type="q7:ResponseStatus" />
+        </xs:sequence>
       </xs:complexType>
       <xs:element name="GetMonthlyTaskResponse" nillable="true" type="svc:GetMonthlyTaskResponse" />
       <xs:complexType name="PostMonthlyTask">
@@ -234,11 +232,10 @@
       </xs:complexType>
       <xs:element name="GetOneTimeTask" nillable="true" type="svc:GetOneTimeTask" />
       <xs:complexType name="GetOneTimeTaskResponse">
-        <xs:complexContent mixed="false">
-          <xs:extension base="svc:OneTimeTaskRequest">
-            <xs:sequence />
-          </xs:extension>
-        </xs:complexContent>
+        <xs:sequence>
+          <xs:element minOccurs="0" name="OneTimeTaskRequest" nillable="true" type="svc:OneTimeTaskRequest" />
+          <xs:element xmlns:q8="http://schemas.servicestack.net/types" minOccurs="0" name="ResponseStatus" nillable="true" type="q8:ResponseStatus" />
+        </xs:sequence>
       </xs:complexType>
       <xs:element name="GetOneTimeTaskResponse" nillable="true" type="svc:GetOneTimeTaskResponse" />
       <xs:complexType name="PostOneTimeTask">
@@ -294,11 +291,10 @@
       </xs:complexType>
       <xs:element name="GetWeeklyTask" nillable="true" type="svc:GetWeeklyTask" />
       <xs:complexType name="GetWeeklyTaskResponse">
-        <xs:complexContent mixed="false">
-          <xs:extension base="svc:TaskResponse">
-            <xs:sequence />
-          </xs:extension>
-        </xs:complexContent>
+        <xs:sequence>
+          <xs:element xmlns:q9="http://schemas.servicestack.net/types" minOccurs="0" name="ResponseStatus" nillable="true" type="q9:ResponseStatus" />
+          <xs:element minOccurs="0" name="WeeklyTaskRequest" nillable="true" type="svc:WeeklyTaskRequest" />
+        </xs:sequence>
       </xs:complexType>
       <xs:element name="GetWeeklyTaskResponse" nillable="true" type="svc:GetWeeklyTaskResponse" />
       <xs:complexType name="WeeklyTaskRequest">
@@ -312,7 +308,7 @@
           <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="RecursEveryXWeeks" type="xs:int" />
           <xs:element minOccurs="0" name="StartDate" type="xs:dateTime" />
-          <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="TriggerWhenDayOfWeek" nillable="true" type="q6:ArrayOfDayOfWeek" />
+          <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="TriggerWhenDayOfWeek" nillable="true" type="q10:ArrayOfDayOfWeek" />
         </xs:sequence>
       </xs:complexType>
       <xs:element name="WeeklyTaskRequest" nillable="true" type="svc:WeeklyTaskRequest" />
@@ -363,7 +359,7 @@
       </xs:complexType>
       <xs:element name="DeleteWeeklyTaskResponse" nillable="true" type="svc:DeleteWeeklyTaskResponse" />
     </xs:schema>
-    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ch.tutteli.taskscheduler.triggers" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ch.tutteli.taskscheduler.triggers" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CH.Tutteli.TaskScheduler.Triggers" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CH.Tutteli.TaskScheduler.Triggers" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xs:complexType name="ArrayOfEDayOfMonth">
         <xs:sequence>
@@ -707,26 +703,26 @@
       <xs:element name="EMonthlyOn" nillable="true" type="tns:EMonthlyOn" />
     </xs:schema>
     <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-      <xs:import namespace="http://schemas.datacontract.org/2004/07/ch.tutteli.taskscheduler.triggers" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/CH.Tutteli.TaskScheduler.Triggers" />
       <xs:import namespace="http://schemas.datacontract.org/2004/07/System" />
-      <xs:complexType name="ArrayOfKeyValueOfEMonthlyOnArrayOfDayOfWeekVV29IytT">
+      <xs:complexType name="ArrayOfKeyValueOfEMonthlyOnArrayOfDayOfWeekftcBoCfH">
         <xs:annotation>
           <xs:appinfo>
             <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
           </xs:appinfo>
         </xs:annotation>
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfEMonthlyOnArrayOfDayOfWeekVV29IytT">
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfEMonthlyOnArrayOfDayOfWeekftcBoCfH">
             <xs:complexType>
               <xs:sequence>
-                <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ch.tutteli.taskscheduler.triggers" name="Key" type="q1:EMonthlyOn" />
+                <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/CH.Tutteli.TaskScheduler.Triggers" name="Key" type="q1:EMonthlyOn" />
                 <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/System" name="Value" nillable="true" type="q2:ArrayOfDayOfWeek" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
         </xs:sequence>
       </xs:complexType>
-      <xs:element name="ArrayOfKeyValueOfEMonthlyOnArrayOfDayOfWeekVV29IytT" nillable="true" type="tns:ArrayOfKeyValueOfEMonthlyOnArrayOfDayOfWeekVV29IytT" />
+      <xs:element name="ArrayOfKeyValueOfEMonthlyOnArrayOfDayOfWeekftcBoCfH" nillable="true" type="tns:ArrayOfKeyValueOfEMonthlyOnArrayOfDayOfWeekftcBoCfH" />
     </xs:schema>
     <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/System" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/System" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:complexType name="ArrayOfDayOfWeek">
@@ -792,6 +788,30 @@
       <xs:element name="ResponseError" nillable="true" type="tns:ResponseError" />
     </xs:schema>
   </wsdl:types>
+  <wsdl:message name="GetOneTimeTaskIn">
+    <wsdl:part name="par" element="svc:GetOneTimeTask" />
+  </wsdl:message>
+  <wsdl:message name="GetOneTimeTaskOut">
+    <wsdl:part name="par" element="svc:GetOneTimeTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDailyTaskIn">
+    <wsdl:part name="par" element="svc:GetDailyTask" />
+  </wsdl:message>
+  <wsdl:message name="GetDailyTaskOut">
+    <wsdl:part name="par" element="svc:GetDailyTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetWeeklyTaskIn">
+    <wsdl:part name="par" element="svc:GetWeeklyTask" />
+  </wsdl:message>
+  <wsdl:message name="GetWeeklyTaskOut">
+    <wsdl:part name="par" element="svc:GetWeeklyTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMonthlyTaskIn">
+    <wsdl:part name="par" element="svc:GetMonthlyTask" />
+  </wsdl:message>
+  <wsdl:message name="GetMonthlyTaskOut">
+    <wsdl:part name="par" element="svc:GetMonthlyTaskResponse" />
+  </wsdl:message>
   <wsdl:message name="PostOneTimeTaskIn">
     <wsdl:part name="par" element="svc:PostOneTimeTask" />
   </wsdl:message>
@@ -865,6 +885,22 @@
     <wsdl:part name="par" element="svc:DeleteMonthlyTaskResponse" />
   </wsdl:message>
   <wsdl:portType name="ISyncReply">
+    <wsdl:operation name="GetOneTimeTask">
+      <wsdl:input message="svc:GetOneTimeTaskIn" />
+      <wsdl:output message="svc:GetOneTimeTaskOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyTask">
+      <wsdl:input message="svc:GetDailyTaskIn" />
+      <wsdl:output message="svc:GetDailyTaskOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWeeklyTask">
+      <wsdl:input message="svc:GetWeeklyTaskIn" />
+      <wsdl:output message="svc:GetWeeklyTaskOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMonthlyTask">
+      <wsdl:input message="svc:GetMonthlyTaskIn" />
+      <wsdl:output message="svc:GetMonthlyTaskOut" />
+    </wsdl:operation>
     <wsdl:operation name="PostOneTimeTask">
       <wsdl:input message="svc:PostOneTimeTaskIn" />
       <wsdl:output message="svc:PostOneTimeTaskOut" />
@@ -916,6 +952,42 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ISyncReply" type="svc:ISyncReply">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetOneTimeTask">
+      <soap:operation soapAction="http://schemas.servicestack.net/types/GetOneTimeTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyTask">
+      <soap:operation soapAction="http://schemas.servicestack.net/types/GetDailyTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWeeklyTask">
+      <soap:operation soapAction="http://schemas.servicestack.net/types/GetWeeklyTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMonthlyTask">
+      <soap:operation soapAction="http://schemas.servicestack.net/types/GetMonthlyTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="PostOneTimeTask">
       <soap:operation soapAction="http://schemas.servicestack.net/types/PostOneTimeTask" style="document" />
       <wsdl:input>

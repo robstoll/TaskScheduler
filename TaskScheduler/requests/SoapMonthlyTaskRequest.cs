@@ -1,6 +1,7 @@
 ﻿using System.Runtime.Serialization;
 using ServiceStack.ServiceHost;
-namespace ch.tutteli.taskscheduler.requests
+using ServiceStack.ServiceInterface.ServiceModel;
+namespace CH.Tutteli.TaskScheduler.Requests
 {
     [Restrict(EndpointAttributes.Soap12 | EndpointAttributes.Soap11)]
     [DataContract]
@@ -11,8 +12,18 @@ namespace ch.tutteli.taskscheduler.requests
     }
 
     [DataContract]
-    public class GetMonthlyTaskResponse : TaskResponse
-    {
+    public class GetMonthlyTaskResponse: IHasResponseStatus
+    { 
+        [DataMember]
+        public ResponseStatus ResponseStatus { get; set; }
+        [DataMember]
+        public MonthlyTaskRequest MonthlyTaskRequest { get; set; }
+
+        public GetMonthlyTaskResponse()
+        {
+            ResponseStatus = new ResponseStatus();
+        }
+        
     }
 
     [Restrict(EndpointAttributes.Soap12 | EndpointAttributes.Soap11)]

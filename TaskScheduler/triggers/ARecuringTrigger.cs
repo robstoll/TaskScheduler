@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ch.tutteli.taskscheduler.triggers
+namespace CH.Tutteli.TaskScheduler.Triggers
 {
 	public abstract class ARecuringTrigger : ITrigger
 	{

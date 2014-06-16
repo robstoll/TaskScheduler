@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using ch.tutteli.taskscheduler.dl;
-using ch.tutteli.taskscheduler.requests;
-using ch.tutteli.taskscheduler.triggers;
+using CH.Tutteli.TaskScheduler.DL;
+using CH.Tutteli.TaskScheduler.Requests;
+using CH.Tutteli.TaskScheduler.Triggers;
 using ServiceStack.Common.Web;
 using ServiceStack.Redis;
 using ServiceStack.Redis.Generic;
 
-namespace ch.tutteli.taskscheduler.bl
+namespace CH.Tutteli.TaskScheduler.BL
 {
     public class TaskHandler : ITaskHandler
     {
@@ -19,6 +19,21 @@ namespace ch.tutteli.taskscheduler.bl
         public TaskHandler(IRepository theRepository)
         {
             repository = theRepository;
+        }
+
+        public TRequest Get<TRequest>(TRequest request) where TRequest : class, ITaskRequest, new()
+        {
+            ValidateGetRequest(request);
+
+            return repository.LoadTask<TRequest>(request.Id);
+        }
+
+        private void ValidateGetRequest(ITaskRequest request)
+        {
+            if (request.Id == default(long))
+            {
+                throw new ArgumentException("Id was not set, cannot get a resource without knowing its id");
+            }
         }
 
         public static TTrigger Create<TRequest, TTrigger>(TRequest request)
@@ -31,11 +46,11 @@ namespace ch.tutteli.taskscheduler.bl
         public TaskResponse Create<TRequest>(TRequest request)
                 where TRequest : class, ITaskRequest, new()
         {
-            Validate(request);
+            CheckIfTriggerCouldBeCreated(request);
             return CreateTask(request);
         }
 
-        private void Validate<TRequest>(TRequest request)
+        private void CheckIfTriggerCouldBeCreated<TRequest>(TRequest request)
          where TRequest : class, ITaskRequest, new()
         {
             //implicit validation - happens in the specific trigger (invariant check).
@@ -70,7 +85,8 @@ namespace ch.tutteli.taskscheduler.bl
                 throw new ArgumentException("Name was null or empty");
             }
 
-            if (string.IsNullOrEmpty(request.CallbackUrl)) {
+            if (string.IsNullOrEmpty(request.CallbackUrl))
+            {
                 throw new ArgumentException("CallbackUrl was null or empty");
             }
         }
@@ -78,7 +94,7 @@ namespace ch.tutteli.taskscheduler.bl
         public TaskResponse Update<TRequest>(TRequest request)
               where TRequest : class, ITaskRequest, new()
         {
-            Validate(request);
+            CheckIfTriggerCouldBeCreated(request);
             return UpdateTask(request);
         }
 
@@ -110,7 +126,7 @@ namespace ch.tutteli.taskscheduler.bl
             repository.DeleteTask<TRequest>(request.Id);
             return new TaskResponse
             {
-                Result = typeof(TRequest).Name+" with id: " + request.Id + " deleted.",
+                Result = typeof(TRequest).Name + " with id: " + request.Id + " deleted.",
             };
         }
 
@@ -121,5 +137,6 @@ namespace ch.tutteli.taskscheduler.bl
                 throw new ArgumentException("Id not provided, tried to delete a resource without providing its id");
             }
         }
+
     }
 }

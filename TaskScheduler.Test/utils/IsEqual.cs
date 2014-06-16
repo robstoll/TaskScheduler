@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ch.tutteli.taskscheduler.test.utils
+namespace CH.Tutteli.TaskScheduler.Test.Utils
 {
 	public class IsEqual
 	{
