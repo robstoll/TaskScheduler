@@ -34,13 +34,13 @@ namespace CH.Tutteli.TaskScheduler.Test
             [ValueSource("GetDifferentSaopClients")] ISyncReplyClient client)
         {
             var id = 1;
-            var request = TaskRequestHelper.InitOneTimeTaskRequest(new PostOneTimeTask());
+            var request =new PostOneTimeTask{OneTimeTaskRequest= TaskRequestHelper.CreateOneTimeTaskRequest()};
 
             var response = client.PostOneTimeTask(request);
 
             Assert.That(response.ResponseStatus.ErrorCode, Is.Null);
             Assert.That(response.ResponseStatus.Message, Is.Null);
-            Assert.That(response.Id, Is.EqualTo(id));
+            Assert.That(response.TaskResponse.Id, Is.EqualTo(id));
         }
 
         [Test]
@@ -48,13 +48,13 @@ namespace CH.Tutteli.TaskScheduler.Test
             [ValueSource("GetDifferentSaopClients")] ISyncReplyClient client)
         {
             var id = 1;
-            var request = TaskRequestHelper.InitDailyTaskRequest(new PostDailyTask());
+            var request = new PostDailyTask{DailyTaskRequest = TaskRequestHelper.CreateDailyTaskRequest()};
 
             var response = client.PostDailyTask(request);
 
             Assert.That(response.ResponseStatus.ErrorCode, Is.Null);
             Assert.That(response.ResponseStatus.Message, Is.Null);
-            Assert.That(response.Id, Is.EqualTo(id));
+            Assert.That(response.TaskResponse.Id, Is.EqualTo(id));
         }
 
         [Test]
@@ -62,13 +62,13 @@ namespace CH.Tutteli.TaskScheduler.Test
             [ValueSource("GetDifferentSaopClients")] ISyncReplyClient client)
         {
             var id = 1;
-            var request = TaskRequestHelper.InitWeeklyTaskRequest(new PostWeeklyTask());
+            var request = new PostWeeklyTask{WeeklyTaskRequest = TaskRequestHelper.CreateWeaklyTaskRequest()};
 
             var response = client.PostWeeklyTask(request);
 
             Assert.That(response.ResponseStatus.ErrorCode, Is.Null);
             Assert.That(response.ResponseStatus.Message, Is.Null);
-            Assert.That(response.Id, Is.EqualTo(id));
+            Assert.That(response.TaskResponse.Id, Is.EqualTo(id));
         }
 
         [Test]
@@ -76,13 +76,13 @@ namespace CH.Tutteli.TaskScheduler.Test
             [ValueSource("GetDifferentSaopClients")] ISyncReplyClient client)
         {
             var id = 1;
-            var request = TaskRequestHelper.InitMonthlyTaskRequest(new PostMonthlyTask());
+            var request = new PostMonthlyTask{MonthlyTaskRequest= TaskRequestHelper.CreateMonthlyTaskRequest()};
 
             var response = client.PostMonthlyTask(request);
 
             Assert.That(response.ResponseStatus.ErrorCode, Is.Null);
             Assert.That(response.ResponseStatus.Message, Is.Null);
-            Assert.That(response.Id, Is.EqualTo(id));
+            Assert.That(response.TaskResponse.Id, Is.EqualTo(id));
         }
 
         #endregion
@@ -96,24 +96,24 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             var id = 1;
 
-            var postRequest = TaskRequestHelper.InitOneTimeTaskRequest(new PostOneTimeTask());
+            var postRequest = new PostOneTimeTask{OneTimeTaskRequest = TaskRequestHelper.CreateOneTimeTaskRequest()};
             var resultId = client.PostOneTimeTask(postRequest);
-            var getRequest = new GetOneTimeTask { Id = resultId.Id };
+            var getRequest = new GetOneTimeTask { Id = resultId.TaskResponse.Id };
             var result = client.GetOneTimeTask(getRequest);
 
-            Assert.That(resultId.Id, Is.EqualTo(id));
-            AssertSame.OneTimeTaskRequest(result.OneTimeTaskRequest, postRequest);
+            Assert.That(resultId.TaskResponse.Id, Is.EqualTo(id));
+            AssertSame.OneTimeTaskRequest(result.OneTimeTaskRequest, postRequest.OneTimeTaskRequest);
 
-            var putRequest = TaskRequestHelper.InitOneTimeTaskRequest(new PutOneTimeTask());
-            putRequest.Id = resultId.Id;
-            putRequest.Name = "dummy";
-            putRequest.Description = "hm..";
-            putRequest.Trigger = DateTime.Now.AddDays(123);
+            var putRequest = new PutOneTimeTask{OneTimeTaskRequest = postRequest.OneTimeTaskRequest};
+            putRequest.OneTimeTaskRequest.Id = resultId.TaskResponse.Id;
+            putRequest.OneTimeTaskRequest.Name = "dummy";
+            putRequest.OneTimeTaskRequest.Description = "hm..";
+            putRequest.OneTimeTaskRequest.Trigger = DateTime.Now.AddDays(123);
             var responsePut = client.PutOneTimeTask(putRequest);
             result = client.GetOneTimeTask(getRequest);
 
-            Assert.That(resultId.Id, Is.EqualTo(id));
-            AssertSame.OneTimeTaskRequest(result.OneTimeTaskRequest, putRequest);
+            Assert.That(resultId.TaskResponse.Id, Is.EqualTo(id));
+            AssertSame.OneTimeTaskRequest(result.OneTimeTaskRequest, putRequest.OneTimeTaskRequest);
         }
 
         [Test]
@@ -122,24 +122,24 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             var id = 1;
 
-            var postRequest = TaskRequestHelper.InitDailyTaskRequest(new PostDailyTask());
+            var postRequest = new PostDailyTask{DailyTaskRequest = TaskRequestHelper.CreateDailyTaskRequest()};
             var resultId = client.PostDailyTask(postRequest);
-            var getRequest = new GetDailyTask { Id = resultId.Id };
+            var getRequest = new GetDailyTask { Id = resultId.TaskResponse.Id };
             var result = client.GetDailyTask(getRequest);
 
-            Assert.That(resultId.Id, Is.EqualTo(id));
-            AssertSame.DailyTaskRequest(result.DailyTaskRequest, postRequest);
+            Assert.That(resultId.TaskResponse.Id, Is.EqualTo(id));
+            AssertSame.DailyTaskRequest(result.DailyTaskRequest, postRequest.DailyTaskRequest);
 
-            var putRequest = TaskRequestHelper.InitDailyTaskRequest(new PutDailyTask());
-            putRequest.Id = resultId.Id;
-            putRequest.Name = "dummy";
-            putRequest.Description = "hm..";
-            putRequest.RecursEveryXDays = 987;
+            var putRequest = new PutDailyTask{DailyTaskRequest = postRequest.DailyTaskRequest };
+            putRequest.DailyTaskRequest.Id = resultId.TaskResponse.Id;
+            putRequest.DailyTaskRequest.Name = "dummy";
+            putRequest.DailyTaskRequest.Description = "hm..";
+            putRequest.DailyTaskRequest.RecursEveryXDays = 987;
             var responsePut = client.PutDailyTask(putRequest);
             result = client.GetDailyTask(getRequest);
 
-            Assert.That(resultId.Id, Is.EqualTo(id));
-            AssertSame.DailyTaskRequest(result.DailyTaskRequest, putRequest);
+            Assert.That(resultId.TaskResponse.Id, Is.EqualTo(id));
+            AssertSame.DailyTaskRequest(result.DailyTaskRequest, putRequest.DailyTaskRequest);
         }
 
         [Test]
@@ -148,24 +148,24 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             var id = 1;
 
-            var postRequest = TaskRequestHelper.InitWeeklyTaskRequest(new PostWeeklyTask());
+            var postRequest = new PostWeeklyTask{WeeklyTaskRequest = TaskRequestHelper.CreateWeaklyTaskRequest()};
             var resultId = client.PostWeeklyTask(postRequest);
-            var getRequest = new GetWeeklyTask { Id = resultId.Id };
+            var getRequest = new GetWeeklyTask { Id = resultId.TaskResponse.Id };
             var result = client.GetWeeklyTask(getRequest);
 
-            Assert.That(resultId.Id, Is.EqualTo(id));
-            AssertSame.WeeklyTaskRequest(result.WeeklyTaskRequest, postRequest);
+            Assert.That(resultId.TaskResponse.Id, Is.EqualTo(id));
+            AssertSame.WeeklyTaskRequest(result.WeeklyTaskRequest, postRequest.WeeklyTaskRequest);
 
-            var putRequest = TaskRequestHelper.InitWeeklyTaskRequest(new PutWeeklyTask());
-            putRequest.Id = resultId.Id;
-            putRequest.Name = "dummy";
-            putRequest.Description = "hm..";
-            putRequest.RecursEveryXWeeks = 784;
+            var putRequest = new PutWeeklyTask{WeeklyTaskRequest = postRequest.WeeklyTaskRequest};
+            putRequest.WeeklyTaskRequest.Id = resultId.TaskResponse.Id;
+            putRequest.WeeklyTaskRequest.Name = "dummy";
+            putRequest.WeeklyTaskRequest.Description = "hm..";
+            putRequest.WeeklyTaskRequest.RecursEveryXWeeks = 784;
             var responsePut = client.PutWeeklyTask(putRequest);
             result = client.GetWeeklyTask(getRequest);
 
-            Assert.That(resultId.Id, Is.EqualTo(id));
-            AssertSame.WeeklyTaskRequest(result.WeeklyTaskRequest, putRequest);
+            Assert.That(resultId.TaskResponse.Id, Is.EqualTo(id));
+            AssertSame.WeeklyTaskRequest(result.WeeklyTaskRequest, putRequest.WeeklyTaskRequest);
         }
 
         [Test]
@@ -174,24 +174,24 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             var id = 1;
 
-            var postRequest = TaskRequestHelper.InitMonthlyTaskRequest(new PostMonthlyTask());
+            var postRequest = new PostMonthlyTask{MonthlyTaskRequest = TaskRequestHelper.CreateMonthlyTaskRequest()};
             var resultId = client.PostMonthlyTask(postRequest);
-            var getRequest = new GetMonthlyTask { Id = resultId.Id };
+            var getRequest = new GetMonthlyTask { Id = resultId.TaskResponse.Id };
             var result = client.GetMonthlyTask(getRequest);
 
-            Assert.That(resultId.Id, Is.EqualTo(id));
-            AssertSame.MonthlyTaskRequest(result.MonthlyTaskRequest, postRequest);
+            Assert.That(resultId.TaskResponse.Id, Is.EqualTo(id));
+            AssertSame.MonthlyTaskRequest(result.MonthlyTaskRequest, postRequest.MonthlyTaskRequest);
 
-            var putRequest = TaskRequestHelper.InitMonthlyTaskRequest(new PutMonthlyTask());
-            putRequest.Id = resultId.Id;
-            putRequest.Name = "dummy";
-            putRequest.Description = "hm..";
-            putRequest.RecursOnMonth = new HashSet<EMonth>{EMonth.April};
+            var putRequest = new PutMonthlyTask {MonthlyTaskRequest = postRequest.MonthlyTaskRequest};
+            putRequest.MonthlyTaskRequest.Id = resultId.TaskResponse.Id;
+            putRequest.MonthlyTaskRequest.Name = "dummy";
+            putRequest.MonthlyTaskRequest.Description = "hm..";
+            putRequest.MonthlyTaskRequest.RecursOnMonth = new HashSet<EMonth>{EMonth.April};
             var responsePut = client.PutMonthlyTask(putRequest);
             result = client.GetMonthlyTask(getRequest);
 
-            Assert.That(resultId.Id, Is.EqualTo(id));
-            AssertSame.MonthlyTaskRequest(result.MonthlyTaskRequest, putRequest);
+            Assert.That(resultId.TaskResponse.Id, Is.EqualTo(id));
+            AssertSame.MonthlyTaskRequest(result.MonthlyTaskRequest, putRequest.MonthlyTaskRequest);
         }
 
         #endregion
@@ -204,16 +204,16 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             var id = 1;
 
-            var postRequest = TaskRequestHelper.InitOneTimeTaskRequest(new PostOneTimeTask());
+            var postRequest = new PostOneTimeTask{OneTimeTaskRequest = TaskRequestHelper.CreateOneTimeTaskRequest()};
             var resultId = client.PostOneTimeTask(postRequest);
-            var getRequest = new GetOneTimeTask { Id = resultId.Id };
+            var getRequest = new GetOneTimeTask { Id = resultId.TaskResponse.Id };
             var result = client.GetOneTimeTask(getRequest);
 
-            Assert.That(resultId.Id, Is.EqualTo(id));
-            AssertSame.OneTimeTaskRequest(result.OneTimeTaskRequest, postRequest);
+            Assert.That(resultId.TaskResponse.Id, Is.EqualTo(id));
+            AssertSame.OneTimeTaskRequest(result.OneTimeTaskRequest, postRequest.OneTimeTaskRequest);
 
 
-            client.DeleteOneTimeTask(new DeleteOneTimeTask { Id = resultId.Id });
+            client.DeleteOneTimeTask(new DeleteOneTimeTask { Id = resultId.TaskResponse.Id });
             result = client.GetOneTimeTask(getRequest);
 
             Assert.That(result.ResponseStatus.ErrorCode, Is.EqualTo("ArgumentNullException"));
@@ -225,16 +225,16 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             var id = 1;
 
-            var postRequest = TaskRequestHelper.InitDailyTaskRequest(new PostDailyTask());
+            var postRequest = new PostDailyTask{DailyTaskRequest = TaskRequestHelper.CreateDailyTaskRequest()};
             var resultId = client.PostDailyTask(postRequest);
-            var getRequest = new GetDailyTask { Id = resultId.Id };
+            var getRequest = new GetDailyTask { Id = resultId.TaskResponse.Id };
             var result = client.GetDailyTask(getRequest);
 
-            Assert.That(resultId.Id, Is.EqualTo(id));
-            AssertSame.DailyTaskRequest(result.DailyTaskRequest, postRequest);
+            Assert.That(resultId.TaskResponse.Id, Is.EqualTo(id));
+            AssertSame.DailyTaskRequest(result.DailyTaskRequest, postRequest.DailyTaskRequest);
 
 
-            client.DeleteDailyTask(new DeleteDailyTask { Id = resultId.Id });
+            client.DeleteDailyTask(new DeleteDailyTask { Id = resultId.TaskResponse.Id });
             result = client.GetDailyTask(getRequest);
 
             Assert.That(result.ResponseStatus.ErrorCode, Is.EqualTo("ArgumentNullException"));
@@ -246,16 +246,16 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             var id = 1;
 
-            var postRequest = TaskRequestHelper.InitWeeklyTaskRequest(new PostWeeklyTask());
+            var postRequest =new PostWeeklyTask{WeeklyTaskRequest=TaskRequestHelper.CreateWeaklyTaskRequest()};
             var resultId = client.PostWeeklyTask(postRequest);
-            var getRequest = new GetWeeklyTask { Id = resultId.Id };
+            var getRequest = new GetWeeklyTask { Id = resultId.TaskResponse.Id };
             var result = client.GetWeeklyTask(getRequest);
 
-            Assert.That(resultId.Id, Is.EqualTo(id));
-            AssertSame.WeeklyTaskRequest(result.WeeklyTaskRequest, postRequest);
+            Assert.That(resultId.TaskResponse.Id, Is.EqualTo(id));
+            AssertSame.WeeklyTaskRequest(result.WeeklyTaskRequest, postRequest.WeeklyTaskRequest);
 
 
-            client.DeleteWeeklyTask(new DeleteWeeklyTask { Id = resultId.Id });
+            client.DeleteWeeklyTask(new DeleteWeeklyTask { Id = resultId.TaskResponse.Id });
             result = client.GetWeeklyTask(getRequest);
 
             Assert.That(result.ResponseStatus.ErrorCode, Is.EqualTo("ArgumentNullException"));
@@ -267,16 +267,16 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             var id = 1;
 
-            var postRequest = TaskRequestHelper.InitMonthlyTaskRequest(new PostMonthlyTask());
+            var postRequest = new PostMonthlyTask{MonthlyTaskRequest =TaskRequestHelper.CreateMonthlyTaskRequest()};
             var resultId = client.PostMonthlyTask(postRequest);
-            var getRequest = new GetMonthlyTask { Id = resultId.Id };
+            var getRequest = new GetMonthlyTask { Id = resultId.TaskResponse.Id };
             var result = client.GetMonthlyTask(getRequest);
 
-            Assert.That(resultId.Id, Is.EqualTo(id));
-            AssertSame.MonthlyTaskRequest(result.MonthlyTaskRequest, postRequest);
+            Assert.That(resultId.TaskResponse.Id, Is.EqualTo(id));
+            AssertSame.MonthlyTaskRequest(result.MonthlyTaskRequest, postRequest.MonthlyTaskRequest);
 
 
-            client.DeleteMonthlyTask(new DeleteMonthlyTask { Id = resultId.Id });
+            client.DeleteMonthlyTask(new DeleteMonthlyTask { Id = resultId.TaskResponse.Id });
             result = client.GetMonthlyTask(getRequest);
 
             Assert.That(result.ResponseStatus.ErrorCode, Is.EqualTo("ArgumentNullException"));

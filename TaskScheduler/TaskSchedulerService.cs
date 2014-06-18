@@ -7,7 +7,6 @@ using CH.Tutteli.TaskScheduler.BL;
 using CH.Tutteli.TaskScheduler.DL;
 using CH.Tutteli.TaskScheduler.Requests;
 using CH.Tutteli.TaskScheduler.Triggers;
-using CH.Tutteli.TaskScheduler.Utils;
 using ServiceStack.Common.Utils;
 using ServiceStack.ServiceHost;
 using ServiceStack.ServiceInterface;

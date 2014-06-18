@@ -19,8 +19,8 @@ namespace CH.Tutteli.TaskScheduler.Test
             [Values(null, "")] string name,
             [ValueSource("GetDifferentServices")] ISyncReplyClient service)
         {
-            var request = TaskRequestHelper.InitOneTimeTaskRequest(new PostOneTimeTask());
-            request.Name = name;
+            var request = new PostOneTimeTask{OneTimeTaskRequest =  TaskRequestHelper.CreateOneTimeTaskRequest()};
+            request.OneTimeTaskRequest.Name = name;
 
             var response = service.PostOneTimeTask(request);
 
@@ -33,9 +33,9 @@ namespace CH.Tutteli.TaskScheduler.Test
             [Values(null, "")] string name,
             [ValueSource("GetDifferentServices")] ISyncReplyClient service)
         {
-            var request = TaskRequestHelper.InitOneTimeTaskRequest(new PutOneTimeTask());
-            request.Id = 1;
-            request.Name = name;
+            var request = new PutOneTimeTask { OneTimeTaskRequest = TaskRequestHelper.CreateOneTimeTaskRequest() };
+            request.OneTimeTaskRequest.Id = 1;
+            request.OneTimeTaskRequest.Name = name;
 
             var response = service.PutOneTimeTask(request);
 
@@ -56,13 +56,13 @@ namespace CH.Tutteli.TaskScheduler.Test
             var id = 10;
             var repository = GetRepositoryMock();
             repository.Setup(r => r.CreateTask(It.IsAny<OneTimeTaskRequest>())).Returns(id);
-            var request = TaskRequestHelper.InitOneTimeTaskRequest(new PostOneTimeTask());
+            var request = new PostOneTimeTask { OneTimeTaskRequest = TaskRequestHelper.CreateOneTimeTaskRequest() };
 
             var response = service.PostOneTimeTask(request);
 
             Assert.That(response.ResponseStatus.ErrorCode, Is.Null);
             Assert.That(response.ResponseStatus.Message, Is.Null);
-            Assert.That(response.Id, Is.EqualTo(id));
+            Assert.That(response.TaskResponse.Id, Is.EqualTo(id));
         }
 
         //TODO remaining tests
@@ -78,14 +78,14 @@ namespace CH.Tutteli.TaskScheduler.Test
             var id = 10;
             var repository = GetRepositoryMock();
             repository.Setup(r => r.UpdateTask(It.IsAny<OneTimeTaskRequest>())).Returns(id);
-            var request = TaskRequestHelper.InitOneTimeTaskRequest(new PutOneTimeTask());
-            request.Id = id;
+            var request = new PutOneTimeTask { OneTimeTaskRequest = TaskRequestHelper.CreateOneTimeTaskRequest() };
+            request.OneTimeTaskRequest.Id = id;
 
             var response = service.PutOneTimeTask(request);
 
             Assert.That(response.ResponseStatus.ErrorCode, Is.Null);
             Assert.That(response.ResponseStatus.Message, Is.Null);
-            Assert.That(response.Id, Is.EqualTo(id));
+            Assert.That(response.TaskResponse.Id, Is.EqualTo(id));
         }
 
         //TODO remaining tests

@@ -29,8 +29,10 @@ namespace CH.Tutteli.TaskScheduler.Requests
 
     [Restrict(EndpointAttributes.Soap12 | EndpointAttributes.Soap11)]
     [DataContract]
-    public class PostOneTimeTask : OneTimeTaskRequest
+    public class PostOneTimeTask
     {
+        [DataMember]
+        public OneTimeTaskRequest OneTimeTaskRequest { get; set; }
     }
 
     [DataContract]
@@ -41,8 +43,10 @@ namespace CH.Tutteli.TaskScheduler.Requests
 
     [Restrict(EndpointAttributes.Soap12 | EndpointAttributes.Soap11)]
     [DataContract]
-    public class PutOneTimeTask : OneTimeTaskRequest
+    public class PutOneTimeTask
     {
+        [DataMember]
+        public OneTimeTaskRequest OneTimeTaskRequest { get; set; }
     }
 
     [DataContract]

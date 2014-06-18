@@ -28,8 +28,10 @@ namespace CH.Tutteli.TaskScheduler.Requests
 
     [Restrict(EndpointAttributes.Soap12 | EndpointAttributes.Soap11)]
     [DataContract]
-    public class PostWeeklyTask : WeeklyTaskRequest
+    public class PostWeeklyTask
     {
+        [DataMember]
+        public WeeklyTaskRequest WeeklyTaskRequest { get; set; }
     }
 
     [DataContract]
@@ -40,8 +42,10 @@ namespace CH.Tutteli.TaskScheduler.Requests
 
     [Restrict(EndpointAttributes.Soap12 | EndpointAttributes.Soap11)]
     [DataContract]
-    public class PutWeeklyTask : WeeklyTaskRequest
+    public class PutWeeklyTask
     {
+        [DataMember]
+        public WeeklyTaskRequest WeeklyTaskRequest { get; set; }
     }
 
     [DataContract]

@@ -12,8 +12,8 @@ namespace CH.Tutteli.TaskScheduler.Requests
     }
 
     [DataContract]
-    public class GetMonthlyTaskResponse: IHasResponseStatus
-    { 
+    public class GetMonthlyTaskResponse : IHasResponseStatus
+    {
         [DataMember]
         public ResponseStatus ResponseStatus { get; set; }
         [DataMember]
@@ -23,13 +23,15 @@ namespace CH.Tutteli.TaskScheduler.Requests
         {
             ResponseStatus = new ResponseStatus();
         }
-        
+
     }
 
     [Restrict(EndpointAttributes.Soap12 | EndpointAttributes.Soap11)]
     [DataContract]
-    public class PostMonthlyTask : MonthlyTaskRequest
+    public class PostMonthlyTask
     {
+        [DataMember]
+        public MonthlyTaskRequest MonthlyTaskRequest { get; set; }
     }
 
     [DataContract]
@@ -39,8 +41,10 @@ namespace CH.Tutteli.TaskScheduler.Requests
 
     [Restrict(EndpointAttributes.Soap12 | EndpointAttributes.Soap11)]
     [DataContract]
-    public class PutMonthlyTask : MonthlyTaskRequest
+    public class PutMonthlyTask
     {
+        [DataMember]
+        public MonthlyTaskRequest MonthlyTaskRequest { get; set; }
     }
 
     [DataContract]
@@ -57,7 +61,7 @@ namespace CH.Tutteli.TaskScheduler.Requests
     }
 
     [DataContract]
-    public class DeleteMonthlyTaskResponse: SoapTaskResponse
+    public class DeleteMonthlyTaskResponse : SoapTaskResponse
     {
     }
 }

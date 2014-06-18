@@ -8,9 +8,11 @@ using ServiceStack.ServiceInterface.ServiceModel;
 namespace CH.Tutteli.TaskScheduler.Requests
 {
     [DataContract]
-    public class SoapTaskResponse : TaskResponse, IHasResponseStatus
+    public class SoapTaskResponse : IHasResponseStatus
     {
-         
+        [DataMember]
+        public TaskResponse TaskResponse { get; set; }
+
         [DataMember]
         public ResponseStatus ResponseStatus { get; set; }
 

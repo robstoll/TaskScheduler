@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using CH.Tutteli.TaskScheduler.BL;
 using CH.Tutteli.TaskScheduler.Requests;
-using CH.Tutteli.TaskScheduler.Utils;
 using ServiceStack.ServiceInterface;
 
 namespace CH.Tutteli.TaskScheduler
@@ -53,30 +52,34 @@ namespace CH.Tutteli.TaskScheduler
         #region POST
         public PostOneTimeTaskResponse Any(PostOneTimeTask request)
         {
-            OneTimeTaskRequest req = SoapRequestHelper.CreateRequest(request);
-            var result = taskHandler.Create(req);
-            return SoapRequestHelper.MapResponseFromTo(result, new PostOneTimeTaskResponse());
+            return new PostOneTimeTaskResponse
+            {
+                TaskResponse = taskHandler.Create(request.OneTimeTaskRequest)
+            };
         }
 
         public PostDailyTaskResponse Any(PostDailyTask request)
         {
-            DailyTaskRequest req = SoapRequestHelper.CreateRequest(request);
-            var result = taskHandler.Create(req);
-            return SoapRequestHelper.MapResponseFromTo(result, new PostDailyTaskResponse());
+            return new PostDailyTaskResponse
+            {
+                TaskResponse = taskHandler.Create(request.DailyTaskRequest)
+            };
         }
 
         public PostWeeklyTaskResponse Any(PostWeeklyTask request)
         {
-            WeeklyTaskRequest req = SoapRequestHelper.CreateRequest(request);
-            var result = taskHandler.Create(req);
-            return SoapRequestHelper.MapResponseFromTo(result, new PostWeeklyTaskResponse());
+            return new PostWeeklyTaskResponse
+            {
+                TaskResponse = taskHandler.Create(request.WeeklyTaskRequest)
+            };
         }
 
         public PostMonthlyTaskResponse Any(PostMonthlyTask request)
         {
-            MonthlyTaskRequest req = SoapRequestHelper.CreateRequest(request);
-            var result = taskHandler.Create(req);
-            return SoapRequestHelper.MapResponseFromTo(result, new PostMonthlyTaskResponse());
+            return new PostMonthlyTaskResponse
+            {
+                TaskResponse = taskHandler.Create(request.MonthlyTaskRequest)
+            };
         }
 
         #endregion
@@ -85,31 +88,35 @@ namespace CH.Tutteli.TaskScheduler
 
         public PutOneTimeTaskResponse Any(PutOneTimeTask request)
         {
-            OneTimeTaskRequest req = SoapRequestHelper.CreateRequest(request);
-            var result = taskHandler.Update(req);
-            return SoapRequestHelper.MapResponseFromTo(result, new PutOneTimeTaskResponse());
+            return new PutOneTimeTaskResponse
+            {
+                TaskResponse = taskHandler.Update(request.OneTimeTaskRequest)
+            };
         }
 
         public PutDailyTaskResponse Any(PutDailyTask request)
         {
-            DailyTaskRequest req = SoapRequestHelper.CreateRequest(request);
-            var result = taskHandler.Update(req);
-            return SoapRequestHelper.MapResponseFromTo(result, new PutDailyTaskResponse());
+            return new PutDailyTaskResponse
+            {
+                TaskResponse = taskHandler.Update(request.DailyTaskRequest)
+            };
         }
 
 
         public PutWeeklyTaskResponse Any(PutWeeklyTask request)
         {
-            WeeklyTaskRequest req = SoapRequestHelper.CreateRequest(request);
-            var result = taskHandler.Update(req);
-            return SoapRequestHelper.MapResponseFromTo(result, new PutWeeklyTaskResponse());
+            return new PutWeeklyTaskResponse
+            {
+                TaskResponse = taskHandler.Update(request.WeeklyTaskRequest)
+            };
         }
 
         public PutMonthlyTaskResponse Any(PutMonthlyTask request)
         {
-            MonthlyTaskRequest req = SoapRequestHelper.CreateRequest(request);
-            var result = taskHandler.Update(req);
-            return SoapRequestHelper.MapResponseFromTo(result, new PutMonthlyTaskResponse());
+            return new PutMonthlyTaskResponse
+            {
+                TaskResponse = taskHandler.Update(request.MonthlyTaskRequest)
+            };
         }
 
         #endregion
@@ -118,30 +125,34 @@ namespace CH.Tutteli.TaskScheduler
 
         public DeleteOneTimeTaskResponse Any(DeleteOneTimeTask request)
         {
-            OneTimeTaskRequest req = SoapRequestHelper.CreateRequest(request);
-            var result = taskHandler.Delete(req);
-            return new DeleteOneTimeTaskResponse { Result = result.Result };
+            return new DeleteOneTimeTaskResponse
+            {
+                TaskResponse = taskHandler.Delete(new OneTimeTaskRequest { Id = request.Id })
+            };
         }
 
         public DeleteDailyTaskResponse Any(DeleteDailyTask request)
         {
-            DailyTaskRequest req = SoapRequestHelper.CreateRequest(request);
-            var result = taskHandler.Delete(req);
-            return new DeleteDailyTaskResponse { Result = result.Result };
+            return new DeleteDailyTaskResponse
+            {
+                TaskResponse = taskHandler.Delete(new DailyTaskRequest { Id = request.Id })
+            };
         }
 
         public DeleteWeeklyTaskResponse Any(DeleteWeeklyTask request)
         {
-            WeeklyTaskRequest req = SoapRequestHelper.CreateRequest(request);
-            var result = taskHandler.Delete(req);
-            return new DeleteWeeklyTaskResponse { Result = result.Result };
+            return new DeleteWeeklyTaskResponse
+            {
+                TaskResponse = taskHandler.Delete(new WeeklyTaskRequest { Id = request.Id })
+            };
         }
 
         public DeleteMonthlyTaskResponse Any(DeleteMonthlyTask request)
         {
-            MonthlyTaskRequest req = SoapRequestHelper.CreateRequest(request);
-            var result = taskHandler.Delete(req);
-            return new DeleteMonthlyTaskResponse { Result = result.Result };
+            return new DeleteMonthlyTaskResponse
+            {
+                TaskResponse = taskHandler.Delete(new MonthlyTaskRequest { Id = request.Id })
+            };
         }
 
         #endregion
