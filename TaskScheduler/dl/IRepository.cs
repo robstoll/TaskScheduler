@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CH.Tutteli.TaskScheduler.Requests;
-using CH.Tutteli.TaskScheduler.Triggers;
+using CH.Tutteli.TaskScheduler.BL.Triggers;
 
 namespace CH.Tutteli.TaskScheduler.DL
 {

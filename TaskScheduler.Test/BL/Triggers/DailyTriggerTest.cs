@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CH.Tutteli.TaskScheduler.Test.Utils;
-using CH.Tutteli.TaskScheduler.Triggers;
+using CH.Tutteli.TaskScheduler.BL.Triggers;
 using NUnit.Framework;
 
 
-namespace CH.Tutteli.TaskScheduler.Triggers
+namespace CH.Tutteli.TaskScheduler.Test.BL.Triggers
 {
 	[TestFixture]
 	public class DailyTriggerTest

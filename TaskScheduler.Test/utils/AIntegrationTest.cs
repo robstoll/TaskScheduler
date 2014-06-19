@@ -40,6 +40,21 @@ namespace CH.Tutteli.TaskScheduler.Test.Utils
 			appHost.Dispose();
 		}
 
+        public static TResponse SendRequest<TResponse>(ITaskRequest request, ServiceClientBase client, string httpMethod)
+        {
+            return SendRequest<TResponse>(request, client, httpMethod, null);
+        }
+
+        public static TResponse SendRequest<TResponse>(ITaskRequest request, ServiceClientBase client, string httpMethod, Action<HttpWebResponse> responseFilter)
+        {
+            using (client)
+            {
+                client.HttpMethod = httpMethod;
+                client.LocalHttpWebResponseFilter = responseFilter;
+                return client.Send<TResponse>(request);
+            }
+        }
+
         public IEnumerable<ITaskRequest> GetDifferentTaskRequests()
         {
             return new ITaskRequest[]{

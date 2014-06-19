@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace CH.Tutteli.TaskScheduler.Triggers
+namespace CH.Tutteli.TaskScheduler.BL.Triggers
 {
     public class OneTimeTrigger : ITrigger
     {
@@ -16,9 +16,10 @@ namespace CH.Tutteli.TaskScheduler.Triggers
             }
             set
             {
-                if (value == DateTime.MinValue)
+                var diff = value - DateTime.MinValue;
+                if (diff.TotalDays < 1)
                 {
-                    throw new ArgumentException("TriggerDate was not set (was DateTime.MinValue)");
+                    throw new ArgumentException("TriggerDate was not set (was 01.01.0001)");
                 }
                 _triggerDate = value;
             }

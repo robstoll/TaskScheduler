@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace CH.Tutteli.TaskScheduler.Triggers
+namespace CH.Tutteli.TaskScheduler.BL.Triggers
 {
     public class DailyTrigger : ARecuringTrigger
     {
@@ -17,6 +17,7 @@ namespace CH.Tutteli.TaskScheduler.Triggers
                 {
                     throw new ArgumentException("RecursEveryXDays must be greater than 0");
                 }
+
                 _recursEveryXDays = value;
             }
         }

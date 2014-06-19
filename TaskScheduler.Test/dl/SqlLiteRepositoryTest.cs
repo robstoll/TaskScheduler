@@ -7,7 +7,7 @@ using CH.Tutteli.TaskScheduler.BL;
 using CH.Tutteli.TaskScheduler.DL;
 using CH.Tutteli.TaskScheduler.Requests;
 using CH.Tutteli.TaskScheduler.Test.Utils;
-using CH.Tutteli.TaskScheduler.Triggers;
+using CH.Tutteli.TaskScheduler.BL.Triggers;
 using Funq;
 using NUnit.Framework;
 using ServiceStack.Common.Utils;
@@ -646,7 +646,6 @@ namespace CH.Tutteli.TaskScheduler.Test.DL
             container.Register<IDbConnectionFactory>(
                        new OrmLiteConnectionFactory(PathUtils.MapHostAbsolutePath("~/TaskScheduler-test.sqlite"), SqliteDialect.Provider));
             container.Register<IRepository>(c => new SqlLiteRepository(c.Resolve<IDbConnectionFactory>()));
-            container.Register<ITaskHandler>(c => new TaskHandler(c.Resolve<IRepository>()));
         }
     }
 }

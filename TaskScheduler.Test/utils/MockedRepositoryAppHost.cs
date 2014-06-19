@@ -22,7 +22,14 @@ namespace CH.Tutteli.TaskScheduler.Test.Utils
         {
             repository = Mock.Of<IRepository>();
             container.Register<IRepository>(c => repository);
-            container.Register<ITaskHandler>(c => new TaskHandler(c.Resolve<IRepository>()));
+
+            container.Register<IScheduler>(c => new ThreadingTimerScheduler());
+            container.Register<ICallbackVerifier>(c => new HardCodedCallbackVerifier());
+            container.Register<ITaskHandler>(c => new TaskHandler(
+                c.Resolve<IScheduler>(),
+                c.Resolve<IRepository>(),
+                c.Resolve<ICallbackVerifier>()
+            ));
         }
 
     }

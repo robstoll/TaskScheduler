@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CH.Tutteli.TaskScheduler.Requests;
-using CH.Tutteli.TaskScheduler.Triggers;
+using CH.Tutteli.TaskScheduler.BL.Triggers;
 using ServiceStack.Redis;
 using ServiceStack.Redis.Generic;
 

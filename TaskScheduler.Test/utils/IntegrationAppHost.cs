@@ -21,7 +21,14 @@ namespace CH.Tutteli.TaskScheduler.Test.Utils
             container.Register<IDbConnectionFactory>(
                        new OrmLiteConnectionFactory(PathUtils.MapHostAbsolutePath("~/TaskScheduler-test.sqlite"), SqliteDialect.Provider));
             container.Register<IRepository>(c => new SqlLiteRepository(c.Resolve<IDbConnectionFactory>()));
-            container.Register<ITaskHandler>(c => new TaskHandler(c.Resolve<IRepository>()));
+
+            container.Register<IScheduler>(c => new ThreadingTimerScheduler());
+            container.Register<ICallbackVerifier>(c => new HardCodedCallbackVerifier());
+            container.Register<ITaskHandler>(c => new TaskHandler(
+                c.Resolve<IScheduler>(),
+                c.Resolve<IRepository>(),
+                c.Resolve<ICallbackVerifier>()
+            ));
         }
 
     }

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CH.Tutteli.TaskScheduler.Requests;
 using CH.Tutteli.TaskScheduler.Test.Utils;
-using CH.Tutteli.TaskScheduler.Triggers;
+using CH.Tutteli.TaskScheduler.BL.Triggers;
 using Moq;
 using NUnit.Framework;
 using ServiceStack.OrmLite;
@@ -328,20 +328,6 @@ namespace CH.Tutteli.TaskScheduler.Test
         }
 
         #endregion
-
-        private static TResponse SendRequest<TResponse>(ITaskRequest request, ServiceClientBase client, string httpMethod) {
-            return SendRequest<TResponse>(request, client, httpMethod, null);
-        }
-
-        private static TResponse SendRequest<TResponse>(ITaskRequest request, ServiceClientBase client, string httpMethod, Action<HttpWebResponse> responseFilter)
-        {
-            using (client)
-            {
-                client.HttpMethod = httpMethod;
-                client.LocalHttpWebResponseFilter = responseFilter;
-                return client.Send<TResponse>(request);
-            }
-        }
 
         protected override AppHostHttpListenerBase CreateAppHost()
         {

@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CH.Tutteli.TaskScheduler.Requests;
-using CH.Tutteli.TaskScheduler.Triggers;
+using CH.Tutteli.TaskScheduler.BL.Triggers;
 
 namespace CH.Tutteli.TaskScheduler.Test.Utils
 {
     public static class TaskRequestHelper
     {
+        public static string URL = "http://localhost:4658/";
         public static OneTimeTaskRequest CreateOneTimeTaskRequest()
         {
             return InitOneTimeTaskRequest(new OneTimeTaskRequest());
@@ -20,8 +21,8 @@ namespace CH.Tutteli.TaskScheduler.Test.Utils
         {
             request.Name = "test";
             request.Description = "descr";
-            request.CallbackUrl = "http://returnurl";
-            request.Trigger = DateTime.Now;
+            request.CallbackUrl = URL;
+            request.Trigger = DateTime.Now.AddDays(10);
             return request;
         }
 
@@ -35,9 +36,9 @@ namespace CH.Tutteli.TaskScheduler.Test.Utils
         {
             request.Name = "test";
             request.Description = "descr";
-            request.CallbackUrl = "http://returnurl";
+            request.CallbackUrl = URL;
             request.StartDate = DateTime.Now;
-            request.EndDate = DateTime.Now.AddDays(2);
+            request.EndDate = DateTime.Now.AddYears(10);
             request.RecursEveryXDays = 10;
             request.TriggerWhenDayOfWeek = new HashSet<DayOfWeek> { DayOfWeek.Monday, DayOfWeek.Friday };
             return request;
@@ -53,9 +54,9 @@ namespace CH.Tutteli.TaskScheduler.Test.Utils
         {
             request.Name = "test";
             request.Description = "descr";
-            request.CallbackUrl = "http://returnurl";
+            request.CallbackUrl = URL;
             request.StartDate = DateTime.Now;
-            request.EndDate = DateTime.Now.AddDays(3);
+            request.EndDate = DateTime.Now.AddYears(10);
             request.TriggerWhenDayOfWeek = new HashSet<DayOfWeek> { DayOfWeek.Monday, DayOfWeek.Friday };
             request.RecursEveryXWeeks = 2;
             return request;
@@ -71,9 +72,9 @@ namespace CH.Tutteli.TaskScheduler.Test.Utils
         {
             request.Name = "test";
             request.Description = "descr";
-            request.CallbackUrl = "http://returnurl";
+            request.CallbackUrl = URL;
             request.StartDate = DateTime.Now;
-            request.EndDate = DateTime.Now.AddDays(3);
+            request.EndDate = DateTime.Now.AddYears(10);
             request.RecursOnDayOfMonth = new HashSet<EDayOfMonth> { EDayOfMonth.D1, EDayOfMonth.D15 };
             request.RecursOnMonth = new HashSet<EMonth> { EMonth.March, EMonth.July };
             request.RecursOnSpecialDayOfMonth = new Dictionary<EMonthlyOn, IList<DayOfWeek>> { { EMonthlyOn.First, new List<DayOfWeek> { DayOfWeek.Tuesday } } };

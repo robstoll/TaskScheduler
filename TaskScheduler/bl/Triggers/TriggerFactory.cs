@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using CH.Tutteli.TaskScheduler.Requests;
 
-namespace CH.Tutteli.TaskScheduler.Triggers
+namespace CH.Tutteli.TaskScheduler.BL.Triggers
 {
     public class TriggerAbstractFactory<T>
     {
@@ -33,7 +33,7 @@ namespace CH.Tutteli.TaskScheduler.Triggers
 
         public static TTrigger Create<TTrigger, TRequest>(TRequest request)
             where TTrigger : ITrigger
-            where TRequest : class, ITaskRequest, new()
+            where TRequest : ITaskRequest
         {
             var tRequest = typeof(TRequest);
             var tTrigger = typeof(TTrigger);
@@ -48,14 +48,14 @@ namespace CH.Tutteli.TaskScheduler.Triggers
             }
         }
 
-        public static object Create<TRequest>(TRequest request)
-            where TRequest : class, ITaskRequest, new()
+        public static ITrigger Create<TRequest>(TRequest request) 
+            where TRequest : ITaskRequest
         {
             var tRequest = typeof(TRequest);
             if (mappers.ContainsKey(tRequest))
             {
                 Func<TRequest, object> func = (Func<TRequest, object>)mappers[tRequest].Item2;
-                return func(request);
+                return (ITrigger) func(request);
             }
             else
             {

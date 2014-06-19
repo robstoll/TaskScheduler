@@ -55,7 +55,13 @@ namespace CH.Tutteli.TaskScheduler
                 //container.Register<IRedisClientsManager>(c => new PooledRedisClientManager());
                 //container.Register<IRepository>(c => new RedisRepository(c.Resolve<IRedisClientsManager>()));
 
-                container.Register<ITaskHandler>(c => new TaskHandler(c.Resolve<IRepository>()));
+                container.Register<IScheduler>(c => new ThreadingTimerScheduler());
+                container.Register<ICallbackVerifier>(c => new HardCodedCallbackVerifier());
+                container.Register<ITaskHandler>(c => new TaskHandler(
+                    c.Resolve<IScheduler>(),
+                    c.Resolve<IRepository>(),
+                    c.Resolve<ICallbackVerifier>()
+                ));
 
                 using (var db = container.Resolve<IDbConnectionFactory>().Open())
                 {
@@ -79,7 +85,6 @@ namespace CH.Tutteli.TaskScheduler
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-            int i=0;
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)

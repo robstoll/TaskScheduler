@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using CH.Tutteli.TaskScheduler.DL;
 using CH.Tutteli.TaskScheduler.Requests;
 using CH.Tutteli.TaskScheduler.Test.Utils;
-using CH.Tutteli.TaskScheduler.Triggers;
+using CH.Tutteli.TaskScheduler.BL.Triggers;
 using Moq;
 using NUnit.Framework;
 using ServiceStack.OrmLite;

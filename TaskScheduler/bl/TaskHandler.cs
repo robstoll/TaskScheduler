@@ -1,24 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Threading;
 using System.Web;
 using CH.Tutteli.TaskScheduler.DL;
 using CH.Tutteli.TaskScheduler.Requests;
-using CH.Tutteli.TaskScheduler.Triggers;
+using CH.Tutteli.TaskScheduler.BL.Triggers;
 using ServiceStack.Common.Web;
 using ServiceStack.Redis;
 using ServiceStack.Redis.Generic;
+using System.Reflection;
 
 namespace CH.Tutteli.TaskScheduler.BL
 {
     public class TaskHandler : ITaskHandler
     {
 
+        private IScheduler scheduler;
         private IRepository repository;
+        private ICallbackVerifier callbackVerifier;
+        private static MethodInfo loadTaskMethodInfo = typeof(IRepository).GetMethod("LoadTask");
 
-        public TaskHandler(IRepository theRepository)
+        public TaskHandler(IScheduler theScheduler, IRepository theRepository, ICallbackVerifier theCallbackVerifier)
         {
+            scheduler = theScheduler;
             repository = theRepository;
+            callbackVerifier = theCallbackVerifier;
         }
 
         public TRequest Get<TRequest>(TRequest request) where TRequest : class, ITaskRequest, new()
@@ -36,35 +44,21 @@ namespace CH.Tutteli.TaskScheduler.BL
             }
         }
 
-        public static TTrigger Create<TRequest, TTrigger>(TRequest request)
-            where TTrigger : ITrigger
-            where TRequest : class, ITaskRequest, new()
-        {
-            return default(TTrigger);
-        }
-
         public TaskResponse Create<TRequest>(TRequest request)
                 where TRequest : class, ITaskRequest, new()
         {
-            CheckIfTriggerCouldBeCreated(request);
-            return CreateTask(request);
-        }
-
-        private void CheckIfTriggerCouldBeCreated<TRequest>(TRequest request)
-         where TRequest : class, ITaskRequest, new()
-        {
-            //implicit validation - happens in the specific trigger (invariant check).
-            TriggerFactory.Create(request);
-        }
-
-        private TaskResponse CreateTask<TRequest>(TRequest request) where TRequest : class, ITaskRequest, new()
-        {
             ValidateCreateRequest(request);
+
+            //implicit validation - invariant check
+            var trigger = TriggerFactory.Create(request);
+
+            request.Id = repository.CreateTask(request);
+            scheduler.AddOrUpdate(GetTriggerId(request), trigger, OnCallback);
 
             return new TaskResponse
             {
                 Result = "Task: " + request.Name + " created.",
-                Id = repository.CreateTask(request)
+                Id = request.Id
             };
         }
 
@@ -89,23 +83,52 @@ namespace CH.Tutteli.TaskScheduler.BL
             {
                 throw new ArgumentException("CallbackUrl was null or empty");
             }
+
+            if (!callbackVerifier.IsSecureCallback(request.CallbackUrl)) { 
+                throw new ArgumentException("CallbackUrl has not passed the security check");
+            }
+        }
+
+        private void OnCallback(string id)
+        {
+            var split = id.Split('-');
+            var type = Type.GetType(split[0]);
+            var generic = loadTaskMethodInfo.MakeGenericMethod(type);
+            ITaskRequest request = (ITaskRequest)generic.Invoke(repository, new object[] { long.Parse(split[1]) });
+
+            //who knows, maybe the policy has changed over time
+            if (callbackVerifier.IsSecureCallback(request.CallbackUrl))
+            {
+                var webRequest = HttpWebRequest.Create(request.CallbackUrl);
+                webRequest.Method = "GET";
+                try { 
+                    webRequest.GetResponse();
+                }
+                catch (WebException) {
+                    //TODO logging if something goes wrong
+                }
+            }
+            else
+            {
+                //TODO logging if policy has changed
+            }
         }
 
         public TaskResponse Update<TRequest>(TRequest request)
               where TRequest : class, ITaskRequest, new()
         {
-            CheckIfTriggerCouldBeCreated(request);
-            return UpdateTask(request);
-        }
-
-        private TaskResponse UpdateTask<TRequest>(TRequest request) where TRequest : class, ITaskRequest, new()
-        {
             ValidateUpdateRequest(request);
+
+            //implicit validation - invariant check
+            var trigger = TriggerFactory.Create(request);
+
+            request.Id = repository.UpdateTask(request);
+            scheduler.AddOrUpdate(GetTriggerId(request), trigger, OnCallback);
 
             return new TaskResponse
             {
                 Result = "Task: " + request.Name + " updated.",
-                Id = repository.UpdateTask(request)
+                Id = request.Id
             };
         }
 
@@ -124,10 +147,17 @@ namespace CH.Tutteli.TaskScheduler.BL
             ValidateDeleteRequest(request);
 
             repository.DeleteTask<TRequest>(request.Id);
+            scheduler.Remove(GetTriggerId(request));
+
             return new TaskResponse
             {
                 Result = typeof(TRequest).Name + " with id: " + request.Id + " deleted.",
             };
+        }
+
+        private string GetTriggerId(ITaskRequest request)
+        {
+            return request.GetType().FullName + "-" + request.Id;
         }
 
         private void ValidateDeleteRequest(ITaskRequest request)

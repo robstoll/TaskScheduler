@@ -87,6 +87,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\ThreadingTimerSchedulerTest.cs" />
     <Compile Include="DL\SqlLiteRepositoryTest.cs" />
     <Compile Include="Service References\Soap11\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -98,6 +99,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="TaskSchedulerCallbackTest.cs" />
     <Compile Include="TaskSchedulerSoapServiceIntegrationTest.cs" />
     <Compile Include="Utils\AIntegrationTest.cs" />
     <Compile Include="ISyncReplyClient.cs" />
@@ -105,15 +107,15 @@
     <Compile Include="TaskSchedulerServiceIntegrationTest.cs" />
     <Compile Include="TaskSchedulerSoapServiceMockedRepositoryTest.cs" />
     <Compile Include="TaskSchedulerServiceMockedRepositoryTest.cs" />
-    <Compile Include="Triggers\ARecuringTriggerTest.cs" />
-    <Compile Include="Triggers\DailyTriggerLSPTest.cs" />
-    <Compile Include="Triggers\DailyTriggerTest.cs" />
-    <Compile Include="Triggers\MonthlyReccurenceTest.cs" />
-    <Compile Include="Triggers\MonthlyTriggerLSPTest.cs" />
-    <Compile Include="Triggers\MontlyTriggerTest.cs" />
-    <Compile Include="Triggers\OneTimeTriggerTest.cs" />
-    <Compile Include="Triggers\WeeklyTriggerLSPTest.cs" />
-    <Compile Include="Triggers\WeeklyTriggerTest.cs" />
+    <Compile Include="BL\Triggers\ARecuringTriggerTest.cs" />
+    <Compile Include="BL\Triggers\DailyTriggerLSPTest.cs" />
+    <Compile Include="BL\Triggers\DailyTriggerTest.cs" />
+    <Compile Include="BL\Triggers\MonthlyReccurenceTest.cs" />
+    <Compile Include="BL\Triggers\MonthlyTriggerLSPTest.cs" />
+    <Compile Include="BL\Triggers\MontlyTriggerTest.cs" />
+    <Compile Include="BL\Triggers\OneTimeTriggerTest.cs" />
+    <Compile Include="BL\Triggers\WeeklyTriggerLSPTest.cs" />
+    <Compile Include="BL\Triggers\WeeklyTriggerTest.cs" />
     <Compile Include="Utils\AssertSame.cs" />
     <Compile Include="Utils\IntegrationAppHost.cs" />
     <Compile Include="Utils\IsEqual.cs" />
