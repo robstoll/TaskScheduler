@@ -87,7 +87,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BL\ThreadingTimerSchedulerTest.cs" />
     <Compile Include="DL\SqlLiteRepositoryTest.cs" />
     <Compile Include="Service References\Soap11\Reference.cs">
       <AutoGen>True</AutoGen>
