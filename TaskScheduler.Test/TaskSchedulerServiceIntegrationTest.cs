@@ -168,7 +168,7 @@ namespace CH.Tutteli.TaskScheduler.Test
 
             request.Name = "dummy";
             request.Description = "hm..";
-            request.RecursEveryXWeeks = 890;
+            request.RecursEveryXWeeks = 34;
             var responsePut = SendRequest<TaskResponse>(request, client, "PUT");
             result = SendRequest<WeeklyTaskRequest>(request, client, "GET");
 

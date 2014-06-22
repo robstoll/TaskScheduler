@@ -81,41 +81,6 @@ namespace CH.Tutteli.TaskScheduler.Test.Utils
                 new CH.Tutteli.TaskScheduler.Test.Soap12.SyncReplyClient("WSHttpBinding_ISyncReply", BaseUrl + "/soap12")
             };
         }
-
-		public void SendToEachEndpoint<TRes>(object request, Action<TRes> validate)
-		{
-			SendToEachEndpoint(request, null, validate, null);
-		}
-
-		/// <summary>
-		/// Run the request against each Endpoint
-		/// </summary>
-		/// <typeparam name="TRes"></typeparam>
-		/// <param name="request"></param>
-		/// <param name="validate"></param>
-		/// <param name="httpMethod"></param>
-        public void SendToEachEndpoint<TRes>(object request, string httpMethod, Action<TRes> validate, Action<HttpWebResponse> responseFilter)
-		{
-			using (var xmlClient = new XmlServiceClient(BaseUrl))
-			using (var jsonClient = new JsonServiceClient(BaseUrl))
-			using (var jsvClient = new JsvServiceClient(BaseUrl))
-			{
-				xmlClient.HttpMethod = httpMethod;
-                xmlClient.LocalHttpWebResponseFilter = responseFilter;
-				jsonClient.HttpMethod = httpMethod;
-				jsvClient.HttpMethod = httpMethod;
-
-				var xmlResponse = xmlClient.Send<TRes>(request);
-				if (validate != null) validate(xmlResponse);
-
-				var jsonResponse = jsonClient.Send<TRes>(request);
-				if (validate != null) validate(jsonResponse);
-
-				var jsvResponse = jsvClient.Send<TRes>(request);
-				if (validate != null) validate(jsvResponse);
-			}
-		}
-
 	}
 }
 

@@ -29,7 +29,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             request.Name = name;
-            SendRequest(request, service, "POST", "Name");
+            SendRequestExpectArgumentException(request, service, "POST", "Name");
         }
 
         [Test]
@@ -40,7 +40,7 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             request.Id = 1;
             request.Name = name;
-            SendRequest(request, service, "PUT", "Name");
+            SendRequestExpectArgumentException(request, service, "PUT", "Name");
         }
 
         [Test]
@@ -50,7 +50,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             request.CallbackUrl = callbackUrl;
-            SendRequest(request, service, "POST", "CallbackUrl");
+            SendRequestExpectArgumentException(request, service, "POST", "CallbackUrl");
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             request.Id = 1;
             request.CallbackUrl = callbackUrl;
-            SendRequest(request, service, "PUT", "CallbackUrl");
+            SendRequestExpectArgumentException(request, service, "PUT", "CallbackUrl");
         }
 
         [Test]
@@ -71,7 +71,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             request.CallbackUrl = callbackUrl;
-            SendRequest(request, service, "POST", "CallbackUrl");
+            SendRequestExpectArgumentException(request, service, "POST", "CallbackUrl");
         }
 
         [Test]
@@ -82,7 +82,7 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             request.Id = 1;
             request.CallbackUrl = callbackUrl;
-            SendRequest(request, service, "PUT", "CallbackUrl");
+            SendRequestExpectArgumentException(request, service, "PUT", "CallbackUrl");
         }
 
         [Test]
@@ -92,7 +92,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             request.Id = 1;
-            SendRequest(request, service, "POST", "Id provided");
+            SendRequestExpectArgumentException(request, service, "POST", "Id provided");
         }
 
         [Test]
@@ -101,7 +101,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             [Values(null, "")] string callbackUrl,
             [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
-            SendRequest(request, service, "PUT", "Id not provided");
+            SendRequestExpectArgumentException(request, service, "PUT", "Id not provided");
         }
 
         [Test]
@@ -110,7 +110,7 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             var request = TaskRequestHelper.CreateOneTimeTaskRequest();
             request.Trigger = DateTime.MinValue;
-            SendRequest(request, service, "POST", "TriggerDate");
+            SendRequestExpectArgumentException(request, service, "POST", "TriggerDate");
         }
 
         [Test]
@@ -120,7 +120,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             var request = TaskRequestHelper.CreateOneTimeTaskRequest();
             request.Id = 1;
             request.Trigger = DateTime.MinValue;
-            SendRequest(request, service, "PUT", "TriggerDate");
+            SendRequestExpectArgumentException(request, service, "PUT", "TriggerDate");
         }
 
         [Test]
@@ -129,7 +129,7 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             var request = TaskRequestHelper.CreateDailyTaskRequest();
             request.RecursEveryXDays = -1;
-            SendRequest(request, service, "POST", "RecursEveryXDays");
+            SendRequestExpectArgumentException(request, service, "POST", "RecursEveryXDays");
         }
 
         [Test]
@@ -139,7 +139,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             var request = TaskRequestHelper.CreateDailyTaskRequest();
             request.Id = 1;
             request.RecursEveryXDays = -1;
-            SendRequest(request, service, "PUT", "RecursEveryXDays");
+            SendRequestExpectArgumentException(request, service, "PUT", "RecursEveryXDays");
         }
 
         [Test]
@@ -148,7 +148,7 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             var request = TaskRequestHelper.CreateWeaklyTaskRequest();
             request.RecursEveryXWeeks = -1;
-            SendRequest(request, service, "POST", "RecursEveryXWeeks");
+            SendRequestExpectArgumentException(request, service, "POST", "RecursEveryXWeeks");
         }
 
         [Test]
@@ -158,7 +158,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             var request = TaskRequestHelper.CreateWeaklyTaskRequest();
             request.Id = 1;
             request.RecursEveryXWeeks = -1;
-            SendRequest(request, service, "PUT", "RecursEveryXWeeks");
+            SendRequestExpectArgumentException(request, service, "PUT", "RecursEveryXWeeks");
         }
 
         [Test]
@@ -167,7 +167,7 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             var request = TaskRequestHelper.CreateWeaklyTaskRequest();
             request.TriggerWhenDayOfWeek = null;
-            SendRequest(request, service, "POST", "TriggerWhenDayOfWeek");
+            SendRequestExpectArgumentException(request, service, "POST", "TriggerWhenDayOfWeek");
         }
 
         [Test]
@@ -176,7 +176,7 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             var request = TaskRequestHelper.CreateWeaklyTaskRequest();
             request.TriggerWhenDayOfWeek = new HashSet<DayOfWeek>();
-            SendRequest(request, service, "POST", "TriggerWhenDayOfWeek");
+            SendRequestExpectArgumentException(request, service, "POST", "TriggerWhenDayOfWeek");
         }
 
         [Test]
@@ -186,7 +186,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             var request = TaskRequestHelper.CreateWeaklyTaskRequest();
             request.Id = 1;
             request.TriggerWhenDayOfWeek = null;
-            SendRequest(request, service, "PUT", "TriggerWhenDayOfWeek");
+            SendRequestExpectArgumentException(request, service, "PUT", "TriggerWhenDayOfWeek");
         }
 
         [Test]
@@ -196,7 +196,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             var request = TaskRequestHelper.CreateWeaklyTaskRequest();
             request.Id = 1;
             request.TriggerWhenDayOfWeek = new HashSet<DayOfWeek>();
-            SendRequest(request, service, "PUT", "TriggerWhenDayOfWeek");
+            SendRequestExpectArgumentException(request, service, "PUT", "TriggerWhenDayOfWeek");
         }
 
         [Test]
@@ -205,7 +205,7 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             var request = TaskRequestHelper.CreateMonthlyTaskRequest();
             request.RecursOnMonth = null;
-            SendRequest(request, service, "POST", "RecursOnMonth");
+            SendRequestExpectArgumentException(request, service, "POST", "RecursOnMonth");
         }
 
         [Test]
@@ -214,7 +214,7 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             var request = TaskRequestHelper.CreateMonthlyTaskRequest();
             request.RecursOnMonth = new HashSet<EMonth>();
-            SendRequest(request, service, "POST", "RecursOnMonth");
+            SendRequestExpectArgumentException(request, service, "POST", "RecursOnMonth");
         }
 
         [Test]
@@ -224,7 +224,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             var request = TaskRequestHelper.CreateMonthlyTaskRequest();
             request.Id = 1;
             request.RecursOnMonth = null;
-            SendRequest(request, service, "PUT", "RecursOnMonth");
+            SendRequestExpectArgumentException(request, service, "PUT", "RecursOnMonth");
         }
 
         [Test]
@@ -234,91 +234,88 @@ namespace CH.Tutteli.TaskScheduler.Test
             var request = TaskRequestHelper.CreateMonthlyTaskRequest();
             request.Id = 1;
             request.RecursOnMonth = new HashSet<EMonth>();
-            SendRequest(request, service, "PUT", "RecursOnMonth");
+            SendRequestExpectArgumentException(request, service, "PUT", "RecursOnMonth");
         }
 
         #endregion
 
         #region Post - create a new task
         [Test]
-        public void PostOneTimeTask_Standard_ReturnIdAsDefinedByMock()
+        public void PostOneTimeTask_Standard_ReturnIdAsDefinedByMock(
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             var id = 10;
             var repository = GetRepositoryMock();
             repository.Setup(r => r.CreateTask(It.IsAny<OneTimeTaskRequest>())).Returns(id);
             var request = TaskRequestHelper.CreateOneTimeTaskRequest();
 
-            SendToEachEndpoint<TaskResponse>(request, "POST", response =>
-                {
-                    Assert.That(response.Id, Is.EqualTo(id));
-                    repository.Verify(r => r.CreateTask(It.IsAny<OneTimeTaskRequest>()));
-                },
-                filter =>
+            var response = SendRequest<TaskResponse>(request, service, "POST", filter =>
                 {
                     Assert.That(filter.StatusCode, Is.EqualTo(HttpStatusCode.Created));
                     Assert.That(filter.Headers.Get("Location"), Is.EqualTo(Global.URL_PREFIX + Global.ONE_TIME + "/" + id));
                 });
+
+            Assert.That(response.Id, Is.EqualTo(id));
+            repository.Verify(r => r.CreateTask(It.IsAny<OneTimeTaskRequest>()));
         }
 
         [Test]
-        public void PostDailyTask_Standard_ReturnIdAsDefinedByMock()
+        public void PostDailyTask_Standard_ReturnIdAsDefinedByMock(
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             var id = 12;
             var repository = GetRepositoryMock();
             repository.Setup(r => r.CreateTask(It.IsAny<DailyTaskRequest>())).Returns(id);
             var request = TaskRequestHelper.CreateDailyTaskRequest();
 
-            SendToEachEndpoint<TaskResponse>(request, "POST", response =>
-                {
-                    Assert.That(response.Id, Is.EqualTo(id));
-                    repository.Verify(r => r.CreateTask(It.IsAny<DailyTaskRequest>()));
-                },
-                filter =>
+            var response = SendRequest<TaskResponse>(request, service, "POST", filter =>
                 {
                     Assert.That(filter.StatusCode, Is.EqualTo(HttpStatusCode.Created));
                     Assert.That(filter.Headers.Get("Location"), Is.EqualTo(Global.URL_PREFIX + Global.DAILY + "/" + id));
                 });
+
+
+            Assert.That(response.Id, Is.EqualTo(id));
+            repository.Verify(r => r.CreateTask(It.IsAny<DailyTaskRequest>()));
         }
 
         [Test]
-        public void PostWeeklyTask_Standard_ReturnIdAsDefinedByMock()
+        public void PostWeeklyTask_Standard_ReturnIdAsDefinedByMock(
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             var id = 13;
             var repository = GetRepositoryMock();
             repository.Setup(r => r.CreateTask(It.IsAny<WeeklyTaskRequest>())).Returns(id);
             var request = TaskRequestHelper.CreateWeaklyTaskRequest();
 
-            SendToEachEndpoint<TaskResponse>(request, "POST", response =>
-                {
-                    Assert.That(response.Id, Is.EqualTo(id));
-                    repository.Verify(r => r.CreateTask(It.IsAny<WeeklyTaskRequest>()));
-                },
-                filter =>
+
+            var response = SendRequest<TaskResponse>(request, service, "POST", filter =>
                 {
                     Assert.That(filter.StatusCode, Is.EqualTo(HttpStatusCode.Created));
                     Assert.That(filter.Headers.Get("Location"), Is.EqualTo(Global.URL_PREFIX + Global.WEEKLY + "/" + id));
                 });
+
+            Assert.That(response.Id, Is.EqualTo(id));
+            repository.Verify(r => r.CreateTask(It.IsAny<WeeklyTaskRequest>()));
         }
 
         [Test]
-        public void PostMonthlyTask_Standard_ReturnIdAsDefinedByMock()
+        public void PostMonthlyTask_Standard_ReturnIdAsDefinedByMock(
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             var id = 13;
             var repository = GetRepositoryMock();
             repository.Setup(r => r.CreateTask(It.IsAny<MonthlyTaskRequest>())).Returns(id);
             var request = TaskRequestHelper.CreateMonthlyTaskRequest();
 
-            SendToEachEndpoint<TaskResponse>(request, "POST",
-                response =>
-                {
-                    Assert.That(response.Id, Is.EqualTo(id));
-                    repository.Verify(r => r.CreateTask(It.IsAny<MonthlyTaskRequest>()));
-                },
-                filter =>
-                {
-                    Assert.That(filter.StatusCode, Is.EqualTo(HttpStatusCode.Created));
-                    Assert.That(filter.Headers.Get("Location"), Is.EqualTo(Global.URL_PREFIX + Global.MONTHLY + "/" + id));
-                });
+            var response = SendRequest<TaskResponse>(request, service, "POST", filter =>
+               {
+                   Assert.That(filter.StatusCode, Is.EqualTo(HttpStatusCode.Created));
+                   Assert.That(filter.Headers.Get("Location"), Is.EqualTo(Global.URL_PREFIX + Global.MONTHLY + "/" + id));
+               });
+
+            Assert.That(response.Id, Is.EqualTo(id));
+            repository.Verify(r => r.CreateTask(It.IsAny<MonthlyTaskRequest>()));
         }
 
         #endregion
@@ -326,7 +323,8 @@ namespace CH.Tutteli.TaskScheduler.Test
         #region Put - update an existing one
 
         [Test]
-        public void PutOneTimeTask_Standard_ReturnIdAsDefinedByMock()
+        public void PutOneTimeTask_Standard_ReturnIdAsDefinedByMock(
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             var id = 10;
             var repository = GetRepositoryMock();
@@ -334,20 +332,18 @@ namespace CH.Tutteli.TaskScheduler.Test
             var request = TaskRequestHelper.CreateOneTimeTaskRequest();
             request.Id = id;
 
-            SendToEachEndpoint<TaskResponse>(request, "PUT", response =>
-                {
-                    Assert.That(response.Id, Is.EqualTo(id));
-                    repository.Verify(r => r.UpdateTask(It.Is<OneTimeTaskRequest>(x => x.Id == id)));
-                },
-                filter =>
+            var response = SendRequest<TaskResponse>(request, service, "PUT", filter =>
                 {
                     Assert.That(filter.StatusCode, Is.EqualTo(HttpStatusCode.OK));
                     Assert.That(filter.Headers.AllKeys, Is.Not.Contains("Location"));
                 });
+            Assert.That(response.Id, Is.EqualTo(id));
+            repository.Verify(r => r.UpdateTask(It.Is<OneTimeTaskRequest>(x => x.Id == id)));
         }
 
         [Test]
-        public void PutDailyTask_Standard_ReturnIdAsDefinedByMock()
+        public void PutDailyTask_Standard_ReturnIdAsDefinedByMock(
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             var id = 12;
             var repository = GetRepositoryMock();
@@ -355,20 +351,19 @@ namespace CH.Tutteli.TaskScheduler.Test
             var request = TaskRequestHelper.CreateDailyTaskRequest();
             request.Id = id;
 
-            SendToEachEndpoint<TaskResponse>(request, "PUT", response =>
-                {
-                    Assert.That(response.Id, Is.EqualTo(id));
-                    repository.Verify(r => r.UpdateTask(It.Is<DailyTaskRequest>(x => x.Id == id)));
-                },
-                filter =>
+            var response = SendRequest<TaskResponse>(request, service, "PUT", filter =>
                 {
                     Assert.That(filter.StatusCode, Is.EqualTo(HttpStatusCode.OK));
                     Assert.That(filter.Headers.AllKeys, Is.Not.Contains("Location"));
                 });
+
+            Assert.That(response.Id, Is.EqualTo(id));
+            repository.Verify(r => r.UpdateTask(It.Is<DailyTaskRequest>(x => x.Id == id)));
         }
 
         [Test]
-        public void PutWeeklyTask_Standard_ReturnIdAsDefinedByMock()
+        public void PutWeeklyTask_Standard_ReturnIdAsDefinedByMock(
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             var id = 13;
             var repository = GetRepositoryMock();
@@ -376,20 +371,19 @@ namespace CH.Tutteli.TaskScheduler.Test
             var request = TaskRequestHelper.CreateWeaklyTaskRequest();
             request.Id = id;
 
-            SendToEachEndpoint<TaskResponse>(request, "PUT", response =>
-                {
-                    Assert.That(response.Id, Is.EqualTo(id));
-                    repository.Verify(r => r.UpdateTask(It.Is<WeeklyTaskRequest>(x => x.Id == id)));
-                },
-                filter =>
+            var response = SendRequest<TaskResponse>(request, service, "PUT", filter =>
                 {
                     Assert.That(filter.StatusCode, Is.EqualTo(HttpStatusCode.OK));
                     Assert.That(filter.Headers.AllKeys, Is.Not.Contains("Location"));
                 });
+
+            Assert.That(response.Id, Is.EqualTo(id));
+            repository.Verify(r => r.UpdateTask(It.Is<WeeklyTaskRequest>(x => x.Id == id)));
         }
 
         [Test]
-        public void PutMonthlyTask_Standard_ReturnIdAsDefinedByMock()
+        public void PutMonthlyTask_Standard_ReturnIdAsDefinedByMock(
+            [ValueSource("GetDifferentRestClients")] ServiceClientBase service)
         {
             var id = 13;
             var repository = GetRepositoryMock();
@@ -397,23 +391,20 @@ namespace CH.Tutteli.TaskScheduler.Test
             var request = TaskRequestHelper.CreateMonthlyTaskRequest();
             request.Id = id;
 
-            SendToEachEndpoint<TaskResponse>(request, "PUT",
-                response =>
-                {
-                    Assert.That(response.Id, Is.EqualTo(id));
-                    repository.Verify(r => r.UpdateTask(It.Is<MonthlyTaskRequest>(x => x.Id == id)));
-                },
-                filter =>
-                {
-                    Assert.That(filter.StatusCode, Is.EqualTo(HttpStatusCode.OK));
-                    Assert.That(filter.Headers.AllKeys, Is.Not.Contains("Location"));
-                });
+            var response = SendRequest<TaskResponse>(request, service, "PUT", filter =>
+            {
+                Assert.That(filter.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+                Assert.That(filter.Headers.AllKeys, Is.Not.Contains("Location"));
+            });
+
+            Assert.That(response.Id, Is.EqualTo(id));
+            repository.Verify(r => r.UpdateTask(It.Is<MonthlyTaskRequest>(x => x.Id == id)));
         }
 
         #endregion
 
 
-        private static void SendRequest(ITaskRequest request, ServiceClientBase service, string httpMethod, string wrongArgument)
+        private static void SendRequestExpectArgumentException(ITaskRequest request, ServiceClientBase service, string httpMethod, string wrongArgument)
         {
             try
             {
