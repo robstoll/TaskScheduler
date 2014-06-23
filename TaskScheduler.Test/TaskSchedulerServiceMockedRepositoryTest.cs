@@ -18,7 +18,7 @@ using ServiceStack.WebHost.Endpoints;
 namespace CH.Tutteli.TaskScheduler.Test
 {
     [TestFixture]
-    public class TaskSchedulerServiceMockedRepositoryTest : AIntegrationTest
+    public class TaskSchedulerServiceMockedRepositoryTest : ARestIntegrationTest
     {
 
         #region validation errors

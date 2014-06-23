@@ -1,7 +1,6 @@
 ﻿
 using System;
 using System.Collections.Generic;
-using CH.Tutteli.TaskScheduler.DL;
 using CH.Tutteli.TaskScheduler.Requests;
 using CH.Tutteli.TaskScheduler.Test.Utils;
 using CH.Tutteli.TaskScheduler.BL.Triggers;
@@ -12,7 +11,7 @@ using ServiceStack.WebHost.Endpoints;
 namespace CH.Tutteli.TaskScheduler.Test
 {
     [TestFixture]
-    class TaskSchedulerSoapServiceIntergationTest : AIntegrationTest
+    class TaskSchedulerSoapServiceIntergationTest : ASoapIntegrationTest
     {
 
         [SetUp]

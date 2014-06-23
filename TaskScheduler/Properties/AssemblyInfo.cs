@@ -36,5 +36,4 @@ using System.Runtime.Serialization;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
 [assembly: ContractNamespace("http://schemas.tutteli.ch/types", ClrNamespace = "CH.Tutteli.TaskScheduler")]
-[assembly: ContractNamespace("http://schemas.tutteli.ch/types", ClrNamespace = "CH.Tutteli.TaskScheduler.Requests")]
 

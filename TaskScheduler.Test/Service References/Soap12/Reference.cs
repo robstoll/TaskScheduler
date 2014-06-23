@@ -17,8 +17,6 @@ namespace CH.Tutteli.TaskScheduler.Test.Soap12 {
         
         // CODEGEN: Generating message contract since the operation GetOneTimeTask is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/GetOneTimeTask", ReplyAction="*")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CH.Tutteli.TaskScheduler.Requests.PostOneTimeTask))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CH.Tutteli.TaskScheduler.Requests.PutOneTimeTask))]
         CH.Tutteli.TaskScheduler.Test.Soap12.GetOneTimeTaskResponse GetOneTimeTask(CH.Tutteli.TaskScheduler.Test.Soap12.GetOneTimeTaskRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/GetOneTimeTask", ReplyAction="*")]
@@ -26,8 +24,6 @@ namespace CH.Tutteli.TaskScheduler.Test.Soap12 {
         
         // CODEGEN: Generating message contract since the operation GetDailyTask is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/GetDailyTask", ReplyAction="*")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CH.Tutteli.TaskScheduler.Requests.PostDailyTask))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CH.Tutteli.TaskScheduler.Requests.PutDailyTask))]
         CH.Tutteli.TaskScheduler.Test.Soap12.GetDailyTaskResponse GetDailyTask(CH.Tutteli.TaskScheduler.Test.Soap12.GetDailyTaskRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/GetDailyTask", ReplyAction="*")]
@@ -35,8 +31,6 @@ namespace CH.Tutteli.TaskScheduler.Test.Soap12 {
         
         // CODEGEN: Generating message contract since the operation GetWeeklyTask is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/GetWeeklyTask", ReplyAction="*")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CH.Tutteli.TaskScheduler.Requests.PostWeeklyTask))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CH.Tutteli.TaskScheduler.Requests.PutWeeklyTask))]
         CH.Tutteli.TaskScheduler.Test.Soap12.GetWeeklyTaskResponse GetWeeklyTask(CH.Tutteli.TaskScheduler.Test.Soap12.GetWeeklyTaskRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/GetWeeklyTask", ReplyAction="*")]
@@ -44,8 +38,6 @@ namespace CH.Tutteli.TaskScheduler.Test.Soap12 {
         
         // CODEGEN: Generating message contract since the operation GetMonthlyTask is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/GetMonthlyTask", ReplyAction="*")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CH.Tutteli.TaskScheduler.Requests.PostMonthlyTask))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CH.Tutteli.TaskScheduler.Requests.PutMonthlyTask))]
         CH.Tutteli.TaskScheduler.Test.Soap12.GetMonthlyTaskResponse GetMonthlyTask(CH.Tutteli.TaskScheduler.Test.Soap12.GetMonthlyTaskRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://schemas.servicestack.net/types/GetMonthlyTask", ReplyAction="*")]

@@ -13,7 +13,7 @@ using ServiceStack.ServiceInterface;
 
 namespace CH.Tutteli.TaskScheduler
 {
-    public class TaskSchedulerService : Service
+    public class TaskSchedulerService : Service, ITaskSchedulerService
     {
 
         private ITaskHandler taskHandler;

@@ -115,46 +115,43 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BL\HardCodedCallbackVerifier.cs" />
-    <Compile Include="BL\ICallbackVerifier.cs" />
-    <Compile Include="BL\ITaskHandler.cs" />
-    <Compile Include="BL\IScheduler.cs" />
-    <Compile Include="BL\TaskHandler.cs" />
-    <Compile Include="BL\ThreadingTimerScheduler.cs" />
-    <Compile Include="DL\IRepository.cs" />
-    <Compile Include="DL\RedisRepository.cs" />
-    <Compile Include="DL\SqlLiteRepository.cs" />
-    <Compile Include="DL\Task.cs" />
-    <Compile Include="Requests\IRecurringTaskRequest.cs" />
-    <Compile Include="Requests\ITaskRequest.cs" />
-    <Compile Include="Requests\OneTimeTaskRequest.cs" />
-    <Compile Include="Requests\MonthlyTaskRequest.cs" />
-    <Compile Include="Requests\DailyTaskRequest.cs" />
-    <Compile Include="Requests\SoapDailyTaskRequest.cs" />
-    <Compile Include="Requests\SoapMonthlyTaskRequest.cs" />
-    <Compile Include="Requests\SoapOneTimeTaskRequest.cs" />
-    <Compile Include="Requests\SoapTaskResponse.cs" />
-    <Compile Include="Requests\SoapWeeklyTaskRequest.cs" />
+    <Compile Include="ITaskSchedulerService.cs" />
+    <Compile Include="ITaskSchedulerSoapService.cs" />
     <Compile Include="TaskSchedulerSoapService.cs" />
-    <Compile Include="BL\Triggers\ARecuringTrigger.cs" />
-    <Compile Include="BL\Triggers\DailyTrigger.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="BL\Triggers\ITrigger.cs" />
-    <Compile Include="BL\Triggers\NoNextTriggerException.cs" />
-    <Compile Include="BL\Triggers\MonthlyTrigger.cs" />
-    <Compile Include="BL\Triggers\MonthlyRecurrence.cs" />
-    <Compile Include="BL\Triggers\OneTimeTrigger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Requests\TaskResponse.cs" />
     <Compile Include="TaskSchedulerService.cs" />
-    <Compile Include="BL\Triggers\TriggerFactory.cs" />
-    <Compile Include="BL\Triggers\WeeklyTrigger.cs" />
-    <Compile Include="Requests\WeeklyTaskRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TaskScheduler.BL.Interfaces\TaskScheduler.BL.Interfaces.csproj">
+      <Project>{b7ee3fd8-db1f-41c8-a51b-55a511f8e920}</Project>
+      <Name>TaskScheduler.BL.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskScheduler.BL\TaskScheduler.BL.csproj">
+      <Project>{0b6cd8c3-3fff-49c9-a9d3-d7f87f5bf2ce}</Project>
+      <Name>TaskScheduler.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskScheduler.DL.Interface\TaskScheduler.DL.Interfaces.csproj">
+      <Project>{4d520ec7-e8f8-4172-b96b-4f1730144aeb}</Project>
+      <Name>TaskScheduler.DL.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskScheduler.DL\TaskScheduler.DL.SqlLite.csproj">
+      <Project>{208f6c4f-b43b-4fe4-afe1-c2a07bae99ff}</Project>
+      <Name>TaskScheduler.DL.SqlLite</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskScheduler.Requests.Soap\TaskScheduler.Requests.Soap.csproj">
+      <Project>{1d061554-0ae7-41eb-8400-f1920238ccac}</Project>
+      <Name>TaskScheduler.Requests.Soap</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskScheduler.Requests\TaskScheduler.Requests.csproj">
+      <Project>{3ebedb4a-5f8b-4359-9ecc-d97ef1e6affb}</Project>
+      <Name>TaskScheduler.Requests</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

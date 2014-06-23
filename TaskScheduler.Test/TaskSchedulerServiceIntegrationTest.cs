@@ -17,7 +17,7 @@ using ServiceStack.WebHost.Endpoints;
 namespace CH.Tutteli.TaskScheduler.Test
 {
     [TestFixture]
-    public class TaskSchedulerServiceIntegrationTest : AIntegrationTest
+    public class TaskSchedulerServiceIntegrationTest : ARestIntegrationTest
     {
 
         [SetUp]

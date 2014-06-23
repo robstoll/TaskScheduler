@@ -23,7 +23,7 @@ using System.Diagnostics;
 namespace CH.Tutteli.TaskScheduler.Test
 {
     [TestFixture]
-    public class TaskSchedulerCallbackTest : AIntegrationTest
+    public class TaskSchedulerCallbackTest : ARestIntegrationTest
     {
         private ITaskHandler taskHandler;
 
@@ -80,13 +80,13 @@ namespace CH.Tutteli.TaskScheduler.Test
                 Name = "name",
                 Description = "descr",
                 CallbackUrl = BaseUrl + Global.URL_PREFIX + Global.ONE_TIME + "/" + id,
-                StartDate = DateTime.Now.AddMilliseconds(1000),
+                StartDate = DateTime.Now.AddMilliseconds(1100),
                 EndDate = DateTime.Now.AddMinutes(2),
                 RecursEveryXDays = 1
             };
 
             var response = SendRequest<TaskResponse>(request, client, "POST");
-            Thread.Sleep(1200);
+            Thread.Sleep(1300);
 
             mockedTaskHandler.Verify(t => t.Get<OneTimeTaskRequest>(It.Is<OneTimeTaskRequest>(o => o.Id == id)));
         }
@@ -103,14 +103,14 @@ namespace CH.Tutteli.TaskScheduler.Test
                 Name = "name",
                 Description = "descr",
                 CallbackUrl = BaseUrl + Global.URL_PREFIX + Global.ONE_TIME + "/" + id,
-                StartDate = DateTime.Now.AddMilliseconds(1000),
+                StartDate = DateTime.Now.AddMilliseconds(1100),
                 EndDate = DateTime.Now.AddMinutes(2),
                 RecursEveryXWeeks = 1,
                 TriggerWhenDayOfWeek = new HashSet<DayOfWeek> { DateTime.Now.DayOfWeek }
             };
 
             var response = SendRequest<TaskResponse>(request, client, "POST");
-            Thread.Sleep(1200);
+            Thread.Sleep(1300);
 
             mockedTaskHandler.Verify(t => t.Get<OneTimeTaskRequest>(It.Is<OneTimeTaskRequest>(o => o.Id == id)));
         }
@@ -126,14 +126,14 @@ namespace CH.Tutteli.TaskScheduler.Test
                 Name = "name",
                 Description = "descr",
                 CallbackUrl = BaseUrl + Global.URL_PREFIX + Global.ONE_TIME + "/" + id,
-                StartDate = DateTime.Now.AddMilliseconds(1000),
+                StartDate = DateTime.Now.AddMilliseconds(1100),
                 EndDate = DateTime.Now.AddMinutes(2),
                 RecursOnMonth = new HashSet<EMonth> { (EMonth)DateTime.Now.Month},
                 RecursOnDayOfMonth = new HashSet<EDayOfMonth> { (EDayOfMonth) DateTime.Now.Day}
             };
 
             var response = SendRequest<TaskResponse>(request, client, "POST");
-            Thread.Sleep(1200);
+            Thread.Sleep(1300);
 
             mockedTaskHandler.Verify(t => t.Get<OneTimeTaskRequest>(It.Is<OneTimeTaskRequest>(o => o.Id == id)));
         }
@@ -183,7 +183,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             request.CallbackUrl = BaseUrl + Global.URL_PREFIX + Global.DAILY + "/" + id;
             request.StartDate = DateTime.Now.AddMilliseconds(1000);
             SendRequest<TaskResponse>(request, client, "PUT");
-            Thread.Sleep(1200);
+            Thread.Sleep(1300);
 
             mockedTaskHandler.Verify(t => t.Get<DailyTaskRequest>(It.Is<DailyTaskRequest>(o => o.Id == id)));
         }
@@ -211,7 +211,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             request.CallbackUrl = BaseUrl + Global.URL_PREFIX + Global.DAILY + "/" + id;
             request.StartDate = DateTime.Now.AddMilliseconds(1000);
             SendRequest<TaskResponse>(request, client, "PUT");
-            Thread.Sleep(1200);
+            Thread.Sleep(1300);
 
             mockedTaskHandler.Verify(t => t.Get<DailyTaskRequest>(It.Is<DailyTaskRequest>(o => o.Id == id)));
         }
@@ -238,7 +238,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             request.CallbackUrl = BaseUrl + Global.URL_PREFIX + Global.DAILY + "/" + id;
             request.StartDate = DateTime.Now.AddMilliseconds(1000);
             SendRequest<TaskResponse>(request, client, "PUT");
-            Thread.Sleep(1200);
+            Thread.Sleep(1300);
 
             mockedTaskHandler.Verify(t => t.Get<DailyTaskRequest>(It.Is<DailyTaskRequest>(o => o.Id == id)));
         }

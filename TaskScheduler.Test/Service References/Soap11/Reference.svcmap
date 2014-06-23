@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2f49aa67-66f0-499b-bdca-eb37ec263b1a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="1b18c1b8-632e-4b47-bcdb-dad55f727f23" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,7 +22,7 @@
     <MetadataSource Address="http://localhost:4658/soap11" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Soap11.wsdl" MetadataType="Wsdl" ID="1c80fc3d-e9fc-43d3-bf17-6961e808c4fd" SourceId="1" SourceUrl="http://localhost:4658/soap11" />
+    <MetadataFile FileName="Soap11.wsdl" MetadataType="Wsdl" ID="620a674d-1f58-4c54-8c8f-19eec9efdd05" SourceId="1" SourceUrl="http://localhost:4658/soap11" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

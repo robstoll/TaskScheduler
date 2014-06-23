@@ -8,7 +8,7 @@ using ServiceStack.ServiceInterface;
 
 namespace CH.Tutteli.TaskScheduler
 {
-    public class TaskSchedulerSoapService : Service
+    public class TaskSchedulerSoapService : Service, ITaskSchedulerSoapService
     {
 
         private ITaskHandler taskHandler;

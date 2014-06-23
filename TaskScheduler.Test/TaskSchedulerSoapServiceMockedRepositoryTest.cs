@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CH.Tutteli.TaskScheduler.DL;
 using CH.Tutteli.TaskScheduler.Requests;
 using CH.Tutteli.TaskScheduler.Test.Utils;
@@ -9,7 +8,7 @@ using ServiceStack.WebHost.Endpoints;
 namespace CH.Tutteli.TaskScheduler.Test
 {
     [TestFixture]
-    class TaskSchedulerSoapServiceMockedRepositoryTest : AIntegrationTest
+    class TaskSchedulerSoapServiceMockedRepositoryTest : ASoapIntegrationTest
     {
 
         #region validation errors
@@ -17,7 +16,7 @@ namespace CH.Tutteli.TaskScheduler.Test
         [Test]
         public void PostOneTimeTask_NameNullOrEmpty_Return400(
             [Values(null, "")] string name,
-            [ValueSource("GetDifferentServices")] ISyncReplyClient service)
+            [ValueSource("GetDifferentSaopClients")] ISyncReplyClient service)
         {
             var request = new PostOneTimeTask{OneTimeTaskRequest =  TaskRequestHelper.CreateOneTimeTaskRequest()};
             request.OneTimeTaskRequest.Name = name;
@@ -31,7 +30,7 @@ namespace CH.Tutteli.TaskScheduler.Test
         [Test]
         public void PutOneTimeTask_NameNullOrEmpty_Return400(
             [Values(null, "")] string name,
-            [ValueSource("GetDifferentServices")] ISyncReplyClient service)
+            [ValueSource("GetDifferentSaopClients")] ISyncReplyClient service)
         {
             var request = new PutOneTimeTask { OneTimeTaskRequest = TaskRequestHelper.CreateOneTimeTaskRequest() };
             request.OneTimeTaskRequest.Id = 1;
@@ -51,7 +50,7 @@ namespace CH.Tutteli.TaskScheduler.Test
 
         [Test]
         public void PostOneTimeTask_Standard_ReturnIdAsDefinedByMock(
-            [ValueSource("GetDifferentServices")] ISyncReplyClient service)
+            [ValueSource("GetDifferentSaopClients")] ISyncReplyClient service)
         {
             var id = 10;
             var repository = GetRepositoryMock();
@@ -73,7 +72,7 @@ namespace CH.Tutteli.TaskScheduler.Test
 
         [Test]
         public void PutOneTimeTask_Standard_ReturnIdAsDefinedByMock(
-            [ValueSource("GetDifferentServices")] ISyncReplyClient service)
+            [ValueSource("GetDifferentSaopClients")] ISyncReplyClient service)
         {
             var id = 10;
             var repository = GetRepositoryMock();
@@ -101,28 +100,6 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             return new MockedRepositoryAppHost();
         }
-
-        public IEnumerable<ISyncReplyClient> GetDifferentServices()
-        {
-            return new ISyncReplyClient[]{
-                new CH.Tutteli.TaskScheduler.Test.Soap11.SyncReplyClient("BasicHttpBinding_ISyncReply", BaseUrl+"/soap11"),
-                new CH.Tutteli.TaskScheduler.Test.Soap12.SyncReplyClient("WSHttpBinding_ISyncReply", BaseUrl + "/soap12")
-            };
-        }
-    }
-}
-
-namespace CH.Tutteli.TaskScheduler.Test.Soap11
-{
-    public partial class SyncReplyClient : ISyncReplyClient
-    {
-    }
-}
-
-namespace CH.Tutteli.TaskScheduler.Test.Soap12
-{
-    public partial class SyncReplyClient : ISyncReplyClient
-    {
     }
 }
 

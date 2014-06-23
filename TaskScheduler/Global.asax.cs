@@ -25,8 +25,7 @@ namespace CH.Tutteli.TaskScheduler
 
         public class TaskSchedulerAppHost : AppHostBase
         {
-            //Tell Service Stack the name of your application and where to find your web services
-            public TaskSchedulerAppHost() : base("Task Scheduler Web Services", typeof(TaskSchedulerService).Assembly) { }
+            public TaskSchedulerAppHost() : base("Task Scheduler Web Services", typeof(ITaskSchedulerService).Assembly) { }
 
             public override void Configure(Funq.Container container)
             {
@@ -73,7 +72,6 @@ namespace CH.Tutteli.TaskScheduler
             }
         }
 
-        //Initialize your application singleton
         protected void Application_Start(object sender, EventArgs e)
         {
             new TaskSchedulerAppHost().Init();
