@@ -52,6 +52,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ARecurringTaskRequest.cs" />
+    <Compile Include="ATaskRequest.cs" />
     <Compile Include="DailyTaskRequest.cs" />
     <Compile Include="MonthlyTaskRequest.cs" />
     <Compile Include="OneTimeTaskRequest.cs" />

@@ -57,7 +57,7 @@ namespace CH.Tutteli.TaskScheduler.Test
                 Name = "name",
                 Description = "descr",
                 CallbackUrl = BaseUrl + "task/one-time/" + id,
-                Trigger = DateTime.Now.AddMilliseconds(1000)
+                Trigger = DateTime.Now.AddMilliseconds(1200)
             };
             
             var response = SendRequest<TaskResponse>(request, client, "POST");
@@ -92,7 +92,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             };
 
             var response = SendRequest<TaskResponse>(request, client, "POST");
-            Thread.Sleep(1300);
+            Thread.Sleep(1500);
 
             mockedTaskHandler.Verify(t => t.Get<OneTimeTaskRequest>(It.Is<OneTimeTaskRequest>(o => o.Id == id)));
         }
@@ -116,7 +116,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             };
 
             var response = SendRequest<TaskResponse>(request, client, "POST");
-            Thread.Sleep(1300);
+            Thread.Sleep(1500);
 
             mockedTaskHandler.Verify(t => t.Get<OneTimeTaskRequest>(It.Is<OneTimeTaskRequest>(o => o.Id == id)));
         }
@@ -139,7 +139,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             };
 
             var response = SendRequest<TaskResponse>(request, client, "POST");
-            Thread.Sleep(1300);
+            Thread.Sleep(1500);
 
             mockedTaskHandler.Verify(t => t.Get<OneTimeTaskRequest>(It.Is<OneTimeTaskRequest>(o => o.Id == id)));
         }
@@ -187,9 +187,9 @@ namespace CH.Tutteli.TaskScheduler.Test
             var response = SendRequest<TaskResponse>(request, client, "POST");
             request.Id = response.Id;
             request.CallbackUrl = BaseUrl + Global.URL_PREFIX + Global.DAILY + "/" + id;
-            request.StartDate = DateTime.Now.AddMilliseconds(1000);
+            request.StartDate = DateTime.Now.AddMilliseconds(1200);
             SendRequest<TaskResponse>(request, client, "PUT");
-            Thread.Sleep(1300);
+            Thread.Sleep(1500);
 
             mockedTaskHandler.Verify(t => t.Get<DailyTaskRequest>(It.Is<DailyTaskRequest>(o => o.Id == id)));
         }
@@ -215,9 +215,9 @@ namespace CH.Tutteli.TaskScheduler.Test
             var response = SendRequest<TaskResponse>(request, client, "POST");
             request.Id = response.Id;
             request.CallbackUrl = BaseUrl + Global.URL_PREFIX + Global.DAILY + "/" + id;
-            request.StartDate = DateTime.Now.AddMilliseconds(1000);
+            request.StartDate = DateTime.Now.AddMilliseconds(1200);
             SendRequest<TaskResponse>(request, client, "PUT");
-            Thread.Sleep(1300);
+            Thread.Sleep(1500);
 
             mockedTaskHandler.Verify(t => t.Get<DailyTaskRequest>(It.Is<DailyTaskRequest>(o => o.Id == id)));
         }
@@ -242,9 +242,9 @@ namespace CH.Tutteli.TaskScheduler.Test
             var response = SendRequest<TaskResponse>(request, client, "POST");
             request.Id = response.Id;
             request.CallbackUrl = BaseUrl + Global.URL_PREFIX + Global.DAILY + "/" + id;
-            request.StartDate = DateTime.Now.AddMilliseconds(1000);
+            request.StartDate = DateTime.Now.AddMilliseconds(1200);
             SendRequest<TaskResponse>(request, client, "PUT");
-            Thread.Sleep(1300);
+            Thread.Sleep(1500);
 
             mockedTaskHandler.Verify(t => t.Get<DailyTaskRequest>(It.Is<DailyTaskRequest>(o => o.Id == id)));
         }

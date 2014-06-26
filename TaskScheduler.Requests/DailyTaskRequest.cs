@@ -11,41 +11,8 @@ namespace CH.Tutteli.TaskScheduler.Requests
 {
     [Restrict(EndpointAttributes.Any ^ EndpointAttributes.Soap11 ^ EndpointAttributes.Soap12)]
     [DataContract]
-    public class DailyTaskRequest : IRecurringTaskRequest, IReturn<TaskResponse>, IReturn<DailyTaskRequest>
+    public class DailyTaskRequest : ARecurringTaskRequest, IReturn<TaskResponse>, IReturn<DailyTaskRequest>
     {
-
-        #region general properties - code duplication in all request objects
-
-        [DataMember]
-        public long Id { get; set; }
-
-        [DataMember]
-        public DateTime DateCreated { get; set; }
-
-        [DataMember]
-        public DateTime DateUpdated { get; set; }
-
-        [DataMember]
-        public string Name { get; set; }
-
-        [DataMember]
-        public string Description { get; set; }
-
-        [DataMember]
-        public string CallbackUrl { get; set; }
-
-        #endregion
-
-        #region recurring task properties - code duplication in daily- , weakly- and monthly-task-request
-
-        [DataMember]
-        public DateTime StartDate { get; set; }
-
-        [DataMember]
-        public DateTime EndDate { get; set; }
-
-        #endregion
-
         [DataMember]
         public int RecursEveryXDays { get; set; }
 
