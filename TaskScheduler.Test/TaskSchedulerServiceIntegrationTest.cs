@@ -13,6 +13,8 @@ using ServiceStack.OrmLite;
 using ServiceStack.Service;
 using ServiceStack.ServiceClient.Web;
 using ServiceStack.WebHost.Endpoints;
+using CH.Tutteli.TaskScheduler.Common;
+using CH.Tutteli.TaskScheduler.DL.Dtos;
 
 namespace CH.Tutteli.TaskScheduler.Test
 {
@@ -25,10 +27,10 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             using (var db = appHost.TryResolve<IDbConnectionFactory>().Open())
             {
-                db.DropAndCreateTable<OneTimeTaskRequest>();
-                db.DropAndCreateTable<DailyTaskRequest>();
-                db.DropAndCreateTable<WeeklyTaskRequest>();
-                db.DropAndCreateTable<MonthlyTaskRequest>();
+                db.DropAndCreateTable<OneTimeTaskDto>();
+                db.DropAndCreateTable<DailyTaskDto>();
+                db.DropAndCreateTable<WeeklyTaskDto>();
+                db.DropAndCreateTable<MonthlyTaskDto>();
             }
         }
 
@@ -39,7 +41,7 @@ namespace CH.Tutteli.TaskScheduler.Test
         public void PostOneTimeTask_NothingDefined_ReturnId1(
             [ValueSource("GetDifferentRestClients")] ServiceClientBase client)
         {
-            var request = TaskRequestHelper.CreateOneTimeTaskRequest();
+            var request = TaskHelper.CreateOneTimeTaskRequest();
             var id = 1;
 
             var response = SendRequest<TaskResponse>(request, client, "POST", filter =>
@@ -55,7 +57,7 @@ namespace CH.Tutteli.TaskScheduler.Test
         public void PostDailyTimeTask_NothingDefined_ReturnId1(
             [ValueSource("GetDifferentRestClients")] ServiceClientBase client)
         {
-            var request = TaskRequestHelper.CreateDailyTaskRequest();
+            var request = TaskHelper.CreateDailyTaskRequest();
             var id = 1;
 
             var response = SendRequest<TaskResponse>(request, client, "POST", filter =>
@@ -72,7 +74,7 @@ namespace CH.Tutteli.TaskScheduler.Test
         public void PostWeeklyTimeTask_NothingDefined_ReturnId1(
             [ValueSource("GetDifferentRestClients")] ServiceClientBase client)
         {
-            var request = TaskRequestHelper.CreateWeaklyTaskRequest();
+            var request = TaskHelper.CreateWeaklyTaskRequest();
             var id = 1;
 
             var response = SendRequest<TaskResponse>(request, client, "POST", filter =>
@@ -88,7 +90,7 @@ namespace CH.Tutteli.TaskScheduler.Test
         public void PostMonthlyTimeTask_NothingDefined_ReturnId1(
             [ValueSource("GetDifferentRestClients")] ServiceClientBase client)
         {
-            var request = TaskRequestHelper.CreateMonthlyTaskRequest();
+            var request = TaskHelper.CreateMonthlyTaskRequest();
             var id = 1;
 
             var response = SendRequest<TaskResponse>(request, client, "POST", filter =>
@@ -109,7 +111,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             [ValueSource("GetDifferentRestClients")] ServiceClientBase client)
         {
             var id = 1;
-            var request = TaskRequestHelper.CreateOneTimeTaskRequest();
+            var request = TaskHelper.CreateOneTimeTaskRequest();
 
             var resultId = SendRequest<TaskResponse>(request, client, "POST");
 
@@ -132,7 +134,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             [ValueSource("GetDifferentRestClients")] ServiceClientBase client)
         {
             var id = 1;
-            var request = TaskRequestHelper.CreateDailyTaskRequest();
+            var request = TaskHelper.CreateDailyTaskRequest();
 
             var resultId = SendRequest<TaskResponse>(request, client, "POST");
             request.Id = resultId.Id;
@@ -157,7 +159,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             [ValueSource("GetDifferentRestClients")] ServiceClientBase client)
         {
             var id = 1;
-            var request = TaskRequestHelper.CreateWeaklyTaskRequest();
+            var request = TaskHelper.CreateWeaklyTaskRequest();
 
             var resultId = SendRequest<TaskResponse>(request, client, "POST");
             request.Id = resultId.Id;
@@ -181,7 +183,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             [ValueSource("GetDifferentRestClients")] ServiceClientBase client)
         {
             var id = 1;
-            var request = TaskRequestHelper.CreateMonthlyTaskRequest();
+            var request = TaskHelper.CreateMonthlyTaskRequest();
 
             var resultId = SendRequest<TaskResponse>(request, client, "POST");
             request.Id = resultId.Id;
@@ -209,7 +211,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             [ValueSource("GetDifferentRestClients")] ServiceClientBase client)
         {
             var id = 1;
-            var request = TaskRequestHelper.CreateOneTimeTaskRequest();
+            var request = TaskHelper.CreateOneTimeTaskRequest();
 
             var resultId = SendRequest<TaskResponse>(request, client, "POST");
 
@@ -239,7 +241,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             [ValueSource("GetDifferentRestClients")] ServiceClientBase client)
         {
             var id = 1;
-            var request = TaskRequestHelper.CreateDailyTaskRequest();
+            var request = TaskHelper.CreateDailyTaskRequest();
 
             var resultId = SendRequest<TaskResponse>(request, client, "POST");
 
@@ -270,7 +272,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             [ValueSource("GetDifferentRestClients")] ServiceClientBase client)
         {
             var id = 1;
-            var request = TaskRequestHelper.CreateWeaklyTaskRequest();
+            var request = TaskHelper.CreateWeaklyTaskRequest();
 
             var resultId = SendRequest<TaskResponse>(request, client, "POST");
 
@@ -301,7 +303,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             [ValueSource("GetDifferentRestClients")] ServiceClientBase client)
         {
             var id = 1;
-            var request = TaskRequestHelper.CreateMonthlyTaskRequest();
+            var request = TaskHelper.CreateMonthlyTaskRequest();
 
             var resultId = SendRequest<TaskResponse>(request, client, "POST");
 

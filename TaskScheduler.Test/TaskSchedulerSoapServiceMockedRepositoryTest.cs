@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using CH.Tutteli.TaskScheduler.DL;
+using CH.Tutteli.TaskScheduler.DL.Dtos;
+using CH.Tutteli.TaskScheduler.DL.Interfaces;
 using CH.Tutteli.TaskScheduler.Requests;
 using CH.Tutteli.TaskScheduler.Test.Utils;
 using Moq;
@@ -18,7 +20,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             [Values(null, "")] string name,
             [ValueSource("GetDifferentSaopClients")] ISyncReplyClient service)
         {
-            var request = new PostOneTimeTask{OneTimeTaskRequest =  TaskRequestHelper.CreateOneTimeTaskRequest()};
+            var request = new PostOneTimeTask{OneTimeTaskRequest =  TaskHelper.CreateOneTimeTaskRequest()};
             request.OneTimeTaskRequest.Name = name;
 
             var response = service.PostOneTimeTask(request);
@@ -32,7 +34,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             [Values(null, "")] string name,
             [ValueSource("GetDifferentSaopClients")] ISyncReplyClient service)
         {
-            var request = new PutOneTimeTask { OneTimeTaskRequest = TaskRequestHelper.CreateOneTimeTaskRequest() };
+            var request = new PutOneTimeTask { OneTimeTaskRequest = TaskHelper.CreateOneTimeTaskRequest() };
             request.OneTimeTaskRequest.Id = 1;
             request.OneTimeTaskRequest.Name = name;
 
@@ -54,8 +56,8 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             var id = 10;
             var repository = GetRepositoryMock();
-            repository.Setup(r => r.CreateTask(It.IsAny<OneTimeTaskRequest>())).Returns(id);
-            var request = new PostOneTimeTask { OneTimeTaskRequest = TaskRequestHelper.CreateOneTimeTaskRequest() };
+            repository.Setup(r => r.CreateTask(It.IsAny<OneTimeTaskDto>())).Returns(id);
+            var request = new PostOneTimeTask { OneTimeTaskRequest = TaskHelper.CreateOneTimeTaskRequest() };
 
             var response = service.PostOneTimeTask(request);
 
@@ -76,8 +78,8 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             var id = 10;
             var repository = GetRepositoryMock();
-            repository.Setup(r => r.UpdateTask(It.IsAny<OneTimeTaskRequest>())).Returns(id);
-            var request = new PutOneTimeTask { OneTimeTaskRequest = TaskRequestHelper.CreateOneTimeTaskRequest() };
+            repository.Setup(r => r.UpdateTask(It.IsAny<OneTimeTaskDto>())).Returns(id);
+            var request = new PutOneTimeTask { OneTimeTaskRequest = TaskHelper.CreateOneTimeTaskRequest() };
             request.OneTimeTaskRequest.Id = id;
 
             var response = service.PutOneTimeTask(request);

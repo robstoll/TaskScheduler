@@ -78,7 +78,15 @@
     <Compile Include="SqlLiteRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TaskScheduler.DL.Interface\TaskScheduler.DL.Interfaces.csproj">
+    <ProjectReference Include="..\TaskScheduler.Common\TaskScheduler.Common.csproj">
+      <Project>{4e4f9926-f891-4e09-b26f-7d054cfbb2b2}</Project>
+      <Name>TaskScheduler.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskScheduler.DL.Dtos\TaskScheduler.DL.Dtos.csproj">
+      <Project>{7053de37-519e-4f4f-b934-f16f4b8fbd3d}</Project>
+      <Name>TaskScheduler.DL.Dtos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskScheduler.DL.Interfaces\TaskScheduler.DL.Interfaces.csproj">
       <Project>{4d520ec7-e8f8-4172-b96b-4f1730144aeb}</Project>
       <Name>TaskScheduler.DL.Interfaces</Name>
     </ProjectReference>

@@ -1,4 +1,5 @@
 ﻿using System;
+using CH.Tutteli.TaskScheduler.Common;
 using CH.Tutteli.TaskScheduler.Requests;
 namespace CH.Tutteli.TaskScheduler.BL
 {

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using CH.Tutteli.TaskScheduler.Requests;
 using CH.Tutteli.TaskScheduler.Test.Utils;
 using CH.Tutteli.TaskScheduler.BL.Triggers;
 using Moq;
@@ -19,6 +18,13 @@ using CH.Tutteli.TaskScheduler.DL;
 using Funq;
 using System.Threading;
 using System.Diagnostics;
+using CH.Tutteli.TaskScheduler.Common;
+using CH.Tutteli.TaskScheduler.Requests;
+using CH.Tutteli.TaskScheduler.DL.Interfaces;
+using TaskScheduler.BLDLMapper.Interfaces;
+using CH.Tutteli.TaskScheduler.BLDLMapper.Interfaces;
+using CH.Tutteli.TaskScheduler.BLDLMapper;
+using CH.Tutteli.TaskScheduler.DL.Dtos;
 
 namespace CH.Tutteli.TaskScheduler.Test
 {
@@ -32,12 +38,12 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             using (var db = appHost.TryResolve<IDbConnectionFactory>().Open())
             {
-                db.DropAndCreateTable<OneTimeTaskRequest>();
-                db.DropAndCreateTable<DailyTaskRequest>();
-                db.DropAndCreateTable<WeeklyTaskRequest>();
-                db.DropAndCreateTable<MonthlyTaskRequest>();
+                db.DropAndCreateTable<OneTimeTaskDto>();
+                db.DropAndCreateTable<DailyTaskDto>();
+                db.DropAndCreateTable<WeeklyTaskDto>();
+                db.DropAndCreateTable<MonthlyTaskDto>();
             }
-            taskHandler = new TaskHandler(appHost.TryResolve<IScheduler>(),appHost.TryResolve<IRepository>(), appHost.TryResolve<ICallbackVerifier>());
+            taskHandler = new TaskHandler(appHost.TryResolve<IScheduler>(), appHost.TryResolve<ICallbackVerifier>(), appHost.TryResolve<IBLRepository>());
         }
         
         [Test]
@@ -51,11 +57,11 @@ namespace CH.Tutteli.TaskScheduler.Test
                 Name = "name",
                 Description = "descr",
                 CallbackUrl = BaseUrl + "task/one-time/" + id,
-                Trigger = DateTime.Now.AddMilliseconds(200)
+                Trigger = DateTime.Now.AddMilliseconds(1000)
             };
             
             var response = SendRequest<TaskResponse>(request, client, "POST");
-            Thread.Sleep(400);
+            Thread.Sleep(1400);
 
             mockedTaskHandler.Verify(t => t.Get<OneTimeTaskRequest>(It.Is<OneTimeTaskRequest>(o => o.Id == id)));
         }
@@ -293,6 +299,8 @@ namespace CH.Tutteli.TaskScheduler.Test
                 var verifier = Mock.Of<ICallbackVerifier>(x => x.IsSecureCallback(It.IsAny<string>()) == true);
                 container.Register<IScheduler>(c => new ThreadingTimerScheduler());
                 container.Register<ICallbackVerifier>(c => verifier);
+                container.Register<IMapper>(c => new Mapper());
+                container.Register<IBLRepository>(c => new BLRepository(c.Resolve<IRepository>(), c.Resolve<IMapper>()));
                 container.Register<ITaskHandler>(c => taskHandler);
             }
         }  

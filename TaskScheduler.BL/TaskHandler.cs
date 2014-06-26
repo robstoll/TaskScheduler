@@ -8,6 +8,10 @@ using CH.Tutteli.TaskScheduler.DL;
 using CH.Tutteli.TaskScheduler.Requests;
 using CH.Tutteli.TaskScheduler.BL.Triggers;
 using System.Reflection;
+using CH.Tutteli.TaskScheduler.Common;
+using CH.Tutteli.TaskScheduler.DL.Interfaces;
+using CH.Tutteli.TaskScheduler.BLDLMapper.Interfaces;
+using TaskScheduler.BLDLMapper.Interfaces;
 
 namespace CH.Tutteli.TaskScheduler.BL
 {
@@ -15,11 +19,13 @@ namespace CH.Tutteli.TaskScheduler.BL
     {
 
         private IScheduler scheduler;
-        private IRepository repository;
         private ICallbackVerifier callbackVerifier;
-        private static MethodInfo loadTaskMethodInfo = typeof(IRepository).GetMethod("LoadTask");
+        private IBLRepository repository;
 
-        public TaskHandler(IScheduler theScheduler, IRepository theRepository, ICallbackVerifier theCallbackVerifier)
+        public TaskHandler(
+            IScheduler theScheduler,
+            ICallbackVerifier theCallbackVerifier,
+            IBLRepository theRepository)
         {
             scheduler = theScheduler;
             repository = theRepository;
@@ -28,7 +34,7 @@ namespace CH.Tutteli.TaskScheduler.BL
 
         public TRequest Get<TRequest>(TRequest request) where TRequest : class, ITaskRequest, new()
         {
-            ValidateGetRequest(request);
+            ValidateGetRequest(request);            
 
             return repository.LoadTask<TRequest>(request.Id);
         }

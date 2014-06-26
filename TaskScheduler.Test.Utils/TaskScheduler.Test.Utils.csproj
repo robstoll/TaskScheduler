@@ -82,18 +82,34 @@
     <Compile Include="IsEqual.cs" />
     <Compile Include="MockedRepositoryAppHost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TaskRequestHelper.cs" />
+    <Compile Include="TaskHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TaskScheduler.BL.Interfaces\TaskScheduler.BL.Interfaces.csproj">
       <Project>{b7ee3fd8-db1f-41c8-a51b-55a511f8e920}</Project>
       <Name>TaskScheduler.BL.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TaskScheduler.BLDLMapper.Interfaces\TaskScheduler.BLDLMapper.Interfaces.csproj">
+      <Project>{b8ab89db-2e5c-4d2a-99d6-394323467e57}</Project>
+      <Name>TaskScheduler.BLDLMapper.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskScheduler.BLDLMapper\TaskScheduler.BLDLMapper.csproj">
+      <Project>{c864750c-1c4e-455e-b0de-3027daa20a55}</Project>
+      <Name>TaskScheduler.BLDLMapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TaskScheduler.BL\TaskScheduler.BL.csproj">
       <Project>{0b6cd8c3-3fff-49c9-a9d3-d7f87f5bf2ce}</Project>
       <Name>TaskScheduler.BL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TaskScheduler.DL.Interface\TaskScheduler.DL.Interfaces.csproj">
+    <ProjectReference Include="..\TaskScheduler.Common\TaskScheduler.Common.csproj">
+      <Project>{4e4f9926-f891-4e09-b26f-7d054cfbb2b2}</Project>
+      <Name>TaskScheduler.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskScheduler.DL.Dtos\TaskScheduler.DL.Dtos.csproj">
+      <Project>{7053de37-519e-4f4f-b934-f16f4b8fbd3d}</Project>
+      <Name>TaskScheduler.DL.Dtos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskScheduler.DL.Interfaces\TaskScheduler.DL.Interfaces.csproj">
       <Project>{4d520ec7-e8f8-4172-b96b-4f1730144aeb}</Project>
       <Name>TaskScheduler.DL.Interfaces</Name>
     </ProjectReference>

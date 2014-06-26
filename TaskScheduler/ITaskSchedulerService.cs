@@ -1,8 +1,9 @@
 ﻿using System;
 using CH.Tutteli.TaskScheduler.Requests;
+using ServiceStack.ServiceHost;
 namespace CH.Tutteli.TaskScheduler
 {
-    interface ITaskSchedulerService
+    interface ITaskSchedulerService : IService
     {
         DailyTaskRequest Get(DailyTaskRequest request);
         MonthlyTaskRequest Get(MonthlyTaskRequest request);

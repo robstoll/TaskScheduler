@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using CH.Tutteli.TaskScheduler.Common;
 using CH.Tutteli.TaskScheduler.Requests;
 
 namespace CH.Tutteli.TaskScheduler.BL.Triggers
 {
-    public class TriggerAbstractFactory<T>
-    {
-
-    }
 
     public class TriggerFactory
     {
@@ -42,10 +39,7 @@ namespace CH.Tutteli.TaskScheduler.BL.Triggers
                 Func<TRequest, TTrigger> func = (Func<TRequest, TTrigger>)mappers[tRequest].Item2;
                 return func(request);
             }
-            else
-            {
-                throw new ArgumentException("request type " + typeof(TRequest).Name + " is not supported");
-            }
+            throw new ArgumentException("request type " + typeof(TRequest).Name + " is not supported");
         }
 
         public static ITrigger Create<TRequest>(TRequest request) 
@@ -57,10 +51,7 @@ namespace CH.Tutteli.TaskScheduler.BL.Triggers
                 Func<TRequest, object> func = (Func<TRequest, object>)mappers[tRequest].Item2;
                 return (ITrigger) func(request);
             }
-            else
-            {
-                throw new ArgumentException("request type " + typeof(TRequest).Name + " is not supported");
-            }
+            throw new ArgumentException("request type " + typeof(TRequest).Name + " is not supported");
         }
 
         public static OneTimeTrigger Create(OneTimeTaskRequest request)

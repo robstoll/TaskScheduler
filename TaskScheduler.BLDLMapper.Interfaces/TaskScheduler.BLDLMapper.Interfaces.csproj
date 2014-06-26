@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4D520EC7-E8F8-4172-B96B-4F1730144AEB}</ProjectGuid>
+    <ProjectGuid>{B8AB89DB-2E5C-4D2A-99D6-394323467E57}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CH.Tutteli.TaskScheduler.DL.Interface</RootNamespace>
-    <AssemblyName>CH.Tutteli.TaskScheduler.DL.Interface</AssemblyName>
+    <RootNamespace>TaskScheduler.BLDLMapper.Interfaces</RootNamespace>
+    <AssemblyName>TaskScheduler.BLDLMapper.Interfaces</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,6 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ServiceStack.Common">
+      <HintPath>..\packages\ServiceStack.Common.3.9.71\lib\net35\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>..\packages\ServiceStack.Common.3.9.71\lib\net35\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,14 +48,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IRepository.cs" />
+    <Compile Include="IBLRepository.cs" />
+    <Compile Include="IMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TaskScheduler.Common\TaskScheduler.Common.csproj">
+      <Project>{4e4f9926-f891-4e09-b26f-7d054cfbb2b2}</Project>
+      <Name>TaskScheduler.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskScheduler.DL.Dtos\TaskScheduler.DL.Dtos.csproj">
+      <Project>{7053de37-519e-4f4f-b934-f16f4b8fbd3d}</Project>
+      <Name>TaskScheduler.DL.Dtos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskScheduler.DL.Interfaces\TaskScheduler.DL.Interfaces.csproj">
+      <Project>{4d520ec7-e8f8-4172-b96b-4f1730144aeb}</Project>
+      <Name>TaskScheduler.DL.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TaskScheduler.Requests\TaskScheduler.Requests.csproj">
       <Project>{3ebedb4a-5f8b-4359-9ecc-d97ef1e6affb}</Project>
       <Name>TaskScheduler.Requests</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CH.Tutteli.TaskScheduler.Common;
+using CH.Tutteli.TaskScheduler.DL.Dtos;
 using CH.Tutteli.TaskScheduler.Requests;
 using NUnit.Framework;
 
@@ -16,6 +18,13 @@ namespace CH.Tutteli.TaskScheduler.Test.Utils
             Assert.That(result.Trigger, IsEqual.WithinOneMillisecond(task.Trigger));
         }
 
+        public static void OneTimeTaskDto(OneTimeTaskDto result, OneTimeTaskDto task)
+        {
+            AssertSameBasicTaskProperties(result, task);
+            Assert.That(result.Trigger, IsEqual.WithinOneMillisecond(task.Trigger));
+        }
+
+
         public static void DailyTaskRequest(DailyTaskRequest result, DailyTaskRequest task)
         {
             AssertSameBasicTaskProperties(result, task);
@@ -24,6 +33,15 @@ namespace CH.Tutteli.TaskScheduler.Test.Utils
             Assert.That(result.TriggerWhenDayOfWeek, Is.EqualTo(task.TriggerWhenDayOfWeek));
         }
 
+        public static void DailyTaskDto(DailyTaskDto result, DailyTaskDto task)
+        {
+            AssertSameBasicTaskProperties(result, task);
+            AssertSameRecurringTaskProperties(result, task);
+            Assert.That(result.RecursEveryXDays, Is.EqualTo(task.RecursEveryXDays));
+            Assert.That(result.TriggerWhenDayOfWeek, Is.EqualTo(task.TriggerWhenDayOfWeek));
+        }
+
+
         public static void WeeklyTaskRequest(WeeklyTaskRequest result, WeeklyTaskRequest task)
         {
             AssertSameBasicTaskProperties(result, task);
@@ -31,7 +49,26 @@ namespace CH.Tutteli.TaskScheduler.Test.Utils
             Assert.That(result.TriggerWhenDayOfWeek, Is.EqualTo(task.TriggerWhenDayOfWeek));
             Assert.That(result.RecursEveryXWeeks, Is.EqualTo(task.RecursEveryXWeeks));
         }
+
+        public static void WeeklyTaskDto(WeeklyTaskDto result, WeeklyTaskDto task)
+        {
+            AssertSameBasicTaskProperties(result, task);
+            AssertSameRecurringTaskProperties(result, task);
+            Assert.That(result.TriggerWhenDayOfWeek, Is.EqualTo(task.TriggerWhenDayOfWeek));
+            Assert.That(result.RecursEveryXWeeks, Is.EqualTo(task.RecursEveryXWeeks));
+        }
+
+
         public static void MonthlyTaskRequest(MonthlyTaskRequest result, MonthlyTaskRequest task)
+        {
+            AssertSameBasicTaskProperties(result, task);
+            AssertSameRecurringTaskProperties(result, task);
+            Assert.That(result.RecursOnDayOfMonth, Is.EqualTo(task.RecursOnDayOfMonth));
+            Assert.That(result.RecursOnMonth, Is.EqualTo(task.RecursOnMonth));
+            Assert.That(result.RecursOnSpecialDayOfMonth, Is.EqualTo(task.RecursOnSpecialDayOfMonth));
+        }
+
+        public static void MonthlyTaskDto(MonthlyTaskDto result, MonthlyTaskDto task)
         {
             AssertSameBasicTaskProperties(result, task);
             AssertSameRecurringTaskProperties(result, task);
@@ -53,7 +90,5 @@ namespace CH.Tutteli.TaskScheduler.Test.Utils
             Assert.That(result.StartDate, IsEqual.WithinOneMillisecond(task.StartDate));
             Assert.That(result.EndDate, IsEqual.WithinOneMillisecond(task.EndDate));
         }
-
-
     }
 }

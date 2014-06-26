@@ -64,6 +64,10 @@
       <Project>{0b6cd8c3-3fff-49c9-a9d3-d7f87f5bf2ce}</Project>
       <Name>TaskScheduler.BL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TaskScheduler.Common\TaskScheduler.Common.csproj">
+      <Project>{4e4f9926-f891-4e09-b26f-7d054cfbb2b2}</Project>
+      <Name>TaskScheduler.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TaskScheduler.Requests\TaskScheduler.Requests.csproj">
       <Project>{3ebedb4a-5f8b-4359-9ecc-d97ef1e6affb}</Project>
       <Name>TaskScheduler.Requests</Name>

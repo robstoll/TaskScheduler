@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
+using CH.Tutteli.TaskScheduler.Common;
 using ServiceStack.DataAnnotations;
 using ServiceStack.ServiceHost;
 
@@ -14,8 +15,6 @@ namespace CH.Tutteli.TaskScheduler.Requests
     {
         #region general properties - code duplication in all request objects
 
-        [PrimaryKey]
-        [AutoIncrement]
         [DataMember]
         public long Id { get; set; }
 

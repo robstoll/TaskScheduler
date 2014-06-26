@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CH.Tutteli.TaskScheduler.BL.Triggers;
+using CH.Tutteli.TaskScheduler.Common;
 using CH.Tutteli.TaskScheduler.Requests;
 using NUnit.Framework;
 

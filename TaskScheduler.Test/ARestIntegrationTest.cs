@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using CH.Tutteli.TaskScheduler.Common;
 using CH.Tutteli.TaskScheduler.Requests;
 using CH.Tutteli.TaskScheduler.Test.Utils;
 using ServiceStack.ServiceClient.Web;
@@ -35,13 +36,14 @@ namespace CH.Tutteli.TaskScheduler.Test
             new JsvServiceClient(BaseUrl),
             };
         }
+
         public IEnumerable<ITaskRequest> GetDifferentTaskRequests()
         {
             return new ITaskRequest[]{
-                TaskRequestHelper.CreateOneTimeTaskRequest(),
-                TaskRequestHelper.CreateDailyTaskRequest(),
-                TaskRequestHelper.CreateWeaklyTaskRequest(),
-                TaskRequestHelper.CreateMonthlyTaskRequest()
+                TaskHelper.CreateOneTimeTaskRequest(),
+                TaskHelper.CreateDailyTaskRequest(),
+                TaskHelper.CreateWeaklyTaskRequest(),
+                TaskHelper.CreateMonthlyTaskRequest()
             };
         }
     }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using CH.Tutteli.TaskScheduler.Common;
+using CH.Tutteli.TaskScheduler.DL.Interfaces;
 using CH.Tutteli.TaskScheduler.Requests;
 using ServiceStack.Redis;
 using ServiceStack.Redis.Generic;
@@ -17,15 +19,15 @@ namespace CH.Tutteli.TaskScheduler.DL
 		{
 			redisClientManager = theRedisManager;
 		}
-        public TRequest LoadTask<TRequest>(long id) where TRequest : class, ITaskRequest, new() {
+        public TRequest LoadTask<TRequest>(long id) where TRequest : class, ITaskDto, new() {
             return redisClientManager.ExecAs<TRequest>(x => x.GetById(id));
         }
 
-        public IList<TRequest> GetAllTasks<TRequest>() where TRequest : class, ITaskRequest, new() {
+        public IList<TRequest> GetAllTasks<TRequest>() where TRequest : class, ITaskDto, new() {
             return redisClientManager.ExecAs<TRequest>(x => x.GetAll());
         }
 
-		public long CreateTask<TRequest>(TRequest request) where TRequest : class, ITaskRequest, new()
+		public long CreateTask<TRequest>(TRequest request) where TRequest : class, ITaskDto, new()
 		{
 			using (var redisClient = redisClientManager.GetClient())
 			{
@@ -45,7 +47,7 @@ namespace CH.Tutteli.TaskScheduler.DL
 			}
 		}
 
-        public long UpdateTask<TRequest>(TRequest request) where TRequest : class, ITaskRequest, new()
+        public long UpdateTask<TRequest>(TRequest request) where TRequest : class, ITaskDto, new()
         {
             using (var redisClient = redisClientManager.GetClient())
             {
@@ -69,7 +71,7 @@ namespace CH.Tutteli.TaskScheduler.DL
             }
         }
 
-        public void DeleteTask<TRequest>(long id) where TRequest : class, ITaskRequest, new()
+        public void DeleteTask<TRequest>(long id) where TRequest : class, ITaskDto, new()
         {
             using (var redisClient = redisClientManager.GetClient())
 			{

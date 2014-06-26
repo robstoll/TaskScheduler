@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using CH.Tutteli.TaskScheduler.Common;
 using CH.Tutteli.TaskScheduler.Requests;
 
 namespace CH.Tutteli.TaskScheduler.BL.Triggers

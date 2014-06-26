@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using CH.Tutteli.TaskScheduler.Common;
+using CH.Tutteli.TaskScheduler.DL.Interfaces;
 using CH.Tutteli.TaskScheduler.Requests;
 using ServiceStack.OrmLite;
 
@@ -23,17 +25,17 @@ namespace CH.Tutteli.TaskScheduler.DL
             dbConnectionFactory = theDbConnectionFactory;
         }
 
-        public IList<TRequest> GetAllTasks<TRequest>() where TRequest : class, ITaskRequest, new()
+        public IList<TRequest> GetAllTasks<TRequest>() where TRequest : class, ITaskDto, new()
         {
             return Db.Select<TRequest>();
         }
 
-        public TRequest LoadTask<TRequest>(long id) where TRequest : class, ITaskRequest, new()
+        public TRequest LoadTask<TRequest>(long id) where TRequest : class, ITaskDto, new()
         {
             return Db.GetById<TRequest>(id);
         }
 
-        public long CreateTask<TRequest>(TRequest request) where TRequest : class, ITaskRequest, new()
+        public long CreateTask<TRequest>(TRequest request) where TRequest : class, ITaskDto, new()
         {
             if (request.Id == default(long))
             {
@@ -47,7 +49,7 @@ namespace CH.Tutteli.TaskScheduler.DL
             }
         }
 
-        public long UpdateTask<TRequest>(TRequest request) where TRequest : class, ITaskRequest, new()
+        public long UpdateTask<TRequest>(TRequest request) where TRequest : class, ITaskDto, new()
         {
             if (request.Id != default(long))
             {
@@ -67,7 +69,7 @@ namespace CH.Tutteli.TaskScheduler.DL
             }
         }
 
-        public void DeleteTask<TRequest>(long id) where TRequest : class, ITaskRequest, new()
+        public void DeleteTask<TRequest>(long id) where TRequest : class, ITaskDto, new()
         {
             Db.DeleteById<TRequest>(id);
         }

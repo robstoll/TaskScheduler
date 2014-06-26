@@ -6,6 +6,7 @@ using CH.Tutteli.TaskScheduler.Test.Utils;
 using CH.Tutteli.TaskScheduler.BL.Triggers;
 using NUnit.Framework;
 using CH.Tutteli.TaskScheduler.Requests;
+using CH.Tutteli.TaskScheduler.Common;
 
 namespace CH.Tutteli.TaskScheduler.Test.BL.Triggers
 {

@@ -46,6 +46,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TaskScheduler.Common\TaskScheduler.Common.csproj">
+      <Project>{4e4f9926-f891-4e09-b26f-7d054cfbb2b2}</Project>
+      <Name>TaskScheduler.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskScheduler.DL.Interfaces\TaskScheduler.DL.Interfaces.csproj">
+      <Project>{4d520ec7-e8f8-4172-b96b-4f1730144aeb}</Project>
+      <Name>TaskScheduler.DL.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TaskScheduler.Requests\TaskScheduler.Requests.csproj">
       <Project>{3ebedb4a-5f8b-4359-9ecc-d97ef1e6affb}</Project>
       <Name>TaskScheduler.Requests</Name>

@@ -6,12 +6,16 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 using CH.Tutteli.TaskScheduler.BL;
+using CH.Tutteli.TaskScheduler.BLDLMapper;
+using CH.Tutteli.TaskScheduler.BLDLMapper.Interfaces;
 using CH.Tutteli.TaskScheduler.DL;
+using CH.Tutteli.TaskScheduler.DL.Interfaces;
 using CH.Tutteli.TaskScheduler.Requests;
 using ServiceStack.Common.Utils;
 using ServiceStack.OrmLite;
 using ServiceStack.Redis;
 using ServiceStack.WebHost.Endpoints;
+using TaskScheduler.BLDLMapper.Interfaces;
 
 namespace CH.Tutteli.TaskScheduler
 {
@@ -31,13 +35,13 @@ namespace CH.Tutteli.TaskScheduler
             {
                 Routes
                     .Add<OneTimeTaskRequest>(URL_PREFIX + ONE_TIME)
-                    .Add<OneTimeTaskRequest>(URL_PREFIX + ONE_TIME + "/{id}")
+                    .Add<OneTimeTaskRequest>(URL_PREFIX + ONE_TIME + "/{Id}")
                     .Add<DailyTaskRequest>(URL_PREFIX + DAILY)
-                    .Add<DailyTaskRequest>(URL_PREFIX + DAILY + "/{id}")
+                    .Add<DailyTaskRequest>(URL_PREFIX + DAILY + "/{Id}")
                     .Add<WeeklyTaskRequest>(URL_PREFIX + WEEKLY)
-                    .Add<WeeklyTaskRequest>(URL_PREFIX + WEEKLY + "/{id}")
+                    .Add<WeeklyTaskRequest>(URL_PREFIX + WEEKLY + "/{Id}")
                     .Add<MonthlyTaskRequest>(URL_PREFIX + MONTHLY)
-                    .Add<MonthlyTaskRequest>(URL_PREFIX + MONTHLY + "/{id}");
+                    .Add<MonthlyTaskRequest>(URL_PREFIX + MONTHLY + "/{Id}");
 
 
                 //Show StackTrace in Web Service Exceptions
@@ -56,19 +60,22 @@ namespace CH.Tutteli.TaskScheduler
 
                 container.Register<IScheduler>(c => new ThreadingTimerScheduler());
                 container.Register<ICallbackVerifier>(c => new HardCodedCallbackVerifier());
+                container.Register<IMapper>(c => new Mapper());
+                container.Register<IBLRepository>(c => new BLRepository(c.Resolve<IRepository>(), c.Resolve<IMapper>()));
+
                 container.Register<ITaskHandler>(c => new TaskHandler(
                     c.Resolve<IScheduler>(),
-                    c.Resolve<IRepository>(),
-                    c.Resolve<ICallbackVerifier>()
+                    c.Resolve<ICallbackVerifier>(),
+                    c.Resolve<IBLRepository>()
                 ));
 
-                using (var db = container.Resolve<IDbConnectionFactory>().Open())
-                {
-                    db.DropAndCreateTable<OneTimeTaskRequest>();
-                    db.DropAndCreateTable<DailyTaskRequest>();
-                    db.DropAndCreateTable<WeeklyTaskRequest>();
-                    db.DropAndCreateTable<MonthlyTaskRequest>();
-                }
+                //using (var db = container.Resolve<IDbConnectionFactory>().Open())
+                //{
+                //    db.DropAndCreateTable<DL.Dtos.OneTimeTaskDto>();
+                //    db.DropAndCreateTable<DL.Dtos.DailyTaskDto>();
+                //    db.DropAndCreateTable<DL.Dtos.WeeklyTaskDto>();
+                //    db.DropAndCreateTable<DL.Dtos.MonthlyTaskDto>();
+                //}
             }
         }
 

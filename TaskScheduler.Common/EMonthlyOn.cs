@@ -1,4 +1,4 @@
-﻿namespace CH.Tutteli.TaskScheduler.Requests
+﻿namespace CH.Tutteli.TaskScheduler.Common
 {
     public enum EMonthlyOn
     {

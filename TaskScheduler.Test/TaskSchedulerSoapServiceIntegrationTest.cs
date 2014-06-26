@@ -8,6 +8,8 @@ using Moq;
 using NUnit.Framework;
 using ServiceStack.OrmLite;
 using ServiceStack.WebHost.Endpoints;
+using CH.Tutteli.TaskScheduler.Common;
+using CH.Tutteli.TaskScheduler.DL.Dtos;
 namespace CH.Tutteli.TaskScheduler.Test
 {
     [TestFixture]
@@ -19,10 +21,10 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             using (var db = appHost.TryResolve<IDbConnectionFactory>().Open())
             {
-                db.DropAndCreateTable<OneTimeTaskRequest>();
-                db.DropAndCreateTable<DailyTaskRequest>();
-                db.DropAndCreateTable<WeeklyTaskRequest>();
-                db.DropAndCreateTable<MonthlyTaskRequest>();
+                db.DropAndCreateTable<OneTimeTaskDto>();
+                db.DropAndCreateTable<DailyTaskDto>();
+                db.DropAndCreateTable<WeeklyTaskDto>();
+                db.DropAndCreateTable<MonthlyTaskDto>();
             }
         }
 
@@ -33,7 +35,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             [ValueSource("GetDifferentSaopClients")] ISyncReplyClient client)
         {
             var id = 1;
-            var request =new PostOneTimeTask{OneTimeTaskRequest= TaskRequestHelper.CreateOneTimeTaskRequest()};
+            var request =new PostOneTimeTask{OneTimeTaskRequest= TaskHelper.CreateOneTimeTaskRequest()};
 
             var response = client.PostOneTimeTask(request);
 
@@ -47,7 +49,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             [ValueSource("GetDifferentSaopClients")] ISyncReplyClient client)
         {
             var id = 1;
-            var request = new PostDailyTask{DailyTaskRequest = TaskRequestHelper.CreateDailyTaskRequest()};
+            var request = new PostDailyTask{DailyTaskRequest = TaskHelper.CreateDailyTaskRequest()};
 
             var response = client.PostDailyTask(request);
 
@@ -61,7 +63,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             [ValueSource("GetDifferentSaopClients")] ISyncReplyClient client)
         {
             var id = 1;
-            var request = new PostWeeklyTask{WeeklyTaskRequest = TaskRequestHelper.CreateWeaklyTaskRequest()};
+            var request = new PostWeeklyTask{WeeklyTaskRequest = TaskHelper.CreateWeaklyTaskRequest()};
 
             var response = client.PostWeeklyTask(request);
 
@@ -75,7 +77,7 @@ namespace CH.Tutteli.TaskScheduler.Test
             [ValueSource("GetDifferentSaopClients")] ISyncReplyClient client)
         {
             var id = 1;
-            var request = new PostMonthlyTask{MonthlyTaskRequest= TaskRequestHelper.CreateMonthlyTaskRequest()};
+            var request = new PostMonthlyTask{MonthlyTaskRequest= TaskHelper.CreateMonthlyTaskRequest()};
 
             var response = client.PostMonthlyTask(request);
 
@@ -95,7 +97,7 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             var id = 1;
 
-            var postRequest = new PostOneTimeTask{OneTimeTaskRequest = TaskRequestHelper.CreateOneTimeTaskRequest()};
+            var postRequest = new PostOneTimeTask{OneTimeTaskRequest = TaskHelper.CreateOneTimeTaskRequest()};
             var resultId = client.PostOneTimeTask(postRequest);
             var getRequest = new GetOneTimeTask { Id = resultId.TaskResponse.Id };
             var result = client.GetOneTimeTask(getRequest);
@@ -121,7 +123,7 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             var id = 1;
 
-            var postRequest = new PostDailyTask{DailyTaskRequest = TaskRequestHelper.CreateDailyTaskRequest()};
+            var postRequest = new PostDailyTask{DailyTaskRequest = TaskHelper.CreateDailyTaskRequest()};
             var resultId = client.PostDailyTask(postRequest);
             var getRequest = new GetDailyTask { Id = resultId.TaskResponse.Id };
             var result = client.GetDailyTask(getRequest);
@@ -147,7 +149,7 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             var id = 1;
 
-            var postRequest = new PostWeeklyTask{WeeklyTaskRequest = TaskRequestHelper.CreateWeaklyTaskRequest()};
+            var postRequest = new PostWeeklyTask{WeeklyTaskRequest = TaskHelper.CreateWeaklyTaskRequest()};
             var resultId = client.PostWeeklyTask(postRequest);
             var getRequest = new GetWeeklyTask { Id = resultId.TaskResponse.Id };
             var result = client.GetWeeklyTask(getRequest);
@@ -173,7 +175,7 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             var id = 1;
 
-            var postRequest = new PostMonthlyTask{MonthlyTaskRequest = TaskRequestHelper.CreateMonthlyTaskRequest()};
+            var postRequest = new PostMonthlyTask{MonthlyTaskRequest = TaskHelper.CreateMonthlyTaskRequest()};
             var resultId = client.PostMonthlyTask(postRequest);
             var getRequest = new GetMonthlyTask { Id = resultId.TaskResponse.Id };
             var result = client.GetMonthlyTask(getRequest);
@@ -203,7 +205,7 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             var id = 1;
 
-            var postRequest = new PostOneTimeTask{OneTimeTaskRequest = TaskRequestHelper.CreateOneTimeTaskRequest()};
+            var postRequest = new PostOneTimeTask{OneTimeTaskRequest = TaskHelper.CreateOneTimeTaskRequest()};
             var resultId = client.PostOneTimeTask(postRequest);
             var getRequest = new GetOneTimeTask { Id = resultId.TaskResponse.Id };
             var result = client.GetOneTimeTask(getRequest);
@@ -224,7 +226,7 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             var id = 1;
 
-            var postRequest = new PostDailyTask{DailyTaskRequest = TaskRequestHelper.CreateDailyTaskRequest()};
+            var postRequest = new PostDailyTask{DailyTaskRequest = TaskHelper.CreateDailyTaskRequest()};
             var resultId = client.PostDailyTask(postRequest);
             var getRequest = new GetDailyTask { Id = resultId.TaskResponse.Id };
             var result = client.GetDailyTask(getRequest);
@@ -245,7 +247,7 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             var id = 1;
 
-            var postRequest =new PostWeeklyTask{WeeklyTaskRequest=TaskRequestHelper.CreateWeaklyTaskRequest()};
+            var postRequest =new PostWeeklyTask{WeeklyTaskRequest=TaskHelper.CreateWeaklyTaskRequest()};
             var resultId = client.PostWeeklyTask(postRequest);
             var getRequest = new GetWeeklyTask { Id = resultId.TaskResponse.Id };
             var result = client.GetWeeklyTask(getRequest);
@@ -266,7 +268,7 @@ namespace CH.Tutteli.TaskScheduler.Test
         {
             var id = 1;
 
-            var postRequest = new PostMonthlyTask{MonthlyTaskRequest =TaskRequestHelper.CreateMonthlyTaskRequest()};
+            var postRequest = new PostMonthlyTask{MonthlyTaskRequest =TaskHelper.CreateMonthlyTaskRequest()};
             var resultId = client.PostMonthlyTask(postRequest);
             var getRequest = new GetMonthlyTask { Id = resultId.TaskResponse.Id };
             var result = client.GetMonthlyTask(getRequest);
