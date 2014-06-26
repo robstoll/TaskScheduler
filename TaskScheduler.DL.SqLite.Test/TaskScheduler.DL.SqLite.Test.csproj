@@ -7,8 +7,8 @@
     <ProjectGuid>{C81FDDB5-49D9-4B2C-999C-8F9A5484FCB9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CH.Tutteli.TaskScheduler.DL.SqlLite.Test</RootNamespace>
-    <AssemblyName>CH.Tutteli.TaskScheduler.DL.SqlLite.Test</AssemblyName>
+    <RootNamespace>CH.Tutteli.TaskScheduler.DL.SqLite.Test</RootNamespace>
+    <AssemblyName>CH.Tutteli.TaskScheduler.DL.SqLite.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -75,7 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SqlLiteRepositoryTest.cs" />
+    <Compile Include="SqLiteRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TaskScheduler.Common\TaskScheduler.Common.csproj">
@@ -90,9 +90,9 @@
       <Project>{4d520ec7-e8f8-4172-b96b-4f1730144aeb}</Project>
       <Name>TaskScheduler.DL.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TaskScheduler.DL\TaskScheduler.DL.SqlLite.csproj">
+    <ProjectReference Include="..\TaskScheduler.DL.SqLite\TaskScheduler.DL.SqLite.csproj">
       <Project>{208f6c4f-b43b-4fe4-afe1-c2a07bae99ff}</Project>
-      <Name>TaskScheduler.DL.SqlLite</Name>
+      <Name>TaskScheduler.DL.SqLite</Name>
     </ProjectReference>
     <ProjectReference Include="..\TaskScheduler.Requests\TaskScheduler.Requests.csproj">
       <Project>{3ebedb4a-5f8b-4359-9ecc-d97ef1e6affb}</Project>

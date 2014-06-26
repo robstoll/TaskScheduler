@@ -156,9 +156,9 @@
       <Project>{4d520ec7-e8f8-4172-b96b-4f1730144aeb}</Project>
       <Name>TaskScheduler.DL.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TaskScheduler.DL\TaskScheduler.DL.SqlLite.csproj">
+    <ProjectReference Include="..\TaskScheduler.DL.SqLite\TaskScheduler.DL.SqLite.csproj">
       <Project>{208f6c4f-b43b-4fe4-afe1-c2a07bae99ff}</Project>
-      <Name>TaskScheduler.DL.SqlLite</Name>
+      <Name>TaskScheduler.DL.SqLite</Name>
     </ProjectReference>
     <ProjectReference Include="..\TaskScheduler.Requests.Soap\TaskScheduler.Requests.Soap.csproj">
       <Project>{1d061554-0ae7-41eb-8400-f1920238ccac}</Project>

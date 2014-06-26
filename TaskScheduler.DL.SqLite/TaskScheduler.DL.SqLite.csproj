@@ -7,8 +7,8 @@
     <ProjectGuid>{208F6C4F-B43B-4FE4-AFE1-C2A07BAE99FF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CH.Tutteli.TaskScheduler.DL</RootNamespace>
-    <AssemblyName>CH.Tutteli.TaskScheduler.DL</AssemblyName>
+    <RootNamespace>CH.Tutteli.TaskScheduler.DL.SqLite</RootNamespace>
+    <AssemblyName>CH.Tutteli.TaskScheduler.DL.SqLite</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -66,7 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SqlLiteRepository.cs" />
+    <Compile Include="SqLiteRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

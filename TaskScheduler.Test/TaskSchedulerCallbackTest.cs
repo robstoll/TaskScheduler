@@ -25,6 +25,7 @@ using TaskScheduler.BLDLMapper.Interfaces;
 using CH.Tutteli.TaskScheduler.BLDLMapper.Interfaces;
 using CH.Tutteli.TaskScheduler.BLDLMapper;
 using CH.Tutteli.TaskScheduler.DL.Dtos;
+using CH.Tutteli.TaskScheduler.DL.SqLite;
 
 namespace CH.Tutteli.TaskScheduler.Test
 {
@@ -291,7 +292,7 @@ namespace CH.Tutteli.TaskScheduler.Test
 
                 container.Register<IDbConnectionFactory>(
                            new OrmLiteConnectionFactory(PathUtils.MapHostAbsolutePath("~/TaskScheduler-test.sqlite"), SqliteDialect.Provider));
-                container.Register<IRepository>(c => new SqlLiteRepository(c.Resolve<IDbConnectionFactory>()));
+                container.Register<IRepository>(c => new SqLiteRepository(c.Resolve<IDbConnectionFactory>()));
 
                 var mock = new Mock<ITaskHandler>(MockBehavior.Strict);
                 taskHandler = mock.Object;

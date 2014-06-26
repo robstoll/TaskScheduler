@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CH.Tutteli.TaskScheduler.Common;
-using CH.Tutteli.TaskScheduler.DL;
 using CH.Tutteli.TaskScheduler.DL.Dtos;
 using CH.Tutteli.TaskScheduler.DL.Interfaces;
+using CH.Tutteli.TaskScheduler.DL.SqLite;
 using CH.Tutteli.TaskScheduler.Test.Utils;
 using Funq;
 using NUnit.Framework;
@@ -17,7 +17,7 @@ using ServiceStack.WebHost.Endpoints;
 namespace CH.Tutteli.TaskScheduler.Test.DL
 {
     [TestFixture]
-    public class SqlLiteRepositoryTest : AIntegrationTest
+    public class SqLiteRepositoryTest : AIntegrationTest
     {
         [SetUp]
         public void SetUp()
@@ -639,13 +639,13 @@ namespace CH.Tutteli.TaskScheduler.Test.DL
     public class SqlLiteAppHost : AppHostHttpListenerBase
     {
 
-        public SqlLiteAppHost() : base("Task Scheduler Web Services", typeof(SqlLiteRepository).Assembly) { }
+        public SqlLiteAppHost() : base("Task Scheduler Web Services", typeof(SqLiteRepository).Assembly) { }
 
         public override void Configure(Container container)
         {
             container.Register<IDbConnectionFactory>(
                        new OrmLiteConnectionFactory(PathUtils.MapHostAbsolutePath("~/TaskScheduler-test.sqlite"), SqliteDialect.Provider));
-            container.Register<IRepository>(c => new SqlLiteRepository(c.Resolve<IDbConnectionFactory>()));
+            container.Register<IRepository>(c => new SqLiteRepository(c.Resolve<IDbConnectionFactory>()));
         }
     }
 }

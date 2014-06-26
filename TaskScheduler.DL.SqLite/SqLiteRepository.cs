@@ -8,9 +8,9 @@ using CH.Tutteli.TaskScheduler.DL.Interfaces;
 using CH.Tutteli.TaskScheduler.Requests;
 using ServiceStack.OrmLite;
 
-namespace CH.Tutteli.TaskScheduler.DL
+namespace CH.Tutteli.TaskScheduler.DL.SqLite
 {
-    public class SqlLiteRepository : IRepository
+    public class SqLiteRepository : IRepository
     {
         private IDbConnectionFactory dbConnectionFactory;
 
@@ -20,7 +20,7 @@ namespace CH.Tutteli.TaskScheduler.DL
             get { return db ?? (db = dbConnectionFactory.Open()); }
         }
 
-        public SqlLiteRepository(IDbConnectionFactory theDbConnectionFactory)
+        public SqLiteRepository(IDbConnectionFactory theDbConnectionFactory)
         {
             dbConnectionFactory = theDbConnectionFactory;
         }

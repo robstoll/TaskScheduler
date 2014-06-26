@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using CH.Tutteli.TaskScheduler.BL;
 using CH.Tutteli.TaskScheduler.BLDLMapper;
 using CH.Tutteli.TaskScheduler.BLDLMapper.Interfaces;
-using CH.Tutteli.TaskScheduler.DL;
 using CH.Tutteli.TaskScheduler.DL.Interfaces;
+using CH.Tutteli.TaskScheduler.DL.SqLite;
 using Funq;
 using ServiceStack.Common.Utils;
 using ServiceStack.OrmLite;
@@ -24,7 +24,7 @@ namespace CH.Tutteli.TaskScheduler.Test.Utils
         {
             container.Register<IDbConnectionFactory>(
                        new OrmLiteConnectionFactory(PathUtils.MapHostAbsolutePath("~/TaskScheduler-test.sqlite"), SqliteDialect.Provider));
-            container.Register<IRepository>(c => new SqlLiteRepository(c.Resolve<IDbConnectionFactory>()));
+            container.Register<IRepository>(c => new SqLiteRepository(c.Resolve<IDbConnectionFactory>()));
 
             container.Register<IScheduler>(c => new ThreadingTimerScheduler());
             container.Register<ICallbackVerifier>(c => new HardCodedCallbackVerifier());
